@@ -13,11 +13,12 @@ const router = createRouter({
   routes: [
     { path: '/', component: App },
     { path: '/friends', component: Friends},
-    { path: '/article',component: Article},
-    { path: '/archive',component: Working},
-    { path: '/about',component: Working}
+    { path: '/article/:articleId', component: Article},
+    { path: '/archive', component: Working},
+    { path: '/about', component: Working}
   ],
 });
+
 
 app.use(router);
 app.mount('#app');

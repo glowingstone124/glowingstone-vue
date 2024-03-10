@@ -90,13 +90,14 @@ h3 {
 
 .artc {
     color: #fffdfd;
-    font-size: 1.8em;
+    font-size: 2.4em;
     margin-top: 10px;
 }
 .abstract {
     color: #fffdfd;
-    font-size: 1em;
+    font-size: 1.2em;
     margin-top: 10px;
+    white-space: auto;
 }
 footer{
     text-align: center;
