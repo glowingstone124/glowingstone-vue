@@ -1,0 +1,105 @@
+@import url(color.css);
+@import url(font.css);
+@import url(nav.css);
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #8aacda;
+    margin: 0;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar
+{
+    width:10px;
+    background-color:#F5F5F5;
+}
+/*定义滚动条轨道：内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+    background-color:#292828;
+}
+/*定义滑块：内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+    border-radius:10px;
+    background-color:#555;
+}
+.title {
+    padding: 26vh 18vw 26vh 7vh;
+    background-image: linear-gradient(180deg, transparent, #8aacda), url(https://cn.bing.com/th?id=OHR.TarragonaSpain_ZH-CN5488361711_1920x1080.jpg&rf=LaDigue_3840x2160.jpg&pid=hp);
+    background-size: 100%, cover;
+    background-repeat: no-repeat; 
+    background-position: right;
+}
+
+.tth1 {
+    color: #e4e0e0;
+    font-size: 5vw;
+    font-family: Inter;
+    font-weight: 600;
+    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.introduction {
+    color: #e4e0e0;
+    font-size: 4vw;
+    font-family: Inter;
+    font-weight: 600;
+    text-align: left;
+    margin-left: 20vw;
+}
+h3 {
+    color: #d1cfcf;
+    font-size: 1vw;
+    font-family: Inter;
+    font-weight: 400;
+    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.content {
+    align-items: center;
+    padding: 20px;
+    max-width: 100vw;
+    background-color: #8aacda ;
+    align-self: center;
+    margin: auto;
+}
+
+.article {
+    /*background-color: #3d3d3d;*/
+    border: 3px solid #869cb6;
+    border-radius: 4px;
+    padding: 20px;
+    max-width: 55vw;
+    margin: auto;
+    min-height: 20vh;
+    margin-top: 5vh;
+    transition: background-color 0.3s, scale 0.3s;
+}
+.article:hover{
+    background-color: #6e8cb3;
+    scale: 1.02;
+}
+
+.cover {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.artc {
+    color: #fffdfd;
+    font-size: 1.8em;
+    margin-top: 10px;
+}
+.abstract {
+    color: #fffdfd;
+    font-size: 1em;
+    margin-top: 10px;
+}
+footer{
+    text-align: center;
+    padding: 5vh;
+    background-color: #8aacda;
+    color: white;
+}

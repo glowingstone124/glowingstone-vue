@@ -1,0 +1,54 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 0vw;
+    backdrop-filter: blur(15px);
+    height: 100vh;
+    position: fixed; 
+    overflow: auto;
+    padding-top: 14vh;
+    transition: width 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+ul.display{
+    width: 15%;
+    transition: 0.2s;
+}
+ul.display:hover {
+    background-color: #6e8cb3;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+li a {
+    display: block;
+    color: #d8d6d6;
+    padding: 30px 27px;
+    text-decoration: none;
+    font-size: 1em;
+    text-align: left;
+    white-space: nowrap;
+}
+ 
+/* 鼠标移动到选项上修改背景颜色 */
+li a:hover {
+    background-color: #46b0ee38;
+    color: white;
+}
+li a.active {
+    background-color: #9ed8a04b;
+    color: white;
+}
+.navigatebtn{
+    border: 0;
+    outline: none;
+    position: fixed;
+    left: 4vh;
+    top: 4vh;
+    z-index: 9999;
+    border-radius: 50%;
+    background: #61a6ce9c;
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
