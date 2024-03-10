@@ -23,7 +23,7 @@ export default {
     files.keys().forEach(async (key) => {
       const response = await fetch(files(key));
       const content = await response.text();
-      const { data } = matter(content); // Pass { excerpt: false } to avoid Buffer usage
+      const { data } = matter(content);
       this.articles.push({
         id: this.articles.length + 1,
         title: data.title,

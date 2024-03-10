@@ -16,7 +16,6 @@
     "markdown-loader": "^8.0.0",
     "marked": "^12.0.1",
     "path": "^0.12.7",
-    "raw-loader": "^4.0.2",
     "re": "^0.1.4",
     "vue": "^3.2.13",
     "vue-loader": "^17.4.2",
@@ -31,7 +30,8 @@
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3"
+    "eslint-plugin-vue": "^8.0.3",
+    "raw-loader": "^4.0.2"
   },
   "eslintConfig": {
     "root": true,

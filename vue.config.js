@@ -8,12 +8,6 @@ module.exports = defineConfig({
     config.resolve.alias
       .set('@', path.resolve(__dirname, 'src'))
       .set('@root', path.resolve(__dirname));
-        config.module
-          .rule('md')
-          .test(/\.md$/)
-          .use('gray-matter-loader')
-          .loader('gray-matter-loader')
-          .end();
   },
 
   configureWebpack: {
@@ -27,8 +21,16 @@ module.exports = defineConfig({
           process: 'process/browser',
       }),
   ],
-    module: {
-    },
+  module: {
+    rules: [
+      // ... 其他规则
+
+      {
+        test: /\.md$/,
+        use: 'raw-loader',
+      },
+    ],
+  },
   },
 
   transpileDependencies: true,
