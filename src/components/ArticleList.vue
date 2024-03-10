@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import matter from 'gray-matter';
-
 export default {
   name: 'ArticleList',
   data() {
@@ -20,14 +18,16 @@ export default {
   },
   async mounted() {
     const files = require.context("@root/public/articles/", true, /\.md$/);
+    var fm = require('front-matter')
+    console.log(files.keys())
     files.keys().forEach(async (key) => {
-      const response = await fetch(files(key));
-      const content = await response.text();
-      const { data } = matter(content);
+      console.log(files(key))
+      const data  = fm(files(key));
+      console.log(data);
       this.articles.push({
         id: this.articles.length + 1,
-        title: data.title,
-        abstract: data.abstract,
+        title: data.attributes.title,
+        abstract: data.attributes.abstract,
       });
     });
   },

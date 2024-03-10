@@ -27,7 +27,14 @@ module.exports = defineConfig({
 
       {
         test: /\.md$/,
-        use: 'raw-loader',
+        use: [
+          {
+            loader: 'raw-loader',
+            options: {
+              esModule:false,
+            }
+          }
+        ],
       },
     ],
   },

@@ -34,7 +34,8 @@ body {
 
 .tth1 {
     color: #e4e0e0;
-    font-size: 5vw;
+    font-size: 7vw;
+    white-space: auto;
     font-family: Inter;
     font-weight: 600;
     text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

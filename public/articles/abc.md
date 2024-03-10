@@ -1,7 +1,0 @@
----
-
-title:cnm
-
-abstract:abstract
-
----
