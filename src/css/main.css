@@ -26,11 +26,12 @@ body {
 }
 .title {
     padding: 26vh 18vw 26vh 7vh;
-    background-image: linear-gradient(180deg, transparent, #8aacda), url(https://cn.bing.com/th?id=OHR.TarragonaSpain_ZH-CN5488361711_1920x1080.jpg&rf=LaDigue_3840x2160.jpg&pid=hp);
     background-size: 100%, cover;
     background-repeat: no-repeat; 
     background-position: right;
+    background: #526680;
 }
+
 
 .tth1 {
     color: #e4e0e0;
@@ -98,10 +99,34 @@ h3 {
     font-size: 1.2em;
     margin-top: 10px;
     white-space: auto;
+    font-weight: 100;
 }
 footer{
     text-align: center;
     padding: 5vh;
     background-color: #8aacda;
     color: white;
+}
+h1 {
+    margin: 0;
+}
+.contents{
+    margin-left: 15vw;
+}
+.myself {
+    padding: 15vh 18vw 26vh 7vh;
+    background: #5d7290;
+    background-size: 100%, cover;
+    background-repeat: no-repeat; 
+    background-position: right;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.msh1 {
+    color: #e4e0e0;
+    font-size: 4vw;
+    white-space: auto;
+    font-family: Inter;
+    font-weight: 600;
+    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

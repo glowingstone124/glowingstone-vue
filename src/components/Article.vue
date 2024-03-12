@@ -1,5 +1,5 @@
 <template>
-  <div class="body">
+  <div class="body contents">
     <div class="md" v-html="output"></div>
   </div>
   <Footer :Footermsg="`design & code by glowingstone124 - Article ID: ${articleId}`"/>

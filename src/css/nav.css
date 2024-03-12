@@ -4,7 +4,7 @@ ul {
     padding: 0;
     width: 0vw;
     backdrop-filter: blur(15px);
-    height: 100vh;
+    height: 100%;
     position: fixed; 
     overflow: auto;
     padding-top: 14vh;
