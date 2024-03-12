@@ -3,7 +3,6 @@
     <Title msg="High school student lives in Shanghai, personal Java & Web developer"/>
     <ArticleList :articles="articleList" />
     <NavBtn/>
-    <Footer Footermsg="design & code by glowingstone124"/>
   </template>
   
   <script>
