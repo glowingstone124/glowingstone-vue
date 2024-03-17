@@ -30,6 +30,7 @@ body {
     background-repeat: no-repeat; 
     background-position: right;
     background: #526680;
+    min-width: 120vw;
 }
 
 
@@ -48,6 +49,7 @@ body {
     font-weight: 600;
     text-align: left;
     margin-left: 20vw;
+    min-width: 120vw;
 }
 h3 {
     color: #d1cfcf;
@@ -60,10 +62,9 @@ h3 {
 .content {
     align-items: center;
     padding: 20px;
-    max-width: 100vw;
     background-color: #384454 ;
     align-self: center;
-    margin: auto;
+
 }
 
 .article {
@@ -137,19 +138,23 @@ h1 {
     .tth1 {
         font-size: 14vw;
     }
-    .introduction {
-        color: #e4e0e0;
-        font-size: 9vw;
-        font-family: Inter;
-        font-weight: 600;
-        text-align: left;
-        margin-left: 20vw;
-    }
     h3 {
         color: #d1cfcf;
         font-size: 3vw;
         font-family: Inter;
         font-weight: 400;
         text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    .myself{
+        min-width: 120vw;
+    }
+    .introduction{
+        min-width: 120vw;
+    }
+    .content{
+        width: 120vw;
+    }
+    .footer{
+        min-width: 120vw;
     }
 }
