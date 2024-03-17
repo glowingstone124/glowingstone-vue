@@ -9,8 +9,6 @@
     <div class="myself">
         <div class="intro">
             <h1 class="msh1">About my self</h1>
-            <img src="https://github-readme-stats.vercel.app/api?username=glowingstone124&theme=blue-green">
-            <img src="https://github-readme-streak-stats.herokuapp.com/?user=glowingstone124&theme=blue-green">
             <h3>Started learning java at Grade 4</h3>
             <h3>Working on a Minecraft Server Project<a href="https://blog.qoriginal.vip"> Here</a></h3>
             <h3>I learned</h3>
