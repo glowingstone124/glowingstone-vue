@@ -32,6 +32,12 @@
         :description="''"
         :link="'https://blog.ibctech.top'"
       />
+            <FriendsComponent
+        :avatar="'https://picture.zhanganzhi.com/common/avatar.jpg'"
+        :name="'Andy\'s Blog'"
+        :description="''"
+        :link="'https://blog.zhanganzhi.com/'"
+      />
     </div>
   </div>
   </template>
