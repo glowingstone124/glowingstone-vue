@@ -5,7 +5,7 @@
       <FriendsComponent
         :avatar="'https://minecreeper.top/images/avatar.png'"
         :name="'矿井小怕的茶馆'"
-        :description="''"
+        :description="'也许是自己的后院，但更是大家的茶馆。'"
         :link="'https://minecreeper.top/'"
       />
       <FriendsComponent
