@@ -53,6 +53,7 @@ export default {
 
 img {
   max-width: 110px;
+  min-width: 110px;
   border-radius: 50%;
 }
 
