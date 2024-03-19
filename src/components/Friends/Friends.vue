@@ -26,6 +26,12 @@
         :description="''"
         :link="'https://www.skyblogs.xyz/'"
       />
+      <FriendsComponent
+        :avatar="'https://blog.ibctech.top/usr/themes/handsome/assets/img/tx.jpg'"
+        :name="'NLのBlog'"
+        :description="''"
+        :link="'https://blog.ibctech.top'"
+      />
     </div>
   </div>
   </template>
