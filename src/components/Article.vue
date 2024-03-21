@@ -61,7 +61,9 @@ export default {
   color: white;
 }
 code{
-  background-color: black;
+  background-color: #323b46;
+  padding: 2px;
+  font-family: Jetbrains;
 }
 a{
   color: white;

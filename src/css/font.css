@@ -2,6 +2,10 @@
     font-family: Inter;
     src: url(fonts/Inter.ttf);
 }
+@font-face {
+    font-family: Jetbrains;
+    src: url(fonts/Inter.ttf);
+}
 *{
     font-family: Inter;
 }
