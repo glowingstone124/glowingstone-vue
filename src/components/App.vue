@@ -1,6 +1,6 @@
 <template>
     <Nav/>
-    <Title msg="High school student lives in Shanghai, personal Java & Web developer"/>
+    <Title msg="High school student lives in Shanghai, individual Java & Web developer"/>
     <ArticleList :articles="articleList" />
     <NavBtn/>
   </template>
