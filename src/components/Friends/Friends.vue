@@ -18,7 +18,7 @@
         :avatar="'https://serinanya.cn/assets-zone-1/avatar-round.png'"
         :name="'SerinaNya'"
         :description="'Serina 的日常 / daily of SerinaNya'"
-        :link="'serinanya.cn'"
+        :link="'https://serinanya.cn'"
       />
       <FriendsComponent
         :avatar="'https://q2.qlogo.cn/headimg_dl?dst_uin=2504726488&spec=100'"

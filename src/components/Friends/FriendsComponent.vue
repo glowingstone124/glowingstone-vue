@@ -31,6 +31,9 @@ export default {
 
 <style scoped>
 @import "@/css/main.css";
+p{
+  background:none;
+}
 .friend-container {
   display: flex;
   align-items: center;
