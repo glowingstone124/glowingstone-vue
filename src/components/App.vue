@@ -68,7 +68,6 @@ export default {
 <style>
 @import "@/css/main.css";
 p{
-  text-align: center;
     padding: 5vh;
     background-color: #384454;
     color: white;
