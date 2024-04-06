@@ -6,6 +6,10 @@
     font-family: Jetbrains;
     src: url(fonts/Inter.ttf);
 }
+@font-face {
+    font-family: NotoSans;
+    src: url(fonts/NotoSans.ttf);
+}
 *{
-    font-family: Inter;
+    font-family: Inter, NotoSans;
 }
