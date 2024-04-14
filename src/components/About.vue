@@ -15,7 +15,8 @@
         <h1>爱好</h1>
         <p>游戏、编程、动漫、自媒体、顺便还会偶尔写小说</p>
         <a href="https://steamcommunity.com/profiles/76561199236874427/">Steam帐号在此</a>
-        <a href="https://space.bilibili.com/687290823">哗哩哗哩账号</a>
+        <a href="https://space.bilibili.com/687290823">哗哩哗哩(故意的)账号</a>
+        <a href="https://music.163.com/#/user/home?id=5164416595">网易云账号</a>
         <h2>音乐爱好</h2>
         <p>流行音乐以欧美，日本居多，还听不少acg <br> 摇滚爱好者！最爱的是万青和Neckdeep，还补了kon和孤独摇滚</p>
         <h1>联系我</h1>
@@ -49,8 +50,20 @@
     .friends{
       margin-top: 3vh;
     }
-    p,a{
-        margin-left: 25px;
+    p{
+      margin-left: 25px;
+      padding: 5px;
+    }
+    a {
+      background-color: rgb(136, 160, 189);
+      border-radius: 15px;
+      padding: 10px;
+      margin: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    a:hover{
+      background-color: rgb(107, 126, 150);
     }
     img{
         max-width: 40vw;
