@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav/>
-    <Title msg="High school student lives in Shanghai, individual Java & Web developer"/>
+    <Title :msg="msg"/>
     <ArticleList :articles="articleList" />
     <NavBtn/>
     <Footer/>
@@ -28,19 +28,26 @@ export default {
   data() {
     return {
       articleList: [],
-      visitCount: 114514
+      visitCount: 114514,
+      msg:"High school student lives in Shanghai, individual Java & Web developer"
     }
   },
   async mounted() {
+    var currentDate = new Date();
+    var Birthday = new Date("2024-04-28");
+    if(currentDate.getDate() === Birthday.getDate()){
+      this.msg = "祝我生日快乐";
+      document.title = "glowingstone | 祝我生日快乐"
+    }
     await this.incrementVisitCount();
-  },
+},
   methods: {
     async incrementVisitCount() {
-  const response = await fetch("https://lenient-dove-46659.upstash.io/get/visitcount", {
-    headers: {
-      Authorization: "Bearer AbZDASQgYTZmZGM5MTctZjYyNi00YzdjLWE3ZWUtZWQyZjVhNzBhMzA0ZmNjZjMzZDRkMWFiNGYwYmIwMDQ2Yjg1NWNhMmJmYzU=" // 请替换为你的实际授权令牌
-    }
-  });
+      const response = await fetch("https://lenient-dove-46659.upstash.io/get/visitcount", {
+        headers: {
+          Authorization: "Bearer AbZDASQgYTZmZGM5MTctZjYyNi00YzdjLWE3ZWUtZWQyZjVhNzBhMzA0ZmNjZjMzZDRkMWFiNGYwYmIwMDQ2Yjg1NWNhMmJmYzU=" // 请替换为你的实际授权令牌
+        }
+      });
       const data = await response.json();
       const resultData = JSON.parse(data.result);
       var visitCount = resultData.value;
@@ -61,7 +68,8 @@ export default {
       const updateData = await updateResponse.json();
       console.log("Visit count:", visitCount);
     }
-  }
+  },
+  
 }
 </script>
 
