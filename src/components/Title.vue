@@ -2,7 +2,7 @@
   <div class="hello">
     <div class="title">
         <div class="intro">
-            <h1 class="tth1">Glowingstone124's blog</h1>
+            <h1 class="tth1"><span style="font-weight: 200;">Glowingstone124's</span> Blog</h1>
             <h3>{{ msg }}</h3>
         </div>
     </div>

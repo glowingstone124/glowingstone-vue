@@ -1,6 +1,7 @@
 ---
 title: 重要！
 
+abstract: 代表本人立场
 --- 
 
 # CN-AntiLGBT

@@ -63,5 +63,8 @@ img {
 .info-container {
   flex-grow: 1;
 }
+h2{
+  border-bottom: 1px solid rgb(172, 191, 239);
+}
 </style>
 

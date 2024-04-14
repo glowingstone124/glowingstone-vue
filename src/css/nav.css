@@ -29,7 +29,6 @@ li a {
     white-space: nowrap;
 }
  
-/* 鼠标移动到选项上修改背景颜色 */
 li a:hover {
     background-color: #384454;
     color: white;
@@ -43,11 +42,13 @@ li a:hover {
     top: 4vh;
     z-index: 9999;
     border-radius: 50%;
-    background: #61a6ce9c;
+    background: #384454;
     width: 70px;
     height: 70px;
     background-size: cover;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    transition: background 0.1s;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 @media screen and (max-width: 768px) {
     ul.display {

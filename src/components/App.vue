@@ -29,7 +29,7 @@ export default {
     return {
       articleList: [],
       visitCount: 114514,
-      msg:"High school student lives in Shanghai, individual Java & Web developer"
+      msg:"High school student lives in Shanghai, individual Java & Web & Kotlin developer"
     }
   },
   async mounted() {
@@ -76,7 +76,7 @@ export default {
 <style>
 @import "@/css/main.css";
 p{
-    padding: 5vh;
+    padding: 10px;
     background-color: #384454;
     color: white;
 }

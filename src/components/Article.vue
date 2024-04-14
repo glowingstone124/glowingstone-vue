@@ -8,7 +8,7 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Footer from '@/components/Footer.vue';
-import { marked } from 'marked'
+import { marked } from 'marked';
 
 export default {
   components: {
@@ -33,7 +33,7 @@ export default {
       const fm = require('front-matter');
       try {
         const file = await import("@root/public/articles/" + articleId.value);
-       //console.log(file.default)
+        //console.log(file.default)
         output.value = marked.parse(file.default);
         return output.value
       } catch (error) {
@@ -48,7 +48,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import "@/css/main.css";
 .body {
   padding-top: 5vh;
@@ -57,18 +57,45 @@ export default {
   padding-bottom: 5vh;
 }
 
-* {
+.md:deep(*) {
   color: white;
 }
-code{
+
+.md:deep(code) {
   background-color: #323b46;
   padding: 2px;
   font-family: Jetbrains;
 }
-a{
+
+.md:deep(a) {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.md:deep(a:hover) {
+  text-decoration: underline; /* 修改为只设置下划线 */
+}
+
+.md:deep(h1) {
+  font-weight: 300;
+  font-size: 50px;
+}
+
+.md:deep(h2) {
+  font-weight: 300;
+  font-size: 30px;
+  border-bottom: 1px solid rgb(172, 191, 239);
+}
+
+.md:deep(h3) {
+  font-weight: 300;
+  font-size: 20px;
   color: white;
 }
-h1{
-  text-decoration: none;
+
+.md:deep(hr) {
+  display: none;
 }
 </style>

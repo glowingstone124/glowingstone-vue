@@ -4,13 +4,16 @@ title: 在你的智能手机上编程
 abstract: 了解如何使用termux安装基本的编译/调试工具
 
 --- 
-# 在你的智能手机上编程 / Code on your smart phone
-## 中文版本 / Chinese Version
+# 在你的智能手机上编程
 ## 准备
 你需要：
-- 安卓手机
-- [Termux](https://termux.dev/)
-- [AnLinux](https://github.com/EXALAB/AnLinux-App)
+
+ 1.安卓手机
+
+ 2.[Termux](https://termux.dev/)
+
+ 3.[AnLinux](https://github.com/EXALAB/AnLinux-App)
+
 
 ## 第一步
 
@@ -91,90 +94,3 @@ Vim 是一款可拓展的编辑器，所以你可以使用插件更改它的样�
 ## 完成设置，开始编程！
 
 在按部就班做完这一切之后，你拥有了一部可以写程序和编译的手机！我不推荐你安装桌面环境，因为桌面环境通常在手机上表现不好，如果你执意安装，可以在AnLinux中安装窗口管理器。
-
-## 英语版本 English Version
-## Prepare
-You need：
-- Android Phone
-- [Termux](https://termux.dev/)
-- [AnLinux](https://github.com/EXALAB/AnLinux-App)
-
-## First Step
-
-Install termux and AnLinux, and open Termux later.
-
-If you want termux has the permission to access local storage, please execute this in termux shell :``termux-setup-storage``
-
-## Install Linux Distro
-
-Open AnLinux, Select a Linux distro you want to install at ``Dashboard``.
-
-Copy it's prompt and paste it in Termux shell.
-
-When install complete, You will find a file called ``./start-(your system name).sh`` in your root dic.
-
-Execute ``sh ./start-(your system name).sh`` in Termux shell to start linux.
-
-I will use ubuntu for sample
-
-## Setting up your Vim
-
-Vim is a light-weight text editior which made for Linux.
-
-Commonly, Vim is installed in Ubuntu,So you can simply start vim by: ``vim``
-
-It will create a new file, press``i``to edit mode，when you compelte, press``esc`` and type``:wq`` to save and exit,use``:q``to just exit.
-
-If you are not strict at Styles, well done! Enjoy your Vim!
-
-If you want to customize your vim, please continue.
-
-Vim's Global Config commonly at ``/etc/vim/vimrc`` or ``/etc/vimrc``, able to every user. User's customize configration is at``~/.vimrc``。
-
-Just use ``vim /your/path/to/file ``to open a file.
-
-I suggest you to exit these configs：
-
-``syntax on`` Enable syntax High-Light
-
-``set showmode`` show current mode at the bottom
-
-``set showcmd`` Show what command you just type at the bottom
-
-``set encoding=utf-8`` Translate encode to UTF-8
-
-``set t_Co=256`` use 256 color
-
-``filetype indent on`` Enable file type check,and load the custom indentation for each language.
-
-Vim is a editior with high-expandation,so you can change its Styles, make it more easy to use etc. You can found more information of this on Google.
-
-## Setting up your VScode.
-
-If you don't want to Configure a Coplex Vim,,VScode will be a better choise!
-
-But please notice,VScode is a app with GUI,You must install ``VNC server`` and use external keyboard and mouse,  or it will be very hard to use!
-
-[VScode](https://code.visualstudio.com/#alt-downloads) Please download Arm32 or Arm64 Version! for Ubuntu or Debian，please download file name end with .deb, execute ``dpkg -i /your/path/to/package/package.deb`` in ubuntu terminal to install VScode client.
-
-## Install complie environment
-
-You should install JDK or GCC to complie Java and C.
-
-### Java
-execute ``apt install openjdk-17-jdk``to install jdk17, execute``apt install openjdk-8-jdk``to install JDK8
-
-If you need another JDK,please find another JDK's installer.
-
-### C
-execute ``apt install gcc gcc-c++`` to install gcc and g++
-
-### Nodejs
-execute ``apt install nodejs npm`` to install Nodejs and npm
-
-### Git
-execute ``apt install git`` to install git tools.
-
-## Complete and start code！
-
-When you completed all of these,you now have a android phone which can code! I don't suggest you to install desktop environment because linux desktop environment are also poor without a keyboard and mouse.If you still want to install, install it in AnLinux with ``Windows Manager``!
