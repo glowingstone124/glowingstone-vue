@@ -149,15 +149,18 @@ p{
         text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
     .myself{
-        min-width: 120vw;
+        max-width: 100vw;
     }
     .introduction{
-        min-width: 120vw;
+        max-width: 100vw;
     }
     .content{
-        width: 120vw;
+        max-width: 100vw;
     }
     .footer{
-        min-width: 120vw;
+        max-width: 100vw;
+    }
+    .title {
+        max-width: 100vw;
     }
 }
