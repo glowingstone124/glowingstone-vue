@@ -79,7 +79,7 @@ h3 {
     transition: background-color 0.3s, scale 0.3s;
 }
 .article:hover{
-    background-color: #6e8cb3;
+    background-color: #435060;
     scale: 1.02;
 }
 

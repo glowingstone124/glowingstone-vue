@@ -98,4 +98,7 @@ export default {
 .md:deep(hr) {
   display: none;
 }
+.md:deep(ul){
+  display: block;
+}
 </style>

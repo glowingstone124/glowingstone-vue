@@ -1,4 +1,4 @@
-ul {
+.navul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -11,15 +11,15 @@ ul {
     transition: width 0.5s;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
-ul.display{
+.navul.display{
     width: 15%;
     transition: 0.2s;
 }
-ul.display:hover {
+.navul.display:hover {
     background-color: #27303c;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
-li a {
+.navli a {
     display: block;
     color: #d8d6d6;
     padding: 30px 27px;
@@ -29,7 +29,7 @@ li a {
     white-space: nowrap;
 }
  
-li a:hover {
+.navli a:hover {
     background-color: #384454;
     color: white;
 }
@@ -51,7 +51,7 @@ li a:hover {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 @media screen and (max-width: 768px) {
-    ul.display {
+    .navul.display {
         width: 100%;
     }
 }
