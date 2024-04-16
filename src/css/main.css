@@ -30,7 +30,6 @@ body {
     background-repeat: no-repeat; 
     background-position: right;
     background: #526680;
-    min-width: 120vw;
 }
 h2{
     color: white;
@@ -39,7 +38,7 @@ h2{
 .tth1 {
     color: #e4e0e0;
     font-size: 7vw;
-    white-space: auto;
+    word-break: break-all;
     font-family: Inter;
     font-weight: 600;
     text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -116,7 +115,7 @@ h1 {
     margin-left: 15vw;
 }
 .myself {
-    padding: 15vh 18vw 26vh 7vh;
+    padding: 15vh 50vw 26vh 7vh;
     background: #313c4b;
     background-size: 100%, cover;
     background-repeat: no-repeat; 
@@ -169,5 +168,6 @@ h1{
     }
     .title {
         max-width: 100vw;
+        padding: 15vh 5vw 26vh 7vh;
     }
 }
