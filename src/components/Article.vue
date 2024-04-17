@@ -9,6 +9,8 @@ import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Footer from '@/components/Footer.vue';
 import { marked } from 'marked';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github.css';
 
 export default {
   components: {
@@ -25,15 +27,20 @@ export default {
     });
 
     onMounted(() => {
+      
       articleId.value = route.params.articleId;
       loadMarkdownContent();
+      document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('code').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      });
     });
 
     async function loadMarkdownContent() {
       const fm = require('front-matter');
       try {
         const file = await import("@root/public/articles/" + articleId.value);
-        //console.log(file.default)
         output.value = marked.parse(file.default);
         return output.value
       } catch (error) {
@@ -62,13 +69,14 @@ export default {
 }
 
 .md:deep(code) {
+  display: inline-block;
   background-color: #323b46;
-  padding: 2px;
+  padding: 12px;
   font-family: Jetbrains;
+  border: 1px solid #a2aed7;
+  border-radius: 8px;
 }
-
 .md:deep(a) {
-  color: white;
   text-decoration: none;
   font-weight: bold;
   transition: all 0.2s;

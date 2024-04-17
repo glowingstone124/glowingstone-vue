@@ -61,10 +61,26 @@ if (response !== "资源不存在") {
     在第二次请求中，服务端没有找到该图片但是返回了HTTP OK，正确的做法是返回 404 NOT FOUND.
 
     对于状态码释义，请参考[WIKI](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
-- 对于需要提供参数的值，参数应当为  全小写  使用下划线
+- 对于需要提供参数的值，参数应当为  **全小写**  **使用下划线**
 
     例如使用`example.com/picture?id=9&image_source=png`代表返回id为9，格式为png的图片。
 
 - 对于不同类型的Content，应当在header中声明Content_Type.
 
     例如`Content-Type: application/json`
+
+因此，请求图片的URL应当为 `example.com/picture`
+
+返回的值最好是一个JSON字符串，类似为
+
+`{"code":0,"url":"https://example.com/picture/1.png"}`
+
+如果请求的url不存在，此时标准返回应当为 404 NOT FOUND，不需要任何返回值表示（当然你可以返回找不到的具体原因）
+
+在后端工程师改进之后，你就可以使用更优雅的方式：
+
+```JavaScript
+if (response.code == 0 ) {
+    Document.getElementById("image").src = response.url
+}
+```
