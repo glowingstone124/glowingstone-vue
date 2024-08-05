@@ -5,12 +5,15 @@
 </template>
 
 <script>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
 import Footer from '@/components/Footer.vue';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/github.css';
+import 'highlight.js/styles/monokai-sublime.css';
+import kotlin from 'highlight.js/lib/languages/kotlin';
+
+// Then register the languages you need
 
 export default {
   components: {
@@ -26,25 +29,29 @@ export default {
       loadMarkdownContent();
     });
 
-    onMounted(() => {
-      
+    onMounted(async () => {
       articleId.value = route.params.articleId;
-      loadMarkdownContent();
-      document.addEventListener('DOMContentLoaded', (event) => {
-        document.querySelectorAll('code').forEach((block) => {
-          hljs.highlightBlock(block);
-        });
-      });
+      await loadMarkdownContent();
+      highlightCodeBlocks();
     });
 
     async function loadMarkdownContent() {
+      hljs.registerLanguage('kotlin', kotlin);
       const fm = require('front-matter');
       try {
-        const file = await import("@root/public/articles/" + articleId.value);
+        const file = await import(`@root/public/articles/${articleId.value}`);
         output.value = marked.parse(file.default);
-        return output.value
+        // 确保在内容更新后执行高亮处理
+        nextTick(() => highlightCodeBlocks());
       } catch (error) {
+        console.error('Error loading Markdown content:', error);
       }
+    }
+
+    function highlightCodeBlocks() {
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block);
+      });
     }
 
     return {
@@ -63,6 +70,8 @@ export default {
 }
 
 .md:deep(*) {
+}
+.md:deep(li){
   color: white;
 }
 
@@ -74,6 +83,10 @@ export default {
   border: 1px solid #a2aed7;
   border-radius: 8px;
 }
+.md:deep(span){
+  font-family: Jetbrains;
+}
+
 .md:deep(a) {
   text-decoration: none;
   font-weight: bold;
@@ -104,6 +117,7 @@ export default {
 .md:deep(hr) {
   display: none;
 }
+
 .md:deep(ul){
   display: block;
 }
