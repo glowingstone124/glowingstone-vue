@@ -82,7 +82,7 @@ runBlocking用于启动一个新的协程，并且会阻塞线程直到协程执
 
 - Dispatchers.Default
 
-Dispatchers.Default用于CPU密集型任务，默认情况下会使用共享的后台线程池。
+Dispatchers.Default是默认线程池，所有未指定Dispatcher的协程都会在这里运行,默认情况下会使用共享的后台线程池。
 
 - Dispatchers.IO
 

@@ -69,7 +69,7 @@ export default {
 .md:deep(code) {
   display: inline-block;
   background-color: #323b46;
-  padding: 12px;
+  padding: 14px;
   font-family: Jetbrains;
   border: 1px solid #a2aed7;
   border-radius: 8px;
