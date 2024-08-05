@@ -1,5 +1,5 @@
 <template>
-  <div class="body contents">
+  <div class="body">
     <div class="md" v-html="output"></div>
   </div>
 </template>
@@ -58,10 +58,8 @@ export default {
 <style scoped>
 @import "@/css/main.css";
 .body {
-  padding-top: 5vh;
-  padding-left: 10vw;
-  padding-right: 10vw;
-  padding-bottom: 5vh;
+  padding: 5vh 4vw;
+  margin: 5vw;
 }
 
 .md:deep(*) {

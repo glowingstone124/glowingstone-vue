@@ -6,7 +6,7 @@
     <NavBtn/>
     <Footer/>
   </div>
-  <p>已经有{{ visitCount }}人访问了本站</p>
+  <p class="counter">已经有{{ visitCount }}人访问了本站</p>
 </template>
 
 <script>
@@ -34,7 +34,7 @@ export default {
   },
   async mounted() {
     var currentDate = new Date();
-    var Birthday = new Date("2024-04-28");
+    var Birthday = new Date("2025-04-28");
     if(currentDate.getDate() === Birthday.getDate()){
       this.msg = "祝我生日快乐";
       document.title = "glowingstone | 祝我生日快乐"
@@ -79,5 +79,9 @@ p{
     padding: 10px;
     background-color: #384454;
     color: white;
+    margin: auto;
+}
+.counter{
+  text-align: center;
 }
 </style>
