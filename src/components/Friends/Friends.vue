@@ -38,6 +38,12 @@
         :description="''"
         :link="'https://blog.zhanganzhi.com/'"
       />
+      <FriendsComponent
+        :avatar="'https://static.xhustudio.eu.org/images/jpeg/102411014.jpg'"
+        :name="'SЕSSのB10GТЕ5Т'"
+        :description="'Session的个人博客, 这里有各种类型的有趣的文章内容, 网站基于纯前端构'"
+        :link="'https://sess.xhustudio.eu.org/'"
+      ></FriendsComponent>
     </div>
   </div>
   </template>
