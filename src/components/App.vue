@@ -33,9 +33,9 @@ export default {
     }
   },
   async mounted() {
-    var currentDate = new Date();
-    var Birthday = new Date("2025-04-28");
-    if(currentDate.getDate() === Birthday.getDate()){
+    const currentDate = new Date();
+    const Birthday = new Date("2025-04-28");
+    if(currentDate === Birthday){
       this.msg = "祝我生日快乐";
       document.title = "glowingstone | 祝我生日快乐"
     }
