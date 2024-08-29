@@ -1,6 +1,7 @@
 <template>
   <div class="contents">
     <h1 class="cagetory">Friends</h1>
+    <h2>在添加友链之前，阅读一下这份<a href="articles/readme.md">声明</a>会是个好主意</h2>
     <div class="friends">
       <FriendsComponent
         :avatar="'https://minecreeper.top/images/avatar.png'"
