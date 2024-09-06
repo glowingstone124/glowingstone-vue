@@ -1,57 +1,55 @@
 .navul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 0vw;
+    height: auto;
+    min-height: 80px;
     backdrop-filter: blur(15px);
-    height: 100%;
-    position: fixed; 
-    overflow: auto;
-    padding-top: 14vh;
-    transition: width 0.5s;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #414e65;
+    transition: background-color 0.2s;
+    z-index: 1000;
+    width: 100%;
 }
-.navul.display{
-    width: 15%;
-    transition: 0.2s;
-}
-.navul.display:hover {
+.navul:hover {
     background-color: #27303c;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
+
+.navli {
+    margin: 0;
+}
+
 .navli a {
     display: block;
+    border-radius: 20px;
     color: #d8d6d6;
-    padding: 30px 27px;
+    padding: 15px 20px;
     text-decoration: none;
     font-size: 1em;
     text-align: left;
     white-space: nowrap;
 }
- 
+
 .navli a:hover {
     background-color: #384454;
     color: white;
 }
 
-.navigatebtn{
-    border: 0;
-    outline: none;
-    position: fixed;
-    left: 4vh;
-    top: 4vh;
-    z-index: 9999;
-    border-radius: 50%;
-    background: #384454;
-    width: 70px;
-    height: 70px;
-    background-size: cover;
-    transition: background 0.1s;
-    cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+.navigatebtn {
+    display: none;
 }
+
 @media screen and (max-width: 768px) {
-    .navul.display {
+    .navul {
+        flex-direction: column;
+        padding-top: 14vh;
         width: 100%;
+        top: 0;
+        left: 0;
+        height: auto;
     }
 }

@@ -1,6 +1,5 @@
 <template>
     <footer>{{ Footermsg }}</footer>
-
   </template>
   
   <script>

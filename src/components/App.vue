@@ -29,7 +29,7 @@ export default {
     return {
       articleList: [],
       visitCount: 114514,
-      msg:"High school student lives in Shanghai, individual Java & Web & Kotlin developer"
+      msg:"每月更新的可能性为lim -> 0，jvm痴子，全栈小白，性能优化魔怔人。"
     }
   },
   async mounted() {
@@ -37,7 +37,7 @@ export default {
     const Birthday = new Date("2025-04-28");
     if(currentDate === Birthday){
       this.msg = "祝我生日快乐";
-      document.title = "glowingstone | 祝我生日快乐"
+      document.title = "Glowstone 萤石 | 祝我生日快乐"
     }
     await this.incrementVisitCount();
 },
@@ -77,7 +77,6 @@ export default {
 @import "@/css/main.css";
 p{
     padding: 10px;
-    background-color: #384454;
     color: white;
     margin: auto;
 }

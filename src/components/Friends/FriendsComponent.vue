@@ -41,10 +41,10 @@ p{
   margin: 1vh;
   background-color: #3d4b5c;
   padding: 4vh;
+	margin-bottom: 8vh;
   max-width:65vw;
   transition: background-color 0.1s;
   border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .friend-container:hover {
     background-color: #5f748f;
