@@ -40,12 +40,14 @@ export default {
 		getImagePath(articleId) {
 			const imagePath = `/articles/${articleId}.jpg`;
 			const defaultImage = '/articles/default.jpg';
+
 			try {
-				require(`@/assets${imagePath}`);
-				return imagePath;
-			} catch (e) {
+				require("@root/public" + imagePath);
+			} catch (error) {
 				return defaultImage;
 			}
+
+			return imagePath;
 		},
 		redirect(articleId) {
 			this.$router.push(`/article/${articleId}`);
@@ -85,6 +87,7 @@ export default {
 .abstract {
 	margin-top: 5px;
 }
+
 .article-info {
 	margin: 30px;
 }
