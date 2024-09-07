@@ -46,7 +46,7 @@ export default {
 					imagePath: '/default.jpg'
 				};
 				articles.push(article);
-				await checkImageExistence(article);
+				//await checkImageExistence(article);
 			}
 		})();
 
