@@ -1,6 +1,7 @@
 <template>
 	<div class="contents">
 		<h1 class="category">关于我</h1>
+		<img src="https://jrenc.azurewebsites.net/api/signature?code=zHZRCCItO-yB8t7d2KyitELFDwADnXIotkeeIQL3juyNAzFucnyrWA%3D%3D&name=Glowingstone&animate=true&speed=2.5&color=%23e4e0e0">
 		<div class="friends">
 			<div class="info-box">
 				<h1>我是谁？</h1>
@@ -66,7 +67,9 @@ export default {
 	font-size: 5em;
 	font-weight: 500;
 }
-
+img {
+	margin:auto;
+}
 .friends {
 	display: flex;
 	flex-wrap: wrap;

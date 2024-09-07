@@ -1,7 +1,12 @@
 <template>
 	<div class="contents">
 		<h1 class="cagetory">Friends</h1>
-		<h2>在添加友链之前，阅读一下这份<a href="articles/readme.md">声明</a>会是个好主意</h2>
+		<h2>关于添加友链：<br>如果在群里抓到我，可以直接@我并且告诉我你的以下信息:<br>
+			博客网址<br>
+			博客名字<br>
+			博客logo<br>
+			博客介绍<br>
+			也可以直接通过“关于”中的邮箱联系我。</h2>
 		<div class="friends">
 			<FriendsComponent
 				:avatar="'https://minecreeper.top/images/avatar.png'"
@@ -63,12 +68,20 @@ import FriendsComponent from './FriendsComponent.vue';
 @import "@/css/main.css";
 
 .contents {
-	margin-top: 6vh;
+	margin-top: 12vh;
 }
-
+h2 {
+	font-weight: 200;
+	font-size: 1.4rem;
+	margin: 1vh 1vh 8vh;
+	max-width: 65vw;
+	border-radius: 10px;
+	background: #05cb86;
+	padding: 4vh 6vh;
+}
 .cagetory {
-	font-size: 5em;
-	font-weight: 500;
+	font-size: 6em;
+	font-weight: 300;
 }
 
 .friends {
