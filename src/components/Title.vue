@@ -20,6 +20,19 @@
             <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
 			<img src="https://img.shields.io/badge/Rust-orange?style=for-the-badge&logo=rust">
         </div>
+		<div class="intro">
+			<h1 class="msh1">开发习惯</h1>
+			<h2>开发工具</h2>
+			<h3><span>MacBook Pro(M3max 10P+4E, 16inch)</span></h3>
+			<h3><span>i9-13900K 缩肛版全核4.8Ghz + 128G (4x32G) D4 3200MHz + Rocky Linux 9.4</span></h3>
+			<h2>Linux 偏好：</h2>
+			<h3><span>Debian = Rocky Linux > Ubuntu > CentOS > Arch > ....</span>(其中只有RockyLinux与Debian被运用于生产环境)</h3>
+			<h2>编程语言熟练度排行</h2>
+			<h3><span>Java</span> (>= 2w行)</h3>
+			<h3><span>Kotlin</span>(5k-6k行，仅JVM)</h3>
+			<h3><span>JavaScript</span>(1k-2k行)</h3>
+			<h3><span>Rust</span>(900-1000行)</h3>
+		</div>
     </div>
   </div>
 </template>
@@ -34,5 +47,12 @@ export default {
 </script>
 
 <style scoped>
+.intro {
+	margin-bottom: 6vh;
+}
+h2 {
+	font-weight: 100;
+	color: #d1cfcf;
+}
 @import "@/css/main.css";
 </style>

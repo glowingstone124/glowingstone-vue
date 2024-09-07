@@ -74,6 +74,7 @@ li a {
 		display: block;
 		text-align: center;
 		padding: 10px 0;
+		transition: background-color 0.1s linear;
 	}
 
 	.navli a {
