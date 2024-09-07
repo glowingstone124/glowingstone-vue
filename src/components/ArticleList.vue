@@ -57,10 +57,11 @@ export default {
 
 <style scoped>
 .article {
-	border: 2px solid #869cb6;
+	background-color: #5a6c80;
 	border-radius: 10px;
 	max-width: 55vw;
 	margin: auto;
+	padding-bottom: 20px;
 	min-height: 20vh;
 	margin-top: 5vh;
 	transition: background-color 0.3s, scale 0.3s;
@@ -71,6 +72,8 @@ export default {
 	width: 100%;
 	height: auto;
 	max-height: 900px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	margin-bottom: 10px;
 }
 
