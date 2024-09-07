@@ -1,5 +1,5 @@
 <template>
-  <Nav/>
+	<Nav/>
   <div class="main-frame">
   <router-view></router-view>
   </div>
@@ -19,6 +19,7 @@ export default {
 <style scoped>
 @import "@/css/main.css";
 .main-frame {
-  padding-top:30px
+  padding-top:30px;
+	max-width: 100vw;
 }
 </style>

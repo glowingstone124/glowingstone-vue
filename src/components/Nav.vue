@@ -34,7 +34,9 @@ li a {
 	padding: 10px 20px;
 	color: #d8d6d6;
 }
-
+.navigator {
+	max-height: 5vh;
+}
 .nav-title h1 {
 	font-size: 20px;
 	font-weight: 100;
@@ -46,5 +48,60 @@ li a {
 	width: 60px;
 	height: auto;
 	margin-right: 10px;
+}
+@media (max-width: 768px) {
+	.nav-title {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.nav-title h1 {
+		display: none;
+		margin-left: 0;
+		margin-top: 10px;
+	}
+
+	.nav-logo {
+		display: none;
+		width: 50px;
+	}
+
+	.navul {
+		padding: 0;
+	}
+
+	.navli {
+		display: block;
+		text-align: center;
+		padding: 10px 0;
+	}
+
+	.navli a {
+		flex-direction: column;
+	}
+
+	.navli img {
+		width: 30px;
+		height: auto;
+	}
+
+	.navli span {
+		margin-top: 5px;
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 480px) {
+	.nav-title h1 {
+		font-size: 16px;
+	}
+
+	.nav-logo {
+		width: 40px;
+	}
+
+	.navli span {
+		font-size: 12px;
+	}
 }
 </style>

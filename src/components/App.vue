@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Nav/>
     <Title :msg="msg"/>
     <ArticleList :articles="articleList" />
     <Footer/>
