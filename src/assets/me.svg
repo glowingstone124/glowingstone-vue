@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 196 51">
+    <style>
+        @keyframes draw {
+        to {
+        stroke-dashoffset: 0;
+        }
+        }
+    </style>
+    <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; height: 100%; justify-content: center;">
+            <div style="display: inline-flex; align-items: center; margin: 0 0px 0 -6px;">
+                <svg style="display: inline-block; width: 40px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 40 51" height="51" width="40">
+                    <path stroke-dasharray="145" stroke-dashoffset="145" style="animation: draw 0.58s 0s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M37.4677 13.6689C40.3847 3.01441 37.7852 1.4925 29.7299 4.91693C7.78844 14.6201 -4.26276 42.3972 4.55267 46.0754C13.3681 49.7537 42.3496 30.9185 34.1686 26.4792C29.0318 23.8791 9.56239 45.1242 14.3821 47.6611"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -12px 0 -4px;">
+                <svg style="display: inline-block; width: 19px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 19 51" height="51" width="19">
+                    <path stroke-dasharray="33" stroke-dashoffset="33" style="animation: draw 0.132s 0.58s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M0.800781,34.0845C7.00167,23.7712 10.562,17.889 17.543,6.64502"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -2.5px 0 0;">
+                <svg style="display: inline-block; width: 7px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 51" height="51" width="7">
+                    <path stroke-dasharray="17" stroke-dashoffset="17" style="animation: draw 0.068s 0.712s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M3.30217 23.604C2.72482 23.9566 0.574341 28.3484 1.66563 28.4119C2.75692 28.4755 7.24524 21.8731 4.4886 23.027C3.29045 23.5286 2.14727 24.4054 2.14727 24.4054"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -4px 0 0;">
+                <svg style="display: inline-block; width: 12px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 51" height="51" width="12">
+                    <path stroke-dasharray="21" stroke-dashoffset="21" style="animation: draw 0.084s 0.78s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M4.44922 23.4512C2.98177 24.6314 2.45348 25.9122 1.51172 28.1755C2.13496 28.0666 3.11068 27.0596 5.82622 24.4928C5.82622 24.4928 5.56819 27.1648 6.38421 27.4688C8.28137 28.1756 10.8109 23.4513 10.8109 23.4513"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -3.5px 0 0;">
+                <svg style="display: inline-block; width: 9px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 9 51" height="51" width="9">
+                    <path stroke-dasharray="16" stroke-dashoffset="16" style="animation: draw 0.064s 0.864s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M3.7548 22.9229C2.60207 23.529 -0.752212 29.5295 1.61166 28.7618C3.97553 27.994 5.61205 25.8726 7.67374 24.721"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -5px 0 0;">
+                <svg style="display: inline-block; width: 15px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 15 51" height="51" width="15">
+                    <path stroke-dasharray="27" stroke-dashoffset="27" style="animation: draw 0.108s 0.9279999999999999s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M4.42188 23.1724L1.16211 28.4658C3.87099 25.9122 7.65167 23.2024 8.42922 23.7108C8.87781 23.9799 6.69468 26.9705 7.8311 27.4191C8.96753 27.8677 11.8983 25.565 14.0814 24.7575"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -4px 0 -10px;">
+                <svg style="display: inline-block; width: 23px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 51" height="51" width="23">
+                    <path stroke-dasharray="75" stroke-dashoffset="75" style="animation: draw 0.3s 1.036s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M15.8299 24.1058C14.7224 20.2293 8.05794 29.529 11.1896 27.8486C13.4811 26.531 17.2991 22.5381 17.2991 22.5381C15.8865 28.7238 1.15713 50.9628 1.47176 43.8335C1.59134 36.4678 10.0592 36.074 20.9856 24.7167"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -4px 0 -4px;">
+                <svg style="display: inline-block; width: 14px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 51" height="51" width="14">
+                    <path stroke-dasharray="32" stroke-dashoffset="32" style="animation: draw 0.128s 1.336s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M8.95035 23.3347C8.289 21.833 5.66489 23.7794 5.71956 28.8314C5.77422 33.8834 1.12107 35.424 0.98514 33.3617C0.883641 31.4008 3.52325 32.4975 12.6583 24.7513"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -12.5px 0 -3.5px;">
+                <svg style="display: inline-block; width: 24px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 51" height="51" width="24">
+                    <path stroke-dasharray="91" stroke-dashoffset="91" style="animation: draw 0.364s 1.464s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M0.966797 16.3342C6.66806 14.1572 15.5438 14.1786 22.957 15.9795C12.1532 14.4252 15.852 9.92493 18.1685 5.96021C9.87226 17.3225 -0.709346 36.7351 1.78362 36.9101C3.40185 37.0413 9.39371 29.0376 13.8793 24.8435"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -2.5px 0 0;">
+                <svg style="display: inline-block; width: 7px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 51" height="51" width="7">
+                    <path stroke-dasharray="17" stroke-dashoffset="17" style="animation: draw 0.068s 1.8279999999999998s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M3.30217 23.604C2.72482 23.9566 0.574341 28.3484 1.66563 28.4119C2.75692 28.4755 7.24524 21.8731 4.4886 23.027C3.29045 23.5286 2.14727 24.4054 2.14727 24.4054"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -5px 0 0;">
+                <svg style="display: inline-block; width: 15px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 15 51" height="51" width="15">
+                    <path stroke-dasharray="27" stroke-dashoffset="27" style="animation: draw 0.108s 1.896s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M4.42188 23.1724L1.16211 28.4658C3.87099 25.9122 7.65167 23.2024 8.42922 23.7108C8.87781 23.9799 6.69468 26.9705 7.8311 27.4191C8.96753 27.8677 11.8983 25.565 14.0814 24.7575"></path>
+                </svg>
+            </div>
+            <div style="display: inline-flex; align-items: center; margin: 0 -4px 0 0;">
+                <svg style="display: inline-block; width: 11px; height: 100%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 11 51" height="51" width="11">
+                    <path stroke-dasharray="22" stroke-dashoffset="22" style="animation: draw 0.088s 2.004s forwards;" stroke="#e4e0e0" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M3.07713 25.3392C3.03314 27.7282 6.78706 24.9554 6.03999 23.505C4.44172 21.2653 -0.294204 28.3892 2.71291 28.2186C5.35941 27.9626 10.2422 24.7207 10.2422 24.7207"></path>
+                </svg>
+            </div>
+        </div>
+    </foreignObject>
+</svg>
