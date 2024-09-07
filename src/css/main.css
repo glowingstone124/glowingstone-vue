@@ -24,9 +24,18 @@ body {
 }
 
 .title {
+    animation:fadein 1s;
     min-height: 40vh;
     padding: 40vh 18vw 26vh 7vh;
     background-size: 100%, cover;
+}
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 h2 {
