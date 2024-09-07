@@ -59,7 +59,7 @@ p {
 img {
 	max-width: 110px;
 	min-width: 110px;
-	border-radius: 50%;
+	border-radius: 20%;
 }
 
 .info-container {
