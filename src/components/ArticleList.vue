@@ -76,11 +76,11 @@ export default {
 
 .article:hover {
 	background-color: #435060;
-	scale: 1.02;
 }
 
 .artc {
 	margin-top: 10px;
+	font-weight: 200;
 }
 
 .abstract {
