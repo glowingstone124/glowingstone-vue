@@ -57,7 +57,7 @@ export default {
 
 <style scoped>
 .article {
-	background-color: #5a6c80;
+	background-color: #435060;
 	border-radius: 10px;
 	max-width: 55vw;
 	margin: auto;
@@ -78,7 +78,7 @@ export default {
 }
 
 .article:hover {
-	background-color: #435060;
+	background-color: #5a6c80;
 }
 
 .artc {
