@@ -3,7 +3,6 @@
     <Nav/>
     <Title :msg="msg"/>
     <ArticleList :articles="articleList" />
-    <NavBtn/>
     <Footer/>
   </div>
   <p class="counter">已经有{{ visitCount }}人访问了本站</p>

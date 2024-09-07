@@ -2,7 +2,7 @@
 	<div class="content">
 		<h1 class="introduction">文章列表</h1>
 		<div class="article" v-for="article in articles" :key="article.id" @click="redirect(article.id)">
-			<img :src="getImagePath(article.id)" alt="文章图片" class="article-image"/>
+			<img :src="article.imagePath" alt="文章图片" class="article-image"/>
 			<div class="article-info">
 				<h2 class="artc">{{ article.title }}</h2>
 				<h2 class="abstract">{{ article.abstract }}</h2>
@@ -12,47 +12,46 @@
 </template>
 
 <script>
+import { reactive } from 'vue';
 import path from 'path';
-
 export default {
 	name: 'ArticleList',
-	data() {
-		return {
-			articles: [],
-		};
-	},
-	async mounted() {
-		const files = require.context("@root/public/articles/", true, /\.md$/);
-		const fm = require('front-matter');
-		const filelist = files.keys();
+	setup() {
+		const articles = reactive([]);
 
-		for (const key of filelist) {
-			const data = fm(files(key));
-			const fileName = path.basename(key);
-			this.articles.push({
-				id: fileName,
-				title: data.attributes.title,
-				abstract: data.attributes.abstract,
-			});
-		}
-	},
-	methods: {
-		getImagePath(articleId) {
-			const imagePath = `/articles/${articleId}.jpg`;
-			const defaultImage = '/articles/default.jpg';
-
-			try {
-				require("@root/public" + imagePath);
-			} catch (error) {
-				return defaultImage;
+		const checkImageExistence = async (article) => {
+			const imagePath = `/${article.id}.jpg`;
+			const response = await fetch(window.location.protocol + "//" + window.location.host + imagePath);
+			if (response.status === 200) {
+				article.imagePath = imagePath;
 			}
+		};
 
-			return imagePath;
-		},
-		redirect(articleId) {
-			this.$router.push(`/article/${articleId}`);
-		},
-	},
+		const redirect = (articleId) => {
+			window.location.href = `/article/${articleId}`;
+		};
+
+		(async () => {
+			const files = require.context("@root/public/articles/", true, /\.md$/);
+			const fm = require('front-matter');
+			const filelist = files.keys();
+
+			for (const key of filelist) {
+				const data = fm(files(key));
+				const fileName = path.basename(key);
+				const article = {
+					id: fileName,
+					title: data.attributes.title,
+					abstract: data.attributes.abstract,
+					imagePath: '/default.jpg'
+				};
+				articles.push(article);
+				await checkImageExistence(article);
+			}
+		})();
+
+		return {articles, redirect};
+	}
 };
 </script>
 
