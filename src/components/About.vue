@@ -57,9 +57,9 @@ export default {
 @import "@/css/main.css";
 
 .contents {
-	margin-top: 6vh;
-	margin-left: 5vw;
-	margin-right: 5vw;
+	margin-top: 8vh;
+	margin-left: 10vw;
+	margin-right: 10vw;
 }
 
 .category {
