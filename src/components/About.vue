@@ -34,8 +34,8 @@
 
 			<div class="info-box">
 				<h1>联系我</h1>
-				<p>qq: 1294915648</p>
-				<p>邮箱：hanseroffical@outlook.com (忽略这个地址，小孩子不懂事乱起的)</p>
+				<a href="https://qm.qq.com/q/H7Gin9dAuC"><img src="mail.svg" alt="">Mail</a>
+				<a href="mailto:hanseroffcial@outlook.com"><img src="chat.svg" alt="">QQ</a>
 			</div>
 		</div>
 	</div>
@@ -85,7 +85,6 @@ img {
 	margin: 10px;
 	transition: all;
 	flex: 1;
-	min-width: 250px;
 	max-width: 48%;
 }
 
@@ -96,11 +95,16 @@ p {
 a {
 	background-color: rgb(136, 160, 189);
 	border-radius: 15px;
-	padding: 10px;
-	margin: 5px;
+	padding: 20px;
+	margin: auto;
 	text-decoration: none;
 	transition: background-color 0.3s;
+	display: flex; /* 使a标签的内容使用flex布局 */
+	justify-content: center; /* 水平居中 */
+	align-items: center; /* 垂直居中 */
 }
+
+
 
 a:hover {
 	background-color: rgb(107, 126, 150);
