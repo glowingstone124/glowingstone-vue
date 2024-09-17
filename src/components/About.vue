@@ -7,7 +7,7 @@
 				<p>我是glowingstone124，现居上海，是一名普通的准高中生。平时会玩玩apex，bf,cs等fps游戏，偶尔追追新番老番。</p>
 				<p>技术上嘛...毫无建树，只是稍微会一些Java和Web而已，但是在努力学习。</p>
 				<p>Miku厨，半个车车壬，群友们一致认为的抽象大手子</p>
-				<p>(Github头像是芙兰，qq是恋恋)</p>
+				<p>(头像都是恋</p>
 			</div>
 
 			<div class="info-box">
