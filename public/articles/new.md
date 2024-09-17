@@ -1,8 +1,12 @@
 ---
+
 title: 在你的智能手机上编程
 
 abstract: 了解如何使用termux安装基本的编译/调试工具
 
+picture: none
+
+category: 0
 --- 
 # 在你的智能手机上编程
 ## 准备

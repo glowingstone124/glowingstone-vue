@@ -3,6 +3,9 @@ title: 声明
 
 abstract: 
 
+picture: none
+
+category: 1
 ---
     言论自由是相对的，每个人都有发表自己意见和看法的权利。既然有LGBT自由，Anti-LGBT自由也是必不可缺少的一部分。
 

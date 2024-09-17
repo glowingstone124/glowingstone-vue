@@ -4,6 +4,9 @@ title: 打造美观的api
 
 abstract: 本教程指导如何让您的API更加美观，易用。
 
+picture: none
+
+category: 0
 ---
 # 打造美观的api
 

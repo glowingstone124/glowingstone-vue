@@ -4,6 +4,9 @@ title: 浅谈协程
 
 abstract: 哪个男孩不想要快速编写异步代码呢
 
+picture: talk-about-coroutines.md.jpg
+
+category: 0
 ---
 # 浅谈Kotlin中的协程
 
