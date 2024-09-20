@@ -2,7 +2,7 @@
   <div class="hello">
     <div class="title">
         <div class="intro">
-            <h1 class="tth1"><span style="font-weight: 200;">Glowstone </span>萤石</h1>
+            <h1 class="tth1"><span style="font-weight: 200;">Glowstone </span><span class="light">萤石</span></h1>
             <h3>{{ msg }}</h3>
         </div>
     </div>
@@ -53,6 +53,27 @@ export default {
 h2 {
 	font-weight: 100;
 	color: #d1cfcf;
+}
+@keyframes lighter {
+	0% {
+		text-shadow: rgba(255, 255, 255, 0.3) 0px 5px 5px, rgba(255, 255, 255, 0.4) 0px -1px 3px, rgba(255, 248, 248, 0.2) 0px 4px 6px, rgba(234, 228, 228, 0.3) 0px 12px 13px, rgba(0, 0, 0, 0.05) 0px -3px 5px;
+	}
+	50% {
+		text-shadow: rgba(201, 198, 198, 0.9) 0px 10px 10px, rgba(210, 201, 201, 0.95) 0px -3px 6px, rgba(255, 248, 248, 0.8) 0px 7px 9px, rgba(234, 228, 228, 0.9) 0px 15px 16px, rgba(0, 0, 0, 0.2) 0px -5px 8px;
+	}
+	60% {
+		text-shadow: rgba(255, 255, 255, 0.3) 0px 5px 5px, rgba(255, 255, 255, 0.4) 0px -1px 3px, rgba(255, 248, 248, 0.2) 0px 4px 6px, rgba(234, 228, 228, 0.3) 0px 12px 13px, rgba(0, 0, 0, 0.05) 0px -3px 5px;
+	}
+	70% {
+		text-shadow: rgba(201, 198, 198, 0.9) 0px 10px 10px, rgba(210, 201, 201, 0.95) 0px -3px 6px, rgba(255, 248, 248, 0.8) 0px 7px 9px, rgba(234, 228, 228, 0.9) 0px 15px 16px, rgba(0, 0, 0, 0.2) 0px -5px 8px;
+	}
+	100% {
+		text-shadow: rgba(255, 255, 255, 0.3) 0px 5px 5px, rgba(255, 255, 255, 0.4) 0px -1px 3px, rgba(255, 248, 248, 0.2) 0px 4px 6px, rgba(234, 228, 228, 0.3) 0px 12px 13px, rgba(0, 0, 0, 0.05) 0px -3px 5px;
+	}
+}
+
+.light {
+	animation: lighter 1s ease-in-out;
 }
 @import "@/css/main.css";
 </style>
