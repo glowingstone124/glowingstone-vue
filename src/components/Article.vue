@@ -73,15 +73,15 @@ export default {
 
 .md:deep(code) {
 	display: inline-block;
-	background-color: #323b46;
+	background-color: #242428;
 	padding: 14px;
-	font-family: Jetbrains;
-	border: 1px solid #a2aed7;
+	font-family: 'Fira Code';
+	border: 1px solid #6267d5;
 	border-radius: 8px;
 }
 
 .md:deep(span) {
-	font-family: Jetbrains;
+	font-family: 'Fira Code';
 }
 
 .md:deep(a) {

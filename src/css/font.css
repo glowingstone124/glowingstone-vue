@@ -1,7 +1,10 @@
+@import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
+
 @font-face {
     font-family: Inter;
     src: url(fonts/Inter.ttf);
 }
+
 @font-face {
     font-family: Jetbrains;
     src: url(fonts/JetBrains.ttf);
