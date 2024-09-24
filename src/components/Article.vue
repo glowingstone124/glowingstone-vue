@@ -12,7 +12,6 @@ import hljs from 'highlight.js';
 import matter from 'gray-matter'
 import 'highlight.js/styles/monokai-sublime.css';
 
-// Then register the languages you need
 
 export default {
 	components: {},

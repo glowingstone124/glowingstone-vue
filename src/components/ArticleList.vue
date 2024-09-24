@@ -1,5 +1,7 @@
 <template>
 	<div class="content">
+		<h1 class="introduction">小记</h1>
+		<Journals />
 		<h1 class="introduction">文章列表</h1>
 		<div class="article" v-for="article in articles" :key="article.id" @click="redirect(article.id)">
 			<ArticleCard :article="article"/>
@@ -12,10 +14,11 @@ import {ref} from 'vue';
 import path from 'path';
 import fm from "front-matter";
 import ArticleCard from "@/components/ArticleCard.vue";
+import Journals from "@/components/Journals.vue";
 
 export default {
 	name: 'ArticleList',
-	components: {ArticleCard},
+	components: {ArticleCard, Journals},
 	setup() {
 		const articles = ref([]);
 		const redirect = (articleId) => {
