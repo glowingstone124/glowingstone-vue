@@ -1,6 +1,8 @@
 <template>
 	<div>
 		<Title :msg="msg"/>
+		<h1 class="introduction">小记</h1>
+		<Journals />
 		<Pinned/>
 		<Footer/>
 	</div>
@@ -14,13 +16,14 @@ import NavBtn from './NavBtn.vue';
 import Nav from './Nav.vue';
 import Footer from './Footer.vue';
 import Pinned from './Pinned.vue';
-
+import Journals from './Journals.vue'
 export default {
 	name: 'App',
 	components: {
 		Title,
 		ArticleList,
 		NavBtn,
+		Journals,
 		Pinned,
 		Nav,
 		Footer

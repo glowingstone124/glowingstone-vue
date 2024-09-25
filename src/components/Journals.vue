@@ -45,10 +45,17 @@ export default {
 			});
 		},
 		getTileStyle(journal) {
-			const columnSpan = Math.ceil(journal.length / 90);
+			const colors = ['#4e2f80', '#17467c', '#2d8658', '#a98140'];
+			const randomColor = colors[ Math.floor(Math.random() * 10)];
+
+			const columnSpan = Math.min(Math.ceil(journal.length / 60), 3);
+			const rowSpan = Math.min(Math.ceil(journal.length / 120), 4);
+
 			return {
-				'grid-column': `span ${Math.min(columnSpan, 4)}`,
-				'grid-row': 'span 1',
+				'grid-column': `span ${columnSpan}`,
+				'grid-row': `span ${rowSpan}`,
+				'background-color': randomColor,
+				'transition': 'transform 0.2s, background-color 0.5s',
 			};
 		},
 	}
@@ -67,7 +74,7 @@ export default {
 
 .journal-tile {
 	padding: 15px;
-	background-color: #3c69b6;
+	background-color: #395077;
 	transition: transform 0.2s;
 }
 
@@ -77,7 +84,8 @@ export default {
 
 h3 {
 	margin: 0;
-	font-size: 20px;
+	font-size: 3rem;
+	font-weight: 100;
 	color: #efeeee;
 }
 
