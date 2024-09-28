@@ -6,17 +6,17 @@
 				<h1>Glowstone 萤石</h1>
 			</div>
 
-			<li class="navli"><a href="/"><img src="@/assets/home.svg"><span>主页</span></a></li>
-			<li class="navli"><a href="/friends"><img src="@/assets/friends.svg"><span>友链</span></a></li>
-			<li class="navli"><a href="/about"><img src="@/assets/about.svg"><span>关于</span></a></li>
-			<li class="navli"><a href="/archive"><img src="@/assets/archive.svg"><span>存档</span></a></li>
+			<li class="navli" :class="{ active: $route.path === '/' }"><router-link to="/"><img src="@/assets/home.svg"><span>主页</span></router-link></li>
+			<li class="navli" :class="{ active: $route.path === '/friends' }"><router-link to="/friends"><img src="@/assets/friends.svg"><span>友链</span></router-link></li>
+			<li class="navli" :class="{ active: $route.path === '/about' }"><router-link to="/about"><img src="@/assets/about.svg"><span>关于</span></router-link></li>
+			<li class="navli" :class="{ active: $route.path === '/archive' }"><router-link to="/archive"><img src="@/assets/archive.svg"><span>存档</span></router-link></li>
 		</ul>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'Nav'
+	name: 'Nav',
 }
 </script>
 

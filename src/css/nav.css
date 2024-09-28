@@ -18,6 +18,11 @@
 .navul:hover {
     background-color: #27303c;
 }
+.navul .active {
+    border-radius: 20px;
+    border: 1px solid white;
+    transition: all 0.2s ease-in-out;
+}
 
 .navli {
     margin: 0;
