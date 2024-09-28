@@ -25,7 +25,6 @@ export default {
 		NavBtn,
 		Journals,
 		Pinned,
-		Nav,
 		Footer
 	},
 	data() {

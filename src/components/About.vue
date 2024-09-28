@@ -133,6 +133,6 @@ img {
 	border-radius: 10px;
 }
 .title-signature {
-	margin: 200px 0;
+	margin: 200px 100px 200px -300px;
 }
 </style>

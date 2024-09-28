@@ -69,6 +69,7 @@ import FriendsComponent from './FriendsComponent.vue';
 
 .contents {
 	margin-top: 12vh;
+	margin-left: 10vw;
 }
 h2 {
 	font-weight: 200;
