@@ -127,7 +127,6 @@ a:hover {
 img {
 	max-width: 100%;
 	cursor: pointer;
-	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	margin: 200px 0;
 	border-radius: 10px;
 }
