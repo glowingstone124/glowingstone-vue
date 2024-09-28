@@ -7,15 +7,15 @@
 				<p>我是glowingstone124，现居上海，是一名普通的准高中生。平时会玩玩apex，bf,cs等fps游戏，偶尔追追新番老番。</p>
 				<p>技术上嘛...毫无建树，只是稍微会一些Java和Web而已，但是在努力学习。</p>
 				<p>Miku厨，半个车车壬，群友们一致认为的抽象大手子</p>
-				<p>(头像都是恋</p>
+				<p>(头像都是恋 <a href="https://www.pixiv.net/artworks/112973410">头像pixiv id</a></p>
 			</div>
 
 			<div class="info-box">
 				<h1>关于这个网站</h1>
+				<a href="https://www.pixiv.net/artworks/92320484">背景来自Pixiv</a>
 				<p>这个网站是完全自建的（你没听错，没有使用任何ui库和模板，纯vue手敲）</p>
 				<p>前端：Vue3</p>
-				<img @click="redirectToGithub"
-					 src="https://socialify.git.ci/glowingstone124/glowingstone-vue/image?description=1&descriptionEditable=%E5%9C%A8github%E4%B8%8A%E6%89%BE%E5%88%B0%E6%88%91&font=Inter&language=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Dark">
+				<img @click="redirectToGithub" src="https://socialify.git.ci/glowingstone124/glowingstone-vue/image?description=1&descriptionEditable=%E5%9C%A8github%E4%B8%8A%E6%89%BE%E5%88%B0%E6%88%91&font=Inter&language=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Dark" alt="">
 				<p>没有后端，基于vercel部署啦</p>
 			</div>
 
@@ -47,21 +47,31 @@ export default {
 	components: {},
 	methods: {
 		redirectToGithub() {
-			window.location.href = 'https://github.com/glowingstone124'; // 替换成你的Github地址
+			window.location.href = 'https://github.com/glowingstone124';
 		}
+	},
+	mounted() {
+		document.body.style.backgroundImage = 'url("/komeji2.jpg")';
+		document.body.style.backgroundSize = 'cover';
+		document.body.style.backgroundRepeat = 'no-repeat'
+		document.body.style.backgroundAttachment = 'fixed';
+	},
+	beforeUnmount() {
+		document.body.style.backgroundImage = '';
 	}
 }
 </script>
 
 <style scoped>
 @import "@/css/main.css";
-
 .contents {
+	background-size: cover;
+	background-position: center;
 	margin-top: 8vh;
 	margin-left: 10vw;
 	margin-right: 10vw;
-}
 
+}
 .category {
 	font-size: 5em;
 	font-weight: 500;
@@ -71,6 +81,7 @@ img {
 }
 .friends {
 	display: flex;
+	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	margin-top: 3vh;
@@ -79,10 +90,12 @@ img {
 .info-box {
 	display: flex;
 	flex-direction: column;
-	background-color: #475465;
+	background-color: rgba(168, 179, 196, 0.31);
+	backdrop-filter: blur(20px);
 	border-radius: 10px;
-	padding: 15px;
-	margin: 10px;
+	padding: 45px;
+	margin: 20px;
+	min-width: 400px;
 	transition: all;
 	flex: 1;
 	max-width: 48%;
@@ -97,11 +110,12 @@ a {
 	border-radius: 15px;
 	padding: 20px;
 	margin: auto;
+	margin-bottom: 10px;
 	text-decoration: none;
 	transition: background-color 0.3s;
-	display: flex; /* 使a标签的内容使用flex布局 */
-	justify-content: center; /* 水平居中 */
-	align-items: center; /* 垂直居中 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 
@@ -113,7 +127,8 @@ a:hover {
 img {
 	max-width: 100%;
 	cursor: pointer;
-	margin: 10px 0;
-	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	margin: 200px 0;
+	border-radius: 10px;
 }
 </style>

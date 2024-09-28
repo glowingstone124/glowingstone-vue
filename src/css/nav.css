@@ -2,7 +2,7 @@
     list-style-type: none;
     height: auto;
     min-height: 80px;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(50px);
     position: fixed;
     top: 0;
     overflow: hidden;
@@ -10,7 +10,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: #414e65;
+    background-color: rgba(107, 131, 171, 0.31);
     transition: background-color 0.2s;
     z-index: 1000;
     width: 100%;
