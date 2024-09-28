@@ -1,6 +1,6 @@
 <template>
 	<div class="contents">
-		<img src="@root/src/assets/me.svg">
+		<img src="@root/src/assets/me.svg" class="title-signature">
 		<div class="friends">
 			<div class="info-box">
 				<h1>我是谁？</h1>
@@ -88,19 +88,21 @@ img {
 }
 
 .info-box {
-	display: flex;
-	flex-direction: column;
 	background-color: rgba(168, 179, 196, 0.31);
 	backdrop-filter: blur(20px);
 	border-radius: 10px;
 	padding: 45px;
 	margin: 20px;
-	min-width: 400px;
-	transition: all;
 	flex: 1;
-	max-width: 48%;
+	max-width: 50%;
+	min-width: 30%;
+	transition: all 0.2s ease-in-out;
 }
-
+.info-box:hover {
+	transform: translateY(-10px);
+	box-shadow: rgba(50, 50, 93, 0.3) 0px 20px 40px -5px,
+	rgba(0, 0, 0, 0.3) 0px 10px 24px -8px;
+}
 p {
 	padding: 5px;
 }
@@ -109,13 +111,13 @@ a {
 	background-color: rgb(136, 160, 189);
 	border-radius: 15px;
 	padding: 20px;
-	margin: auto;
-	margin-bottom: 10px;
+	margin: auto auto 10px;
 	text-decoration: none;
 	transition: background-color 0.3s;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	max-height: 30px;
 }
 
 
@@ -127,7 +129,10 @@ a:hover {
 img {
 	max-width: 100%;
 	cursor: pointer;
-	margin: 200px 0;
+	margin: 10px 0;
 	border-radius: 10px;
+}
+.title-signature {
+	margin: 200px 0;
 }
 </style>
