@@ -7,6 +7,12 @@
 			博客logo<br>
 			博客介绍<br>
 			也可以直接通过“关于”中的邮箱联系我。</h2>
+		<h2>我的信息：<br>
+			博客网址: glowingstone.cn<br>
+			博客名字: Glowstone 萤石<br>
+			博客logo: https://avatars.githubusercontent.com/u/163746181 (若无法访问可以自己缓存，仅9k大小)<br>
+			博客介绍: 每月更新的可能性为lim -> 0，jvm痴子，全栈小白，性能优化魔怔人。<br>
+			也可以直接通过“关于”中的邮箱联系我。</h2>
 		<div class="friends">
 			<FriendsComponent
 				:avatar="'https://minecreeper.top/images/avatar.png'"
