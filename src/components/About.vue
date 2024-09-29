@@ -51,7 +51,7 @@ export default {
 		}
 	},
 	mounted() {
-		document.body.style.backgroundImage = 'url("/komeji2.jpg")';
+		document.body.style.backgroundImage = 'url("http://rock.glowingstone.cn:5244/d/komeji2.jpg?sign=5ytKknkpEYjaQcdsq19HTZgmEcFhF3fIaZJXjy-Czts=:0")';
 		document.body.style.backgroundSize = 'cover';
 		document.body.style.backgroundRepeat = 'no-repeat'
 		document.body.style.backgroundAttachment = 'fixed';
