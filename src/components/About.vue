@@ -7,7 +7,7 @@
 				<p>我是glowingstone124，现居上海，是一名普通的准高中生。平时会玩玩apex，bf,cs等fps游戏，偶尔追追新番老番。</p>
 				<p>技术上嘛...毫无建树，只是稍微会一些Java和Web而已，但是在努力学习。</p>
 				<p>Miku厨，半个车车壬，群友们一致认为的抽象大手子</p>
-				<p>(头像都是恋 <a href="https://www.pixiv.net/artworks/112973410">头像pixiv id</a></p>
+				<p>(头像都是恋 <a href="https://www.pixiv.net/artworks/112973410">头像pixiv id</a>)</p>
 			</div>
 
 			<div class="info-box">
@@ -48,12 +48,20 @@ export default {
 	methods: {
 		redirectToGithub() {
 			window.location.href = 'https://github.com/glowingstone124';
+		},
+		setRandomBackground() {
+			const images = [
+				'https://rock.glowingstone.cn/storage/download/koishi.jpg',
+				'https://rock.glowingstone.cn/storage/download/koishi.jpg'
+			];
+			const randomImage = images[Math.floor(Math.random() * images.length)];
+			document.body.style.backgroundImage = `url("${randomImage}")`;
 		}
 	},
 	mounted() {
-		document.body.style.backgroundImage = 'url("https://rock.glowingstone.cn/storage/download/komeji2.jpg")';
+		this.setRandomBackground();
 		document.body.style.backgroundSize = 'cover';
-		document.body.style.backgroundRepeat = 'no-repeat'
+		document.body.style.backgroundRepeat = 'no-repeat';
 		document.body.style.backgroundAttachment = 'fixed';
 	},
 	beforeUnmount() {
@@ -64,21 +72,24 @@ export default {
 
 <style scoped>
 @import "@/css/main.css";
+
 .contents {
 	background-size: cover;
 	background-position: center;
 	margin-top: 8vh;
 	margin-left: 10vw;
 	margin-right: 10vw;
-
 }
+
 .category {
 	font-size: 5em;
 	font-weight: 500;
 }
+
 img {
-	margin:auto;
+	margin: auto;
 }
+
 .friends {
 	display: flex;
 	flex-direction: row;
@@ -98,11 +109,13 @@ img {
 	min-width: 30%;
 	transition: all 0.2s ease-in-out;
 }
+
 .info-box:hover {
 	transform: translateY(-10px);
 	box-shadow: rgba(50, 50, 93, 0.3) 0px 20px 40px -5px,
 	rgba(0, 0, 0, 0.3) 0px 10px 24px -8px;
 }
+
 p {
 	padding: 5px;
 }
@@ -120,8 +133,6 @@ a {
 	max-height: 30px;
 }
 
-
-
 a:hover {
 	background-color: rgb(107, 126, 150);
 }
@@ -132,6 +143,7 @@ img {
 	margin: 10px 0;
 	border-radius: 10px;
 }
+
 .title-signature {
 	margin: 200px 100px 200px -300px;
 }
