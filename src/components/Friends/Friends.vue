@@ -1,5 +1,6 @@
 <template>
 	<div class="contents">
+		<span style="width: 70%">
 		<h1 class="cagetory">Friends</h1>
 		<h2>关于添加友链：<br>如果在群里抓到我，可以直接@我并且告诉我你的以下信息:<br>
 			博客网址<br>
@@ -13,6 +14,7 @@
 			博客logo: https://avatars.githubusercontent.com/u/163746181 (若无法访问可以自己缓存，仅9k大小)<br>
 			博客介绍: 每月更新的可能性为lim -> 0，jvm痴子，全栈小白，性能优化魔怔人。<br>
 			也可以直接通过“关于”中的邮箱联系我。</h2>
+		</span>
 		<div class="friends">
 			<FriendsComponent
 				:avatar="'https://minecreeper.top/images/avatar.png'"
@@ -75,12 +77,14 @@ import FriendsComponent from './FriendsComponent.vue';
 
 .contents {
 	margin-top: 12vh;
-	margin-left: 10vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 h2 {
 	font-weight: 200;
-	font-size: 1.4rem;
-	margin: 1vh 1vh 8vh;
+	font-size: 1rem;
+	margin: 1vh 1vh 2vh;
 	max-width: 65vw;
 	border-radius: 10px;
 	background: #05cb86;
@@ -88,10 +92,9 @@ h2 {
 }
 .cagetory {
 	font-size: 6em;
-	font-weight: 300;
-}
+	font-weight: 300;}
 
 .friends {
-	margin-top: 3vh;
+	margin:auto
 }
 </style>

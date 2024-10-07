@@ -1,5 +1,5 @@
 <template>
-	<div @click="visitProfile" class="friend-container">
+	<div @click="visitProfile" :class="['friend-container', { 'deactive': !isLinkActive }]">
 		<div class="avatar-container">
 			<img :src="avatar" alt="Avatar">
 		</div>
@@ -19,10 +19,30 @@ export default {
 		description: String,
 		link: String
 	},
+	data() {
+		return {
+			isLinkActive: true
+		}
+	},
+	mounted() {
+		this.checkLink();
+	},
 	methods: {
 		visitProfile() {
-			if (this.link) {
+			if (this.isLinkActive && this.link) {
 				window.location.href = this.link;
+			}
+		},
+		async checkLink() {
+			if (this.link) {
+				try {
+					const response = await fetch(this.link, { method: 'HEAD' });
+					this.isLinkActive = response.ok;
+				} catch (error) {
+					this.isLinkActive = false;
+				}
+			} else {
+				this.isLinkActive = false;
 			}
 		}
 	}
@@ -34,16 +54,16 @@ export default {
 
 p {
 	background: none;
+	color: #a9a7a7;
 }
-
 .friend-container {
 	display: flex;
 	align-items: center;
 	cursor: pointer;
 	background-color: #475465;
-	padding: 6vh;
+	padding: 4vh;
 	margin: 1vh 1vh 8vh;
-	max-width: 65vw;
+	width: 65vw;
 	transition: background-color 0.1s;
 	border-radius: 15px;
 }
@@ -51,7 +71,9 @@ p {
 .friend-container:hover {
 	background-color: #5f748f;
 }
-
+.friend-container.deactive {
+	background-color: #3d3e41;
+}
 .avatar-container {
 	margin-right: 40px;
 }
@@ -70,4 +92,3 @@ h2 {
 	border-bottom: 1px solid rgb(172, 191, 239);
 }
 </style>
-
