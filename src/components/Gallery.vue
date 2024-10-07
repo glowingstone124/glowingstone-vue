@@ -73,7 +73,7 @@ const galleryItems = ref([
 	background-color: #4c618f;
 	justify-content: center;
 	align-items: baseline;
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	width: 30vw;
 }
 
@@ -83,7 +83,7 @@ const galleryItems = ref([
 }
 
 .smaller {
-	font-size: 1rem;
+	font-size: 1.2rem;
 	margin-top: 0.2rem;
 }
 </style>
