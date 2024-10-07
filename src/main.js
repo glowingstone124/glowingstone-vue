@@ -5,6 +5,7 @@ import Friends from './components/Friends/Friends.vue';
 import Article from './components/Article.vue';
 import About from './components/About.vue';
 import ArticleList from "@/components/ArticleList.vue";
+import Gallery from "@/components/Gallery.vue";
 import { createRouter, createWebHistory } from 'vue-router';
 
 const app = createApp(Main);
@@ -16,7 +17,8 @@ const router = createRouter({
     { path: '/friends', component: Friends},
     { path: '/article/:articleId', component: Article},
     { path: '/archive', component: ArticleList},
-    { path: '/about', component: About}
+    { path: '/about', component: About},
+    { path: '/gallery', component: Gallery},
   ],
 });
 

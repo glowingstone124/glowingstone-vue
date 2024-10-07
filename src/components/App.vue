@@ -38,7 +38,7 @@ export default {
 		const currentDate = new Date();
 		const Birthday = new Date("2025-04-28");
 		if (currentDate === Birthday) {
-			this.msg = "祝我生日快乐";
+			this.msg = "生日快乐,Never Grow Old.";
 			document.title = "Glowstone 萤石 | 祝我生日快乐"
 		}
 		await this.incrementVisitCount();

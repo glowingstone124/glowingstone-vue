@@ -122,9 +122,9 @@ p {
 
 a {
 	background-color: rgb(136, 160, 189);
-	border-radius: 15px;
-	padding: 20px;
-	margin: auto auto 10px;
+	border-radius: 50px;
+	padding: 25px;
+	margin: auto auto 20px;
 	text-decoration: none;
 	transition: background-color 0.3s;
 	display: flex;

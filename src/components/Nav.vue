@@ -10,6 +10,7 @@
 			<li class="navli" :class="{ active: $route.path === '/friends' }"><router-link to="/friends"><img src="@/assets/friends.svg"><span>友链</span></router-link></li>
 			<li class="navli" :class="{ active: $route.path === '/about' }"><router-link to="/about"><img src="@/assets/about.svg"><span>关于</span></router-link></li>
 			<li class="navli" :class="{ active: $route.path === '/archive' }"><router-link to="/archive"><img src="@/assets/archive.svg"><span>存档</span></router-link></li>
+			<li class="navli" :class="{ active: $route.path === '/gallery' }"><router-link to="/gallery"><img src="@/assets/photo.svg"><span>画廊</span></router-link></li>
 		</ul>
 	</div>
 </template>
