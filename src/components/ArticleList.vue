@@ -70,7 +70,7 @@ export default {
 <style scoped>
 .article {
 	background-color: #435060;
-	border-radius: 12px;
+	border-radius: 30px;
 	max-width: 55vw;
 	margin: auto;
 	padding-bottom: 15px;
@@ -81,12 +81,11 @@ export default {
 }
 
 .article-image {
+
 	object-fit: cover;
 	width: 100%;
 	height: auto;
 	max-height: 300px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
 	margin-bottom: 10px;
 }
 
