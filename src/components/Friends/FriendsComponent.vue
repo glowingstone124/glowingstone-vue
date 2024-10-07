@@ -34,16 +34,6 @@ export default {
 			}
 		},
 		async checkLink() {
-			if (this.link) {
-				try {
-					const response = await fetch(this.link, { method: 'HEAD' });
-					this.isLinkActive = response.ok;
-				} catch (error) {
-					this.isLinkActive = false;
-				}
-			} else {
-				this.isLinkActive = false;
-			}
 		}
 	}
 }
