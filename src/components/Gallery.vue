@@ -42,7 +42,6 @@ const onImageLoad = (index) => {
 	loadingStates.value[index] = false;
 };
 
-// 懒加载逻辑
 const lazyLoadImages = () => {
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {

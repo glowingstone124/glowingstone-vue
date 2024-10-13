@@ -9,6 +9,7 @@
     <div class="myself">
         <div class="intro">
             <h1 class="msh1">关于我</h1>
+			<iframe class="github" frameBorder="0" height="231.5px" width="1228px" src="https://git-graph.vercel.app/embed/glowingstone124?showColorLegend=true&showWeekdayLabels=true&showMonthLabels=true&showTotalCount=true&blockMargin=5&blockRadius=3&blockSize=17&fontSize=17&weekStart=0&year=2024"></iframe>
             <h3>从小学<span>四年级</span>开始学习 <span>Java</span></h3>
             <h3>拥有<span>六年</span>Java编码经验，正在学习<span>Kotlin, Rust, TypeScript</span>和<span>Functional Programming</span>，程序的最终目标是以<span>简单，优雅</span>的方式高效处理问题。</h3>
             <h3>技术栈：</h3>
@@ -49,6 +50,9 @@ export default {
 <style scoped>
 .intro {
 	margin-bottom: 6vh;
+}
+.github {
+	border-radius: 5px;
 }
 h2 {
 	font-weight: 100;
