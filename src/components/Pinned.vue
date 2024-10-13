@@ -16,7 +16,7 @@ export default {
 	name: 'Pinned',
 	components: {ArticleCard},
 	setup() {
-		const pins = ["simple_intro_of_jmm.md"];
+		const pins = ["simple_intro_of_jmm.md", "blogging-evolution.md"];
 		const articles = ref([]);
 
 		const redirect = (articleId) => {
