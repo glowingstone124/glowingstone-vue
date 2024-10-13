@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container">
 		<Title :msg="msg"/>
 		<h1 class="introduction">小记</h1>
 		<Journals />
@@ -87,4 +87,5 @@ p {
 .counter {
 	text-align: center;
 }
+
 </style>

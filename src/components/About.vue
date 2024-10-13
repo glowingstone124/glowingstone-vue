@@ -145,6 +145,9 @@ img {
 }
 
 .title-signature {
-	margin: 200px 100px 200px -300px;
+	margin: 300px 100px 200px -250px;
+}
+h1 {
+	margin-bottom: 20px;
 }
 </style>
