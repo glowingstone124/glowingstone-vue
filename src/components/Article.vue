@@ -62,7 +62,10 @@ export default {
 	padding: 5vh 4vw;
 	margin: 5vw;
 }
-
+.md:deep(img) {
+	max-width: 60%;
+	border-radius: 10px;
+}
 .md:deep(*) {
 }
 
