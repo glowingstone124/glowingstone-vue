@@ -4,10 +4,11 @@ category: 0
 abstract: "过去的几个月里，我都对博客做了些什么？"
 picture: none
 ---
-
 # Blog进化
 
 自从我在23年末用vue搓了个博客之后，很长一段时间都没有去管它，最近突然想起来自己还有个博客，遂打算写点什么，打开blog，看到主页便释怀的死了。
+
+这是一个行内公式：$V_{sphere}=\frac{4}{3}\pi r^3$，
 
 [![pAYvIgK.png](https://s21.ax1x.com/2024/10/13/pAYvIgK.png)](https://imgse.com/i/pAYvIgK)
 

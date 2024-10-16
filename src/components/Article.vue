@@ -11,6 +11,8 @@ import {marked} from 'marked';
 import hljs from 'highlight.js';
 import matter from 'gray-matter'
 import 'highlight.js/styles/monokai-sublime.css';
+import 'katex/dist/katex.min.css';
+import katex from 'katex';
 
 
 export default {
@@ -34,12 +36,23 @@ export default {
 		async function loadMarkdownContent() {
 			try {
 				const file = await import(`@root/public/articles/${articleId.value}`);
-				output.value = marked.parse(matter(file.default).content);
+				let markdownContent = matter(file.default).content;
+
+				output.value = marked.parse(markdownContent);
+
+				output.value = output.value.replace(/\$\$(.+?)\$\$/g, (_, tex) => {
+					return katex.renderToString(tex, {throwOnError: false});
+				});
+				output.value = output.value.replace(/\$(.+?)\$/g, (_, tex) => {
+					return katex.renderToString(tex, {throwOnError: false});
+				});
+
 				nextTick(() => highlightCodeBlocks());
 			} catch (error) {
 				console.error('Error loading Markdown content:', error);
 			}
 		}
+
 
 		function highlightCodeBlocks() {
 			document.querySelectorAll('pre code').forEach((block) => {
@@ -62,10 +75,12 @@ export default {
 	padding: 5vh 4vw;
 	margin: 5vw;
 }
+
 .md:deep(img) {
 	max-width: 60%;
 	border-radius: 10px;
 }
+
 .md:deep(*) {
 }
 
@@ -83,7 +98,7 @@ export default {
 }
 
 .md:deep(span) {
-	font-family: 'Fira Code';
+	//font-family: 'Fira Code';
 }
 
 .md:deep(a) {
@@ -115,6 +130,11 @@ export default {
 
 .md:deep(hr) {
 	display: none;
+}
+
+.md:deep(.katex) {
+	font-family: 'KaTeX_Main', 'Times New Roman', serif;
+	font-size: 1.1em;
 }
 
 .md:deep(ul) {
