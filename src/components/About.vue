@@ -39,12 +39,15 @@
 			</div>
 		</div>
 	</div>
+	<VisitCounter/>
 </template>
 
 <script>
+import VisitCounter from "@/components/VisitCounter.vue";
+
 export default {
 	name: 'About',
-	components: {},
+	components: {VisitCounter},
 	methods: {
 		redirectToGithub() {
 			window.location.href = 'https://github.com/glowingstone124';

@@ -4,6 +4,7 @@
 		<div class="article" v-for="article in articles" :key="article.id" @click="redirect(article.id)">
 			<ArticleCard :article="article"/>
 		</div>
+		<VisitCounter/>
 	</div>
 </template>
 
@@ -12,10 +13,11 @@ import {ref} from 'vue';
 import path from 'path';
 import fm from "front-matter";
 import ArticleCard from "@/components/ArticleCard.vue";
+import VisitCounter from "@/components/VisitCounter.vue";
 
 export default {
 	name: 'ArticleList',
-	components: {ArticleCard},
+	components: {VisitCounter, ArticleCard},
 	setup() {
 		const articles = ref([]);
 		const redirect = (articleId) => {

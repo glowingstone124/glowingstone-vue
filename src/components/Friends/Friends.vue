@@ -60,11 +60,15 @@
 			></FriendsComponent>
 		</div>
 	</div>
+	<VisitCounter/>
 </template>
 <script>
+import VisitCounter from "@/components/VisitCounter.vue";
+
 export default {
 	name: 'Friends',
 	components: {
+		VisitCounter,
 		FriendsComponent
 	}
 }

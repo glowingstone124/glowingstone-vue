@@ -30,9 +30,9 @@
 			<h3><span>Debian = Rocky Linux > Ubuntu > CentOS > Arch > ....</span>(其中只有RockyLinux与Debian被运用于生产环境)</h3>
 			<h2>编程语言熟练度排行</h2>
 			<h3><span>Java</span> (>= 2w行)</h3>
-			<h3><span>Kotlin</span>(5k-6k行，仅JVM)</h3>
+			<h3><span>Kotlin</span>(8k-9k行，仅JVM)</h3>
+			<h3><span>Rust</span>(2k行)</h3>
 			<h3><span>JavaScript</span>(1k-2k行)</h3>
-			<h3><span>Rust</span>(900-1000行)</h3>
 		</div>
     </div>
   </div>

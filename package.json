@@ -14,6 +14,7 @@
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.9.0",
+    "katex": "^0.16.11",
     "markdown-it": "^14.0.0",
     "markdown-loader": "^8.0.0",
     "marked": "^12.0.1",

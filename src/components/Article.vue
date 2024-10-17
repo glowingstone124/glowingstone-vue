@@ -2,6 +2,7 @@
 	<div class="body">
 		<div class="md" v-html="output"></div>
 	</div>
+	<VisitCounter/>
 </template>
 
 <script>
@@ -13,10 +14,11 @@ import matter from 'gray-matter'
 import 'highlight.js/styles/monokai-sublime.css';
 import 'katex/dist/katex.min.css';
 import katex from 'katex';
+import VisitCounter from "@/components/VisitCounter.vue";
 
 
 export default {
-	components: {},
+	components: {VisitCounter},
 	setup() {
 		const route = useRoute();
 		const articleId = ref(null);
@@ -92,7 +94,7 @@ export default {
 	display: inline-block;
 	background-color: #242428;
 	padding: 14px;
-	font-family: 'Fira Code';
+	font-family: 'Fira Code',serif;
 	border: 1px solid #6267d5;
 	border-radius: 8px;
 }

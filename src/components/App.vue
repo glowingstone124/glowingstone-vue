@@ -6,10 +6,11 @@
 		<Pinned/>
 		<Footer/>
 	</div>
-	<p class="counter">已经有{{ visitCount }}人访问了本站</p>
+	<VisitCounter/>
 </template>
 
 <script>
+import VisitCounter from "@/components/VisitCounter.vue";
 import Title from './Title.vue'
 import ArticleList from './ArticleList.vue'
 import NavBtn from './NavBtn.vue';
@@ -20,6 +21,7 @@ import Journals from './Journals.vue'
 export default {
 	name: 'App',
 	components: {
+		VisitCounter,
 		Title,
 		ArticleList,
 		NavBtn,

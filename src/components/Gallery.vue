@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import VisitCounter from "@/components/VisitCounter.vue";
 
 const galleryItems = ref([
 	{
@@ -89,6 +90,7 @@ onMounted(() => {
 			</div>
 		</div>
 	</div>
+	<VisitCounter/>
 </template>
 
 
