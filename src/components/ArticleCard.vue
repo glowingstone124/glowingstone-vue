@@ -30,7 +30,7 @@ export default {
 <style scoped>
 .article {
 	background-color: #435060;
-	border-radius: 30px;
+	border-radius: 40px;
 	max-width: 55vw;
 	margin: auto;
 	padding-bottom: 15px;

@@ -71,42 +71,4 @@ export default {
 </script>
 
 <style scoped>
-.article {
-	background-color: #435060;
-	border-radius: 12px;
-	max-width: 55vw;
-	margin: auto;
-	padding-bottom: 15px;
-	min-height: 14vh;
-	margin-top: 8vh;
-	transition: background-color 0.3s, scale 0.3s;
-	text-align: left;
-}
-
-.article-image {
-	object-fit: cover;
-	width: 100%;
-	height: auto;
-	max-height: 300px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	margin-bottom: 10px;
-}
-
-.article:hover {
-	background-color: #5a6c80;
-}
-
-.artc {
-	margin-top: 10px;
-	font-weight: 200;
-}
-
-.abstract {
-	margin-top: 5px;
-}
-
-.article-info {
-	margin: 30px;
-}
 </style>
