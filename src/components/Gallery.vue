@@ -10,6 +10,12 @@ const galleryItems = ref([
 		date: '第138季 日与秋与木之年'
 	},
 	{
+		imageUrl: 'https://storage.glowingstone.cn/download/hifuu_city2.jpg',
+		thumbnailUrl: 'https://storage.glowingstone.cn/download/hifuu_city2_thumb.jpg',
+		description: '秘封...',
+		date: '2024/10'
+	},
+	{
 		imageUrl: 'https://storage.glowingstone.cn/download/kotlin_shanghai_0703.jpg',
 		thumbnailUrl: 'https://storage.glowingstone.cn/download/kotlin_shanghai_0703_thumb.jpg',
 		description: 'Kotlin上海用户组在24年7月的聚会，我与上海KUG的朋友们',
