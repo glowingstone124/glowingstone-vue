@@ -7,7 +7,7 @@ picture: none
 
 category: 0
 
-ai-generated: false
+ai_generated: true
 ---
 >>> Java的CompletableFuture都实现了哪些功能
 

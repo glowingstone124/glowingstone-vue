@@ -34,6 +34,7 @@ export default {
 
 				let imagePath = '/default.jpg';
 				const picture = data.attributes.picture;
+				const ai = data.attributes.ai_generated
 				let category = ''
 				switch (data.attributes.category) {
 					case 0:
@@ -58,6 +59,7 @@ export default {
 					abstract: data.attributes.abstract,
 					imagePath: imagePath,
 					category: category,
+					ai_generated: ai
 				};
 				articles.value.push(article);
 			}
@@ -75,7 +77,7 @@ export default {
 	border-radius: 40px;
 	max-width: 55vw;
 	margin: auto;
-	padding-bottom: 15px;
+	margin-bottom: 15px;
 	min-height: 14vh;
 	margin-top: 8vh;
 	transition: background-color 0.3s, scale 0.3s;

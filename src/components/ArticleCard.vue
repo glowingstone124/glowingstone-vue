@@ -1,5 +1,5 @@
 <template>
-	<div class="article" @click="redirectToArticle">
+	<div class="article" :class="{ ai: article.ai_generated }" @click="redirectToArticle">
 		<div class="image-container">
 			<img :src="article.imagePath" alt="文章图片" class="article-image"/>
 		</div>
@@ -34,14 +34,19 @@ export default {
 	border-radius: 40px;
 	max-width: 55vw;
 	margin: auto;
-	padding-bottom: 15px;
 	min-height: 14vh;
 	margin-top: 8vh;
 	transition: background-color 0.3s, scale 0.3s;
 	text-align: left;
 	position: relative;
+	padding-bottom: 15px;
 }
-
+.article .ai {
+	background-color: #507e58;
+}
+.article .ai:hover {
+	background-color: #459454;
+}
 .image-container {
 	transition: transform 0.3s;
 }

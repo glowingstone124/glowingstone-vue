@@ -1,6 +1,9 @@
 <template>
 	<div class="body">
-		<h1 class="articleTitle">{{ articleTitle }}</h1>
+		<div class="pre">
+			<h1 class="articleTitle">{{ articleTitle }}</h1>
+			<span class="ai-generated" v-if="ai_gen">此篇文章已被标注使用AI生成。</span>
+		</div>
 		<div class="md" v-html="output"></div>
 	</div>
 	<VisitCounter/>
@@ -25,6 +28,7 @@ export default {
 		const route = useRoute();
 		const articleId = ref(null);
 		const output = ref('');
+		const ai_gen = ref(false)
 		const articleTitle = ref('')
 		watch(() => route.params, (newParams) => {
 			articleId.value = newParams.articleId;
@@ -44,6 +48,7 @@ export default {
 
 				output.value = marked.parse(markdownContent);
 				articleTitle.value = matter(file.default).data.title
+				ai_gen.value = matter(file.default).data.ai_generated
 
 				output.value = output.value.replace(/\$\$(.+?)\$\$/g, (_, tex) => {
 					return katex.renderToString(tex, {throwOnError: false});
@@ -69,6 +74,7 @@ export default {
 			articleId,
 			output,
 			articleTitle,
+			ai_gen,
 		};
 	},
 };
@@ -89,7 +95,10 @@ export default {
 
 .md:deep(*) {
 }
+
 .md:deep(blockquote) {
+	padding-top: 1px;
+	padding-bottom: 1px;
 	border-left: 2px solid #6cc291;
 	background: #3f6c51;
 }
@@ -102,8 +111,8 @@ export default {
 	display: inline-block;
 	background-color: #242428;
 	padding: 14px;
-	margin:5px;
-	font-family: 'Fira Code',serif;
+	margin: 5px;
+	font-family: 'Fira Code', serif;
 	border: 1px solid #48485e;
 	border-radius: 2px;
 }
@@ -151,10 +160,23 @@ export default {
 .md:deep(ul) {
 	display: block;
 }
+
 .articleTitle {
 	font-weight: 100;
-	margin-bottom: 80px;
+	margin-bottom: 8px;
 	font-size: 6.5rem;
 	font-family: 'Fira Code', 'Inter', serif;
+}
+
+.ai-generated {
+	border-left: 2px solid #6cc291;
+	background: #3f6c51;
+	color: #ffffff;
+	padding: 20px;
+	font-size: 1rem;
+}
+
+.pre{
+	margin-bottom: 100px;
 }
 </style>
