@@ -89,6 +89,10 @@ export default {
 
 .md:deep(*) {
 }
+.md:deep(blockquote) {
+	border-left: 2px solid #6cc291;
+	background: #3f6c51;
+}
 
 .md:deep(li) {
 	color: white;
