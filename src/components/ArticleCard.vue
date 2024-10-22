@@ -1,7 +1,8 @@
-<!-- ArticleCard.vue -->
 <template>
 	<div class="article" @click="redirectToArticle">
-		<img :src="article.imagePath" alt="文章图片" class="article-image"/>
+		<div class="image-container">
+			<img :src="article.imagePath" alt="文章图片" class="article-image"/>
+		</div>
 		<div class="article-info">
 			<h2 class="artc">{{ article.title }}</h2>
 			<h2 class="abstract">{{ article.abstract }}</h2>
@@ -38,6 +39,11 @@ export default {
 	margin-top: 8vh;
 	transition: background-color 0.3s, scale 0.3s;
 	text-align: left;
+	position: relative;
+}
+
+.image-container {
+	transition: transform 0.3s;
 }
 
 .article-image {
@@ -46,7 +52,11 @@ export default {
 	height: auto;
 	max-height: 400px;
 	border-radius: 30px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+}
+
+.article:hover .image-container {
+	transform: translateY(-20px);
 }
 
 .article:hover {
@@ -65,6 +75,7 @@ export default {
 .article-info {
 	margin: 30px;
 }
+
 .category {
 	align-items: center;
 	color: #fffdfd;

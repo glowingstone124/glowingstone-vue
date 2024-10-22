@@ -1,9 +1,11 @@
 <template>
 	<div class="body">
+		<h1 class="articleTitle">{{ articleTitle }}</h1>
 		<div class="md" v-html="output"></div>
 	</div>
 	<VisitCounter/>
 </template>
+
 
 <script>
 import {ref, onMounted, watch, nextTick} from 'vue';
@@ -23,7 +25,7 @@ export default {
 		const route = useRoute();
 		const articleId = ref(null);
 		const output = ref('');
-
+		const articleTitle = ref('')
 		watch(() => route.params, (newParams) => {
 			articleId.value = newParams.articleId;
 			loadMarkdownContent();
@@ -41,6 +43,7 @@ export default {
 				let markdownContent = matter(file.default).content;
 
 				output.value = marked.parse(markdownContent);
+				articleTitle.value = matter(file.default).data.title
 
 				output.value = output.value.replace(/\$\$(.+?)\$\$/g, (_, tex) => {
 					return katex.renderToString(tex, {throwOnError: false});
@@ -65,6 +68,7 @@ export default {
 		return {
 			articleId,
 			output,
+			articleTitle,
 		};
 	},
 };
@@ -79,7 +83,7 @@ export default {
 }
 
 .md:deep(img) {
-	max-width: 60%;
+	max-width: 80%;
 	border-radius: 10px;
 }
 
@@ -94,13 +98,14 @@ export default {
 	display: inline-block;
 	background-color: #242428;
 	padding: 14px;
+	margin:5px;
 	font-family: 'Fira Code',serif;
-	border: 1px solid #6267d5;
-	border-radius: 8px;
+	border: 1px solid #48485e;
+	border-radius: 2px;
 }
 
 .md:deep(span) {
-	//font-family: 'Fira Code';
+	font-family: 'Fira Code';
 }
 
 .md:deep(a) {
@@ -110,7 +115,7 @@ export default {
 }
 
 .md:deep(a:hover) {
-	text-decoration: underline; /* 修改为只设置下划线 */
+	text-decoration: underline;
 }
 
 .md:deep(h1) {
@@ -141,5 +146,11 @@ export default {
 
 .md:deep(ul) {
 	display: block;
+}
+.articleTitle {
+	font-weight: 100;
+	margin-bottom: 80px;
+	font-size: 6.5rem;
+	font-family: 'Fira Code', 'Inter', serif;
 }
 </style>
