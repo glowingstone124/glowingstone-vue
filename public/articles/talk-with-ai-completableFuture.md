@@ -1,5 +1,4 @@
 ---
-
 title: 与Koishi-Qwen对话
 
 abstract: 关于CompletableFuture
@@ -8,6 +7,7 @@ picture: none
 
 category: 0
 
+ai-generated: false
 ---
 >>> Java的CompletableFuture都实现了哪些功能
 
