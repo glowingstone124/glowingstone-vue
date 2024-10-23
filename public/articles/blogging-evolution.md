@@ -2,7 +2,7 @@
 title: "Blog进化"
 category: 0
 abstract: "过去的几个月里，我都对博客做了些什么？"
-picture: none
+picture: https://storage.glowingstone.cn/download/Blogging_Evolution.png
 ai_generated: false
 ---
 
