@@ -10,13 +10,13 @@
 <script>
 import fm from 'front-matter';
 import {ref} from "vue";
-import ArticleCard from "@/components/ArticleCard.vue";
+import ArticleCard from "@/components/ArticleCard_Next.vue";
 
 export default {
 	name: 'Pinned',
 	components: {ArticleCard},
 	setup() {
-		const pins = ["simple_intro_of_jmm.md", "blogging-evolution.md"];
+		const pins = ["talk-about-coroutines.md","simple_intro_of_jmm.md", "blogging-evolution.md"];
 		const articles = ref([]);
 
 		const redirect = (articleId) => {
