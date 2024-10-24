@@ -161,11 +161,20 @@ export default {
 	display: block;
 }
 
+.md:deep(p) {
+	font-size: 1.1em;
+	color: #ececec;
+}
+
 .articleTitle {
 	font-weight: 100;
 	margin-bottom: 8px;
 	font-size: 6.5rem;
 	font-family: 'Fira Code', 'Inter', serif;
+}
+.md {
+	margin-left: 10vw;
+	margin-right: 10vw;
 }
 
 .ai-generated {

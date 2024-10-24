@@ -66,12 +66,10 @@ export default {
 
 .article-info {
 	padding-left: 40px;
-	backdrop-filter: blur(0px);
-	background-color: #1f1f1f50;
+	background-color: rgba(17, 15, 15, 0.7);
 	transition: all 0.3s ease-in-out;
 	border-radius: 30px;
 	height:100%;
-	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -87,19 +85,22 @@ export default {
 
 .artc {
 	margin-top: 40px;
-	font-weight: 200;
+	text-shadow: rgba(255, 255, 255, 0.89) 0px 13px 27px -5px, rgba(255, 255, 255, 0.61) 0px 8px 16px -8px;
+	font-weight: 300;
 	font-size: 3rem;
 }
 
 .abstract {
+	text-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 	margin-top: 5px;
+	font-weight: 340;
 }
 
 
 .category {
 	align-items: center;
 	color: #fffdfd;
-	font-weight: 100;
+	font-weight: 200;
 	display: flex;
 	padding: 0;
 }
