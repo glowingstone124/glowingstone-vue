@@ -164,6 +164,7 @@ export default {
 .md:deep(p) {
 	font-size: 1.1em;
 	color: #ececec;
+	font-weight: 100;
 }
 
 .articleTitle {
