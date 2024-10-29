@@ -10,7 +10,7 @@ const galleryItems = ref([
 		date: '第138季 日与秋与木之年'
 	},
 	{
-		imageUrl: 'https://storage.glowingstone.cn/download/koishi_with_gnu.jpeg',
+		imageUrl: 'https://storage.glowingstone.cn/download/koishi_with_xnu.jpeg',
 		thumbnailUrl: 'https://storage.glowingstone.cn/download/instant_blue_thumb.jpg',
 		description: '恋恋和XNU，摄于SUES长宁校区',
 		date: '第139季 月与冬与金之年 & 2024/10/29'
