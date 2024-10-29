@@ -79,5 +79,6 @@ h2 {
 .light {
 	animation: lighter 1s ease-in-out;
 }
+
 @import "@/css/main.css";
 </style>

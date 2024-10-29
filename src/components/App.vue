@@ -14,7 +14,6 @@ import VisitCounter from "@/components/VisitCounter.vue";
 import Title from './Title.vue'
 import ArticleList from './ArticleList.vue'
 import NavBtn from './NavBtn.vue';
-import Nav from './Nav.vue';
 import Footer from './Footer.vue';
 import Pinned from './Pinned.vue';
 import Journals from './Journals.vue'
