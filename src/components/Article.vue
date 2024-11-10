@@ -144,7 +144,7 @@ export default {
 
 .md:deep(h3) {
 	font-weight: 300;
-	font-size: 20px;
+	font-size: 30px;
 	color: white;
 }
 
@@ -162,7 +162,7 @@ export default {
 }
 
 .md:deep(p) {
-	font-size: 1.1em;
+	font-size: 1.4em;
 	color: #ececec;
 	font-weight: 100;
 }

@@ -6,6 +6,7 @@ import Article from './components/Article.vue';
 import About from './components/About.vue';
 import ArticleList from "@/components/ArticleList.vue";
 import Gallery from "@/components/Gallery.vue";
+import Announcement from "@/components/Announcement.vue";
 import { createRouter, createWebHistory } from 'vue-router';
 
 const app = createApp(Main);
@@ -19,6 +20,7 @@ const router = createRouter({
     { path: '/archive', component: ArticleList},
     { path: '/about', component: About},
     { path: '/gallery', component: Gallery},
+    { path: '/announcement', component: Announcement},
   ],
 });
 
