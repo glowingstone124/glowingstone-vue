@@ -104,7 +104,8 @@ export default {
 }
 
 .md:deep(li) {
-	color: white;
+	color: #ececec;
+	font-size: 1.2rem;
 }
 
 .md:deep(code) {
