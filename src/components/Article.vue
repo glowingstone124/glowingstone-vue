@@ -82,7 +82,7 @@ export default {
 
 <style scoped>
 @import "@/css/main.css";
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&display=swap');
 .body {
 	padding: 5vh 4vw;
 	margin: 5vw;
@@ -94,6 +94,7 @@ export default {
 }
 
 .md:deep(*) {
+	font-family: '"Noto Serif SC"', sans-serif;
 }
 
 .md:deep(blockquote) {
@@ -105,13 +106,13 @@ export default {
 
 .md:deep(li) {
 	color: #ececec;
-	font-size: 1.2rem;
+	font-size: 1em;
 }
 
 .md:deep(code) {
 	display: inline-block;
 	background-color: #242428;
-	padding: 14px;
+	padding: 2px;
 	margin: 5px;
 	font-family: 'Fira Code', serif;
 	border: 1px solid #48485e;
@@ -133,14 +134,13 @@ export default {
 }
 
 .md:deep(h1) {
-	font-weight: 300;
+	font-weight: 900;
 	font-size: 50px;
 }
 
 .md:deep(h2) {
-	font-weight: 300;
+	font-weight: 800;
 	font-size: 30px;
-	border-bottom: 1px solid rgb(172, 191, 239);
 }
 
 .md:deep(h3) {
@@ -163,16 +163,17 @@ export default {
 }
 
 .md:deep(p) {
-	font-size: 1.4em;
+	padding:0;
+	font-size: 1em;
 	color: #ececec;
-	font-weight: 100;
+	font-weight: 400;
 }
 
 .articleTitle {
 	font-weight: 100;
 	margin-bottom: 8px;
-	font-size: 6.5rem;
-	font-family: 'Fira Code', 'Inter', serif;
+	font-size: 3.5rem;
+	font-family: 'Inter', "Microsoft Sans Serif", serif;
 }
 .md {
 	margin-left: 10vw;
