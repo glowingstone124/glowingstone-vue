@@ -54,8 +54,8 @@ export default {
 		},
 		setRandomBackground() {
 			const images = [
-				'https://rock.glowingstone.cn/storage/download/komeji2.jpg',
-				'https://rock.glowingstone.cn/storage/download/koishi.jpg'
+				'https://storage.glowingstone.cn/download/komeji2.jpg',
+				'https://storage.glowingstone.cn/download/koishi.jpg'
 			];
 			const randomImage = images[Math.floor(Math.random() * images.length)];
 			document.body.style.backgroundImage = `url("${randomImage}")`;
