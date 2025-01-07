@@ -23,12 +23,6 @@
 				:link="'https://minecreeper.top/'"
 			/>
 			<FriendsComponent
-				:avatar="'https://gravatar.loli.net/avatar/0bf16c751d119f1fb5e76d2bdef47fd4'"
-				:name="'社会易姐QwQ'"
-				:description="'我的秒开'"
-				:link="'https://shakaianee.top/'"
-			/>
-			<FriendsComponent
 				:avatar="'https://serinanya.cn/assets-zone-1/avatar-round.png'"
 				:name="'SerinaNya'"
 				:description="'Serina 的日常 / daily of SerinaNya'"
