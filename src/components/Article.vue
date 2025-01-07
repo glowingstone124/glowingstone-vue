@@ -87,7 +87,7 @@ export default {
 	padding: 8vh 4vw;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	margin: 20vh auto;
-	background-color: #404f64;
+	background-color: #323234;
 	max-width: 750px;
 
 }
