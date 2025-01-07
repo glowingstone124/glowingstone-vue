@@ -86,7 +86,7 @@ export default {
 .body {
 	padding: 8vh 4vw;
 	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-	margin: auto;
+	margin: 20vh auto;
 	background-color: #404f64;
 	max-width: 750px;
 
