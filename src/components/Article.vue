@@ -163,10 +163,10 @@ export default {
 }
 
 .md:deep(p) {
-	padding:0;
-	font-size: 1em;
+	padding:10px;
+	font-size: 1.4em;
 	color: #ececec;
-	font-weight: 400;
+	font-weight: 500;
 }
 
 .articleTitle {
