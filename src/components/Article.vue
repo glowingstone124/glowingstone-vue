@@ -84,8 +84,12 @@ export default {
 @import "@/css/main.css";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&display=swap');
 .body {
-	padding: 5vh 4vw;
-	margin: 5vw;
+	padding: 8vh 4vw;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	margin: auto;
+	background-color: #404f64;
+	max-width: 750px;
+
 }
 
 .md:deep(img) {
@@ -174,10 +178,6 @@ export default {
 	margin-bottom: 8px;
 	font-size: 3.5rem;
 	font-family: 'Inter', "Microsoft Sans Serif", serif;
-}
-.md {
-	margin-left: 10vw;
-	margin-right: 10vw;
 }
 
 .ai-generated {
