@@ -7,7 +7,8 @@
 				<p>我是glowingstone124，现居上海，是一名普通的准高中生。平时会玩玩apex，bf,cs等fps游戏，偶尔追追新番老番。</p>
 				<p>技术上嘛...毫无建树，只是稍微会一些Java和Web而已，但是在努力学习。</p>
 				<p>Miku厨，半个车车壬，群友们一致认为的抽象大手子</p>
-				<p>(头像都是恋 <a href="https://www.pixiv.net/artworks/112973410">头像pixiv id</a>)</p>
+				<p>(头像都是恋)</p><a href="https://www.pixiv.net/artworks/112973410">头像pixiv id</a>
+				<a href="https://afdian.com/a/glowingstone124">前往我的爱发电</a>
 			</div>
 
 			<div class="info-box">
