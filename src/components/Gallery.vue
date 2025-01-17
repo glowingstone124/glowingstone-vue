@@ -10,6 +10,12 @@ const galleryItems = ref([
 		date: '第138季 日与秋与木之年'
 	},
 	{
+		imageUrl: 'https://storage.glowingstone.cn/download/synchro0.jpg',
+		thumbnailUrl: 'https://storage.glowingstone.cn/download/synchro0.jpg',
+		description: '圆梦Synchro0，感谢朋友投喂',
+		date: '第140季 星与春与土之年 & 2025/1/11'
+	},
+	{
 		imageUrl: 'https://storage.glowingstone.cn/download/koishi_with_xnu.jpeg',
 		thumbnailUrl: 'https://storage.glowingstone.cn/download/instant_blue_thumb.jpg',
 		description: '恋恋和XNU，摄于SUES长宁校区',
