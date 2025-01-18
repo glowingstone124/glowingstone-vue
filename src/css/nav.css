@@ -50,17 +50,4 @@
 }
 
 @media screen and (max-width: 768px) {
-    .navul {
-        position: fixed;
-        flex-direction: column;
-        bottom: 40px;
-        left: 20px;
-        top:auto;
-        max-width: 20vw;
-        max-height: 30vh;
-        border-radius: 40px;
-    }
-    .navli a {
-        padding: 5px 2px;
-    }
 }

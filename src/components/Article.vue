@@ -129,7 +129,7 @@ export default {
 
 .md:deep(a) {
 	text-decoration: none;
-	font-weight: bold;
+	font-weight: normal;
 	transition: all 0.2s;
 }
 
@@ -168,9 +168,8 @@ export default {
 
 .md:deep(p) {
 	padding:10px;
-	font-size: 1.4em;
-	color: #ececec;
-	font-weight: 500;
+	color: #e1e0e0;
+	font-weight: 400;
 }
 
 .articleTitle {
@@ -190,5 +189,13 @@ export default {
 
 .pre{
 	margin-bottom: 100px;
+}
+@media (max-width: 500px) {
+	.md:deep(p) {
+		font-size: 0.8rem;
+	}
+	.body {
+		margin: 0 auto;
+	}
 }
 </style>

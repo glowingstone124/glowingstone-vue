@@ -22,8 +22,6 @@ export default {
 	components: {
 		VisitCounter,
 		Title,
-		ArticleList,
-		NavBtn,
 		Journals,
 		Pinned,
 		Footer
@@ -36,6 +34,9 @@ export default {
 		}
 	},
 	async mounted() {
+		if (window.innerWidth < 800 || /mobile/i.test(navigator.userAgent)) {
+			this.$router.push('/mobile');
+		}
 		const currentDate = new Date();
 		const Birthday = new Date("2025-04-28");
 		if (currentDate === Birthday) {
@@ -68,7 +69,7 @@ export default {
 					value: visitCount
 				})
 			});
-			const updateData = await updateResponse.json();
+			await updateResponse.json();
 			console.log("Visit count:", visitCount);
 		}
 	},

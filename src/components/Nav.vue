@@ -1,5 +1,5 @@
 <template>
-	<div class="navigator">
+	<div v-if="isDesktop" class="navigator">
 		<ul id="navigation" class="navul">
 			<div class="nav-title">
 				<img src="https://avatars.githubusercontent.com/u/163746181" alt="Logo" class="nav-logo"/>
@@ -19,6 +19,22 @@
 <script>
 export default {
 	name: 'Nav',
+	data() {
+		return {
+			isDesktop: window.innerWidth >= 800,
+		};
+	},
+	mounted() {
+		window.addEventListener('resize', this.checkWidth);
+	},
+	beforeUnmount() {
+		window.removeEventListener('resize', this.checkWidth);
+	},
+	methods: {
+		checkWidth() {
+			this.isDesktop = window.innerWidth >= 800;
+		},
+	},
 }
 </script>
 
@@ -51,61 +67,5 @@ li a {
 	width: 60px;
 	height: auto;
 	margin-right: 10px;
-}
-@media (max-width: 768px) {
-	.nav-title {
-		flex-direction: column;
-		text-align: center;
-	}
-
-	.nav-title h1 {
-		display: none;
-		margin-left: 0;
-		margin-top: 10px;
-	}
-
-	.nav-logo {
-		display: none;
-		width: 50px;
-	}
-
-	.navul {
-		padding: 0;
-	}
-
-	.navli {
-		display: block;
-		text-align: center;
-		padding: 10px 0;
-		transition: background-color 0.1s linear;
-	}
-
-	.navli a {
-		flex-direction: column;
-	}
-
-	.navli img {
-		width: 30px;
-		height: auto;
-	}
-
-	.navli span {
-		margin-top: 5px;
-		font-size: 14px;
-	}
-}
-
-@media (max-width: 480px) {
-	.nav-title h1 {
-		font-size: 16px;
-	}
-
-	.nav-logo {
-		width: 40px;
-	}
-
-	.navli span {
-		font-size: 12px;
-	}
 }
 </style>
