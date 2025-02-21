@@ -46,6 +46,9 @@ export default {
 					case 2:
 						category = '时事'
 						break;
+					case 3:
+						category = '文章/小说'
+						break;
 					default:
 						category = '未知。。。'
 				}
