@@ -1,9 +1,9 @@
 ---
-title: 长宁游记
+title: 仙霞游记
 
 abstract: 随手写下，愿之后重逢。
 
-picture: none
+picture: https://storage.glowingstone.cn/download/xianxia.png
 
 category: 3
 
