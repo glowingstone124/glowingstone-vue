@@ -5,21 +5,13 @@ let visitCount = ref(0);
 
 async function incrementVisitCount(){
 	try {
-		const response = await fetch("https://misc.glowingstone.cn/increment", {
+		const response = await fetch("https://blog-visit-counter.hanserofficial.workers.dev/increment", {
 		});
 
 		if (!response.ok) {
 			throw new Error(`Failed to fetch visit count: ${response.statusText}`);
 		}
 
-		const data = await response.json();
-		const resultData = JSON.parse(data.result);
-		visitCount.value = resultData.value;
-
-		console.log("Visit count:", visitCount.value);
-		visitCount.value++;
-
-		console.log("Updated visit count:", visitCount.value);
 	} catch (error) {
 		console.error("Error:", error);
 	}
@@ -27,7 +19,7 @@ async function incrementVisitCount(){
 
 async function fetchVisitCount(){
 	try {
-		const response = await fetch("https://misc.glowingstone.cn/count", {})
+		const response = await fetch("https://blog-visit-counter.hanserofficial.workers.dev/count", {})
 		if (!response.ok) {
 			throw new Error(`Failed to fetch visit count: ${response.statusText}`);
 		}

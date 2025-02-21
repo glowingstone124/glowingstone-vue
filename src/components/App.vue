@@ -45,34 +45,7 @@ export default {
 		}
 		await this.incrementVisitCount();
 	},
-	methods: {
-		async incrementVisitCount() {
-			const response = await fetch("https://lenient-dove-46659.upstash.io/get/visitcount", {
-				headers: {
-					Authorization: "Bearer AbZDASQgYTZmZGM5MTctZjYyNi00YzdjLWE3ZWUtZWQyZjVhNzBhMzA0ZmNjZjMzZDRkMWFiNGYwYmIwMDQ2Yjg1NWNhMmJmYzU=" // 请替换为你的实际授权令牌
-				}
-			});
-			const data = await response.json();
-			const resultData = JSON.parse(data.result);
-			var visitCount = resultData.value;
-
-			console.log("Visit count:", visitCount);
-			visitCount++;
-			this.visitCount = visitCount;
-			const updateResponse = await fetch("https://lenient-dove-46659.upstash.io/set/visitcount", {
-				method: "POST",
-				headers: {
-					Authorization: "Bearer AbZDASQgYTZmZGM5MTctZjYyNi00YzdjLWE3ZWUtZWQyZjVhNzBhMzA0ZmNjZjMzZDRkMWFiNGYwYmIwMDQ2Yjg1NWNhMmJmYzU=", // 请替换为你的实际授权令牌
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify({
-					value: visitCount
-				})
-			});
-			await updateResponse.json();
-			console.log("Visit count:", visitCount);
-		}
-	},
+	methods: {}
 
 }
 </script>
