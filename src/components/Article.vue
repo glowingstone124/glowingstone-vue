@@ -143,7 +143,7 @@ export default {
 }
 
 .md:deep(h2) {
-	font-weight: 800;
+	font-weight: 300;
 	font-size: 30px;
 }
 
