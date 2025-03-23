@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import VisitCounter from "@/components/VisitCounter.vue";
-
+const showWarn = ref(true)
 const galleryItems = ref([
 	{
 		imageUrl: 'https://storage.glowingstone.cn/download/instant_blue.jpg',
@@ -56,7 +56,6 @@ const galleryItems = ref([
 const imagesRefs = ref([]);
 const loadingStates = ref(galleryItems.value.map(() => true));
 
-// 图片加载完成时，更新加载状态
 const onImageLoad = (index) => {
 	loadingStates.value[index] = false;
 };
@@ -79,13 +78,29 @@ const lazyLoadImages = () => {
 	});
 };
 
+const redirect = () => {
+	window.location.href = "/"
+}
 onMounted(() => {
-	lazyLoadImages();
+	//lazyLoadImages();
 });
+
+const goLoadImages = () => {
+	showWarn.value = false;
+	setInterval(() => {
+		lazyLoadImages();
+	}, 300)
+}
 </script>
 
 <template>
-	<div class="gallery-container">
+	<div class="warn" v-if="showWarn">
+		<h1>该页面含有大量图片。</h1>
+		<p>预估需要消耗>30MB流量，如果您不希望加载这些内容，请点击取消。</p>
+		<button class="btn confirm" @click="goLoadImages">继续</button>
+		<button class="btn cancel" @click="redirect">取消</button>
+	</div>
+	<div class="gallery-container" v-if="!showWarn">
 		<div class="gallery">
 			<div v-for="(item, index) in galleryItems" :key="index" class="gallery-item">
 				<div class="description-section">
@@ -113,6 +128,22 @@ onMounted(() => {
 
 
 <style scoped>
+
+.btn {
+	margin: 0.8rem;
+	border-radius: 0.8rem;
+	padding:20px 40px;
+}
+.confirm{
+	background-color: #3f7ce8;
+	border: none;
+	color: white;
+}
+.cancel {
+	border: 1px solid white;
+	background-color: transparent;
+	color: white;
+}
 .gallery-container {
 	overflow-y: auto;
 	display: flex;
@@ -186,5 +217,25 @@ onMounted(() => {
 .smaller {
 	font-size: 1.2rem;
 	margin-top: 0.2rem;
+}
+
+.warn {
+	position: fixed;
+	top:0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background: rgba(26, 26, 26, 0.4);
+	color: white;
+	z-index: 9999;
+	backdrop-filter: blur(20px);
+	p{
+		margin: 0;
+	}
 }
 </style>

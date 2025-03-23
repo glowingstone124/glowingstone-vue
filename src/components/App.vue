@@ -43,7 +43,6 @@ export default {
 			this.msg = "生日快乐,Never Grow Old.";
 			document.title = "Glowstone 萤石 | 祝我生日快乐"
 		}
-		await this.incrementVisitCount();
 	},
 	methods: {}
 
