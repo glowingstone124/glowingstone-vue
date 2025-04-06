@@ -205,6 +205,29 @@ printf("%d\n", *ptr);  // 输出 10
 
 了解了这些比较基础的指针玩法，相信各位已经大致了解了C相对其他语言的不同之处，接下来，我们继续聊指针。
 
+### 关于NULL宏
+
+实际上，C没有C++中的`nullptr`，所以NULL是一个规范化的宏，用于定义空指针。
+
+GCC的[stddef.h](https://github.com/gcc-mirror/gcc/blob/master/gcc/ginclude/stddef.h)定义了NULL：
+
+```C
+#if defined (_STDDEF_H) || defined (__need_NULL)
+#undef NULL		/* in case <stdio.h> has defined it. */
+#ifdef __GNUG__
+#define NULL __null
+#else   /* G++ */
+#ifndef __cplusplus
+#define NULL ((void *)0)
+#else   /* C++ */
+#define NULL 0
+#endif  /* C++ */
+#endif  /* G++ */
+#endif	/* NULL not defined and <stddef.h> or need NULL.  */
+#undef	__need_NULL
+```
+
+我们会发现这里的`NULL`实际上是一个指向0的`void`指针。因为0地址实际上是非法的，所以将它作为`NULL`很合适，同时它还通过void转型保证了0不等价于`NULL`，保证了类型安全。
 ## 进一步：堆上内存
 
 刚刚我们聊了一些最基本的栈上数据，这些数据还比较易于处理，但是大部分程序都不可能只使用这些简单的数据，更多的日常场景发生在堆上。
@@ -364,5 +387,222 @@ struct malloc_chunk {
 他们分别指向之前一个和之后一个被释放的内存，当程序申请内存时，系统会遍历这个表，如果有合适的内存就将它分配给程序。
 
 要利用这个漏洞，就需要欺骗系统来unlink一个内存块，来篡改指针。具体方法较长，在这里写有点舍本逐末，就暂时略过了。攻击者可以通过这个漏洞向内存写入任意值，甚至可以从缓冲区载入shell代码。
+
+## 不定长struct：还是来看堆
+
+刚刚我们了解了栈内存和堆内存的不同，也简单熟悉了`malloc()`函数和`free()`函数的基本操作，接下来我们看这么一个场景。
+
+```C
+typedef struct {
+    int count;
+    char data[];
+} Packet;
+```
+
+这是一个不定长的struct，原因在于里面的`char data[]`是一个不定长的`char`数组，它不会占据`sizeof(data)`的字节数量。
+
+现在让我们分配10字节数据：
+
+```C
+Packet* p = malloc(sizeof(packet) + 10);
+```
+
+这个时候，p是一个在栈上的指针，因为它的大小固定，而结构体本身不定长，所以它指向堆上的结构体。
+
+让我们来看看它的asm表示：
+```
+	.file	"main.c"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB6:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movl	$14, %edi
+	call	malloc
+	movq	%rax, -8(%rbp)
+	movl	$0, %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE6:
+	.size	main, .-main
+	.ident	"GCC: (GNU) 11.5.0 20240719 (Red Hat 11.5.0-5)"
+	.section	.note.GNU-stack,"",@progbits
+```
+
+通过我们前面的讲解，你很快就可以发现，这里我们直接malloc了14个字节的单元将返回值保存到`%rax`，然后将`%rax`保存到栈上的`-8(%rbp)`也就是我们的指针p，印证了我们刚刚的结论。
+
+接下来，让我们来试试别的:
+
+```C
+p->data[10] = 'g';
+```
+
+在这里，我们向data的第11项写入了一个`char`值，在汇编中体现为：
+```
+movq    -8(%rbp), %rax  
+movb    $103, 14(%rax)
+```
+
+这里的问题在于，我们在前面的`malloc`过程中只分配了10个字节的长度给data数组，而第11位我们并没有定义，这就会引发我们说的数组越界。它会操作这部分不属于它的内存。
+
+通过我们上一部分的例子，你应当已经知道随意操作不属于你的内存会带来什么后果：错误覆盖别的数据，产生`Segmentation Fault`，等等。。。
+
+接下来我们来看看如何使用`realloc`函数来解决这个问题。
+
+```
+p = realloc(p, sizeof(Packet) + 11);
+```
+通过这个操作，我们将p扩容到了11长度，再往第11个索引写入char就是安全的做法了。
+
+这里我们提到的完整代码：
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+	int count;
+	char data[];
+} Packet;
+
+int main() {
+	const char *msg = "cirnobaka";
+	size_t len = strlen(msg) + 1;
+
+	Packet *p = malloc(sizeof(Packet) + len);
+	strcpy(p->data, msg);
+
+	p = realloc(p, sizeof(Packet) + len + 1);
+	p->data[10] = 'g';
+	p->data[11] = '\0';
+	free(p);
+	return 0;
+}
+```
+> 在C中，字符串结尾需要用\0来表示，所以虽然我们的msg只有9个字节，它仍然占用了10个字节的内存空间。
+
+我们来看看它的汇编表示，主要关注realloc部分。
+
+```
+        .file   "main.c"
+        .text
+        .section        .rodata
+.LC0:
+        .string "%s"
+        .text
+        .globl  main
+        .type   main, @function
+main:
+.LFB6:
+        .cfi_startproc
+        pushq   %rbp
+        .cfi_def_cfa_offset 16
+        .cfi_offset 6, -16
+        movq    %rsp, %rbp
+        .cfi_def_cfa_register 6
+        subq    $16, %rsp
+        movl    $14, %edi
+        call    malloc
+        movq    %rax, -8(%rbp)
+        movq    -8(%rbp), %rax
+        addq    $4, %rax
+        movabsq $7737573865533106531, %rdx
+        movq    %rdx, (%rax)
+        movw    $97, 8(%rax)
+        movq    -8(%rbp), %rax
+        movl    $15, %esi
+        movq    %rax, %rdi
+        call    realloc
+        movq    %rax, -8(%rbp)
+        movq    -8(%rbp), %rax
+        movb    $103, 14(%rax)
+        movq    -8(%rbp), %rax
+        addq    $4, %rax
+        movq    %rax, %rsi
+        movl    $.LC0, %edi
+        movl    $0, %eax
+        call    printf
+        movl    $0, %eax
+        leave
+        .cfi_def_cfa 7, 8
+        ret
+        .cfi_endproc
+.LFE6:
+        .size   main, .-main
+        .ident  "GCC: (GNU) 11.5.0 20240719 (Red Hat 11.5.0-5)"
+        .section        .note.GNU-stack,"",@progbits
+```
+
+在这里，我们首先初始化数据，在
+``` 
+movl    $15, %esi
+movq    %rax, %rdi
+call    realloc
+```
+这里，我们`realloc`了内存大小，然后在
+```
+movb    $103, 14(%rax)
+```
+将g(ASCII = 103)写入了第11个字节。
+
+到这里我们了解了`malloc`和`realloc`在汇编层面是如何使用的，相信你很快就会发现，C代码其实基本上都可以和汇编一一对应。
+
+### 手写string实现
+
+在C甚至是C++中，手写`string`实现确实并不罕见，所以我们也来实现一下，这里主要是起总结作用，没什么新内容引入。
+
+我们的string实现目标是管理一个`char`数组，并且支持基本的字符串操作，比如构造，析构，复制，链接，访问字符等等。
+
+让我们先来定义结构体：
+
+```C
+typedef struct {
+    char *data;
+    size_t length;
+    size_t capacity;
+} String;
+```
+
+这里我们定义了一个char指针而不是char数组，因为我们希望String这个struct是定长的。
+
+让我们首先实现init:
+
+```C
+void string_init(String* str, const char *initial_data) {
+    str->length = strlen(initial_data);
+    str->capacity = str->length + 1;
+    str->data = (char*)malloc(str->capacity);
+    if (str->data) {
+        strcpy(str->data, initial_data);
+    }
+}
+```
+
+这个函数比较好理解，我们通过strlen获得了初始数据的长度并且把它赋值给length变量，然后添上一位给`\0`作为容量capacity，再通过`malloc` capacity并且转换为`char*`指针在堆上开辟内存空间，并将initial_data通过`strcpy`函数写入这个空间。
+
+有了init，我们继续来摧毁它：
+
+```C
+void string_free(String str) {
+    if (str->data) {
+        free(str->data);
+        str->data = NULL;
+    }
+    str->length = 0;
+    str-> capacity = 0;
+}
+```
+
+这个代码free了堆上的空间，然后将栈上的长度部分设置为0。
 
 
