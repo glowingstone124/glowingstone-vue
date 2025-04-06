@@ -605,4 +605,14 @@ void string_free(String str) {
 
 这个代码free了堆上的空间，然后将栈上的长度部分设置为0。
 
+然后是两个工具函数，没啥特别的
 
+```C
+size_t string_length(const String *str) {
+    return str->length;
+}
+
+const char* string_data(const String *str) {
+    return str->data;
+}
+```
