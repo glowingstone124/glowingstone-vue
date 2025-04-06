@@ -616,3 +616,240 @@ const char* string_data(const String *str) {
     return str->data;
 }
 ```
+接下来是resize，这里用到`realloc`
+
+```C
+void string_resize(String *str, size_t new_capacity) {
+    if (new_capacity > str->capacity) {
+        str->data = (char *)realloc(str->data, new_capacity);
+        str->capacity = new_capacity;
+    }
+}
+```
+
+前面也解释过这段代码的意义，它直接`realloc`了原有的内存大小到新的capacity，然后将指针移动了过去。
+
+之后的`append`和`copy`函数也很简单：
+
+```C
+void string_append(String *str, const char *suffix) {
+    size_t suffix_length = strlen(suffix);
+    size_t new_length = str->length + suffix_length;
+
+    string_resize(str, new_length + 1);
+    strcpy(str->data + str->length, suffix);
+    str->length = new_length;
+}
+
+void string_copy(String *str, const String *source) {
+    string_resize(str, source->length + 1);
+    strcpy(str->data, source->data);
+    str->length = source->length;
+}
+```
+这里主要也是运用了`realloc`来重新分配内存空间。
+
+最后的`string_at`函数就是对index的操作，这里进行了一个简单的操作来防止访问错误的内存：
+
+```C
+char string_at(const String *str, size_t index) {
+    if (index < str->length) {
+        return str->data[index];
+    }
+    return '\0';
+}
+```
+
+到这里，我们对于简单不定长struct的分析就基本结束了。
+
+## 指针的复杂用法
+
+本节中，我们主要关注一些比较高阶的指针用法，并且分析它们的作用。
+
+### 指向函数的指针
+
+在汇编中，一个函数其实就是一段代码段，而代码段也是内存，所以，一个指针也可以指向一个函数。当我们创建一个指向函数的指针时，这个指针实际上存储的是某个函数的地址，使用它可以间接地调用该函数。
+
+让我们看一个例子：
+
+```
+int add(int a, int b) {
+    return a + b;
+}
+```
+
+这是一个普通的函数，我们创建一个指向该函数的指针：
+
+```
+int (*func_ptr)(int,int);
+func_ptr = &add;
+
+int result = func_ptr(2,3);
+```
+
+你会发现我们就像调用add一样调用了这个指针，并且获得了add的调用结果。
+
+我们来看看汇编：
+
+```
+	.file	"main.c"
+	.text
+	.globl	add
+	.type	add, @function
+add:
+.LFB6:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movl	%edi, -4(%rbp)
+	movl	%esi, -8(%rbp)
+	movl	-4(%rbp), %edx
+	movl	-8(%rbp), %eax
+	addl	%edx, %eax
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE6:
+	.size	add, .-add
+	.globl	main
+	.type	main, @function
+main:
+.LFB7:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$16, %rsp
+	movq	$add, -8(%rbp)
+	movq	-8(%rbp), %rax
+	movl	$3, %esi
+	movl	$2, %edi
+	call	*%rax
+	movl	%eax, -12(%rbp)
+	movl	$0, %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE7:
+	.size	main, .-main
+	.ident	"GCC: (GNU) 11.5.0 20240719 (Red Hat 11.5.0-5)"
+	.section	.note.GNU-stack,"",@progbits
+```
+`add`部分没啥特别的，就是我们刚实现的简单函数，我们主要关注`main`部分。
+
+我们发现，首先汇编使用`movq $add, -8(%rbp)`将add函数的地址入栈，然后将3和2两个常量放入寄存器，最后`call *%rax`通过指针调用了add函数，和我们之前提到的调用方式一模一样。
+
+所以，它在底层上和直接调用是等价的，但是在工程上有很大用处，因为我们可以将一个函数指针作为参数传入。
+
+```
+int add(int a, int b) {
+    return a + b;
+}
+int multiply(int a, int b) {
+    return a * b;
+}
+int process(int a, int b, int (*operation)(int,int)) {
+    return operation(a,b);
+}
+```
+
+这个简单的例子让我们可以通过传入不同的函数指针执行不同的操作，例如回调函数。由于实际上的实现方法都差不多，我们就不在这里讨论了。
+
+### 多级指针
+
+你也许见过`int *****p`这样的梗图，而它就是一个多级指针。让我们来举个例子：
+
+```C
+int a = 9;
+int *p = &a;
+int **pp = &p;
+```
+经典的叠叠乐，在这里我们需要解引用两次来获取变量a的值。虽然看上去很复杂，实际上它的原理很简单：
+```
+
+pp -------> p --------> a
+
+
+```
+通过这个关系图，你就会发现实际上它就和数学中的换元差不多，一直抽丝剥茧就能得到最终结果。
+
+我们来看看它的应用吧：
+
+```C
+int **arr;
+int rows = 3, cols = 4;
+arr = (int **)malloc(rows * sizeof(int *));
+for (int i = 0; i < rows; i++) {
+    arr[i] = (int *)malloc(cols * sizeof(int));
+}
+```
+在这个例子中，arr 是一个双级指针，它指向一个包含多个指针的数组，每个指针都指向一个整数数组（即二维数组的每一行）。
+
+我们来看看它的asm实现：
+
+```
+        .file   "main.c"
+        .text
+        .globl  main
+        .type   main, @function
+main:
+.LFB6:
+        .cfi_startproc
+        pushq   %rbp
+        .cfi_def_cfa_offset 16
+        .cfi_offset 6, -16
+        movq    %rsp, %rbp
+        .cfi_def_cfa_register 6
+        pushq   %rbx
+        subq    $40, %rsp
+        .cfi_offset 3, -24
+        movl    $3, -24(%rbp)
+        movl    $4, -28(%rbp)
+        movl    -24(%rbp), %eax
+        cltq
+        salq    $2, %rax
+        movq    %rax, %rdi
+        call    malloc
+        movq    %rax, -40(%rbp)
+        movl    $0, -20(%rbp)
+        jmp     .L2
+.L3:
+        movl    -28(%rbp), %eax
+        cltq
+        salq    $2, %rax
+        movl    -20(%rbp), %edx
+        movslq  %edx, %rdx
+        leaq    0(,%rdx,8), %rcx
+        movq    -40(%rbp), %rdx
+        leaq    (%rcx,%rdx), %rbx
+        movq    %rax, %rdi
+        call    malloc
+        movq    %rax, (%rbx)
+        addl    $1, -20(%rbp)
+.L2:
+        movl    -20(%rbp), %eax
+        cmpl    -24(%rbp), %eax
+        jl      .L3
+        movl    $0, %eax
+        movq    -8(%rbp), %rbx
+        leave
+        .cfi_def_cfa 7, 8
+        ret
+        .cfi_endproc
+.LFE6:
+        .size   main, .-main
+        .ident  "GCC: (GNU) 11.5.0 20240719 (Red Hat 11.5.0-5)"
+        .section        .note.GNU-stack,"",@progbits
+```
+在这里，它首先计算了需要`malloc`的内存大小，然后调用了`malloc`，在`.LFB6`段最后进入循环：
+
+初始化 `-20(%rbp)` 为0，用作循环计数器。 在循环中，每次迭代都会分配内存并存储在`-40(%rbp)`指向的内存区域中`-28(%rbp)`表示列数`-20(%rbp)`是行数索引。`leaq 0(,%rdx,8), %rcx`计算了偏移量，乘以 8 是因为在这里我们分配的是指针，指针占有8字节。最后`leaq (%rcx,%rdx), %rbx`将偏移量和 malloc 返回的指针结合，计算出目标内存地址。
+
+实际上这里的多重指针表现在汇编上也并不复杂，这段代码的难点在于循环。
