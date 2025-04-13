@@ -4,7 +4,7 @@
 		<div class="friends">
 			<div class="info-box">
 				<h1>我是谁？</h1>
-				<p>我是glowingstone124，现居上海，是一名普通的准高中生。平时会玩玩apex，bf,cs等fps游戏，偶尔追追新番老番。</p>
+				<p>我是glowingstone124，现居上海，是一名普通的高一学生生。平时会玩玩apex，bf,cs等fps游戏，偶尔追追新番老番。</p>
 				<p>技术上嘛...毫无建树，只是稍微会一些Java和Web而已，但是在努力学习。</p>
 				<p>Miku厨，半个车车壬，群友们一致认为的抽象大手子</p>
 				<p>(头像都是恋)</p><a href="https://www.pixiv.net/artworks/112973410">头像pixiv id</a>
@@ -35,8 +35,8 @@
 
 			<div class="info-box">
 				<h1>联系我</h1>
-				<a href="https://qm.qq.com/q/H7Gin9dAuC"><img src="mail.svg" alt="">Mail</a>
-				<a href="mailto:hanseroffcial@outlook.com"><img src="chat.svg" alt="">QQ</a>
+				<a href="https://qm.qq.com/q/H7Gin9dAuC"><img src="mail.svg" alt="">QQ</a>
+				<a href="mailto:hanseroffcial@outlook.com"><img src="chat.svg" alt="">Mail</a>
 			</div>
 		</div>
 	</div>

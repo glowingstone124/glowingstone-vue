@@ -11,7 +11,7 @@
             <h1 class="msh1">关于我</h1>
 			<iframe class="github" frameBorder="0" height="231.5px" width="1228px" src="https://git-graph.vercel.app/embed/glowingstone124?showColorLegend=true&showWeekdayLabels=true&showMonthLabels=true&showTotalCount=true&blockMargin=5&blockRadius=3&blockSize=17&fontSize=17&weekStart=0&year=2024"></iframe>
             <h3>从小学<span>四年级</span>开始学习 <span>Java</span></h3>
-            <h3>拥有<span>六年</span>Java编码经验，正在学习<span>Kotlin, Rust, TypeScript</span>和<span>Functional Programming</span>，程序的最终目标是以<span>简单，优雅</span>的方式高效处理问题。</h3>
+            <h3>拥有<span>六年</span>Java编码经验，正在学习<span>Kotlin, C++, OpenGL & Vulkan</span>，程序的最终目标是以<span>简单，优雅</span>的方式高效处理问题。</h3>
             <h3>技术栈：</h3>
             <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white">
             <img src="https://img.shields.io/badge/Kotlin-0095D5?&style=for-the-badge&logo=kotlin&logoColor=white">
@@ -25,14 +25,14 @@
 			<h1 class="msh1">开发习惯</h1>
 			<h2>开发工具</h2>
 			<h3><span>MacBook Pro(M3max 10P+4E, 16inch)</span></h3>
-			<h3><span>i9-13900K 缩肛版全核4.8Ghz + 128G (4x32G) D4 3200MHz + Rocky Linux 9.4</span></h3>
+			<h3><span>9900X + 192G (4x48G) D5 + Rocky Linux 9.4</span></h3>
 			<h2>Linux 偏好：</h2>
 			<h3><span>Debian = Rocky Linux > Ubuntu > CentOS > Arch > ....</span>(其中只有RockyLinux与Debian被运用于生产环境)</h3>
 			<h2>编程语言熟练度排行</h2>
-			<h3><span>Java</span> (>= 2w行)</h3>
-			<h3><span>Kotlin</span>(8k-9k行，仅JVM)</h3>
-			<h3><span>Rust</span>(2k行)</h3>
-			<h3><span>JavaScript</span>(1k-2k行)</h3>
+			<h3><span>Java</span> (>= 2.5w行)</h3>
+			<h3><span>Kotlin</span>(8k-9k行，仅JVM)</h3><h3>
+			<span>JavaScript</span>(2k-3k行)</h3>
+			<h3><span>C, C++</span>(2k行)</h3>
 		</div>
     </div>
   </div>

@@ -98,7 +98,7 @@ export default {
 }
 
 .md:deep(*) {
-	font-family: '"Noto Serif SC"', sans-serif;
+	font-family: "SimSun", serif;
 }
 
 .md:deep(blockquote) {
@@ -116,10 +116,12 @@ export default {
 .md:deep(code) {
 	display: inline-block;
 	background-color: #242428;
-	padding: 2px;
-	margin: 5px;
+	padding: 1px;
+	margin: 1px;
 	font-family: 'Fira Code', serif;
 	border: 1px solid #48485e;
+	max-width: 100%;
+	overflow-y: auto;
 	border-radius: 2px;
 }
 
@@ -169,6 +171,7 @@ export default {
 .md:deep(p) {
 	padding:10px;
 	color: #e1e0e0;
+	font-size: 1em;
 	font-weight: 400;
 }
 
