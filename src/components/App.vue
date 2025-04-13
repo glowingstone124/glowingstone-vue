@@ -30,7 +30,13 @@ export default {
 		return {
 			articleList: [],
 			visitCount: 114514,
-			msg: "每月更新的可能性为lim -> 0，jvm痴子，全栈小白，性能优化魔怔人。"
+			msg: "I got electric light," +
+				"And I got second sight.\n" +
+				"Got amazing powers of observation.\n" +
+				"And that is how I know,\n" +
+				"When I try to get through," +
+				"On the telephone to you,\n" +
+				"There'll be nobody home.\n" + "- Pink Floyd 《The Wall》"
 		}
 	},
 	async mounted() {
