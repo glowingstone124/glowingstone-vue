@@ -146,12 +146,12 @@ export default {
 
 .md:deep(h2) {
 	font-weight: 300;
-	font-size: 30px;
+	font-size: 40px;
 }
 
 .md:deep(h3) {
 	font-weight: 300;
-	font-size: 30px;
+	font-size: 25px;
 	color: white;
 }
 

@@ -209,6 +209,8 @@ printf("%d\n", *ptr);  // 输出 10
 
 实际上，C在[C23](https://en.cppreference.com/w/c/language/nullptr)之前没有C++中的`nullptr`，所以NULL是一个规范化的宏，用于定义空指针。
 
+> 由于本文并没有使用C23，所以我们的代码中还是会使用NULL宏，不过在后续讨论C++时会使用nullptr。
+
 GCC的[stddef.h](https://github.com/gcc-mirror/gcc/blob/master/gcc/ginclude/stddef.h)定义了NULL：
 
 ```C
@@ -230,6 +232,7 @@ GCC的[stddef.h](https://github.com/gcc-mirror/gcc/blob/master/gcc/ginclude/stdd
 我们会发现这里的`NULL`实际上是一个指向0的`void`指针。或者是0。因为0地址实际上是非法的，所以将它作为`NULL`很合适。
 
 但是由于`NULL`作为一个宏在各个实现之间并不一致，有时为0有时为`void* 0`，所以非常不建议使用`NULL`,使用类型为`nullptr_t`的`nullptr`才是安全并且正确的做法。
+
 ## 进一步：堆上内存
 
 刚刚我们聊了一些最基本的栈上数据，这些数据还比较易于处理，但是大部分程序都不可能只使用这些简单的数据，更多的日常场景发生在堆上。
@@ -1073,3 +1076,133 @@ typedef struct {
 这个对齐的Storage使用`char[]`这个原始的，没有对齐要求的类型作为了原始内存，之后通过`alignas`来指示结构体必须对齐到double的类型要求上，它保证了我们能存放较大的那一个数据。
 
 有了这些简单的规则，许多问题就可以迎刃而解。在之后我们讨论C++时，还会介绍这一节。
+
+## C阶段总结
+
+到这里，我们对于C语言中指针这一工具的研究暂时就告一段落了。在最后一章关于C的部分，我们来实现一下一个简单的二叉树。如果你不知道什么是二叉树，wiki或者百度百科会是一个很好的选择。
+
+首先，让我们定义一下树节点的结构体，它包含一个data和指向左右节点的指针:
+
+```C
+typedef struct TreeNode {
+    int data;
+    struct TreeNode* left;
+    struct TreeNode* right;
+} TreeNode;
+```
+
+接下来让我们创建一个函数来分配内存并且初始化一个节点：
+
+```C
+TreeNode* createNode(int data) {
+    TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
+    if (newNode == NULL) {
+        printf("Malloc error\n");
+        exit(1);
+    }
+    newNode->data = data;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+```
+
+它首先对`TreeNode`这个结构体分配了内存，具体分配的大小在之前讨论过，计算还是挺简单的。然后这里进行了一个判空，如果返回的结果为`NULL`则证明malloc失败，这里选择直接退出。
+
+之后我们将node的左右节点都设置为NULL，因为我目前还不知道它会指向哪里。
+
+接下来是insert:
+
+```C
+TreeNode* insert(TreeNode* root, int data) {
+    if (root == NULL) {
+        return createNode(data);
+    }
+
+    if (data < root->data) {
+        root->left = insert(root->left, data);
+    }
+    else if (data > root->data) {
+        root->right = insert(root->right, data);
+    }
+
+    return root;
+}
+```
+
+这个函数将一个新的data插入到树里，需要传入一个树的根节点和需要的数据。如果root没有传入，那证明这里的data是树的根，则创建一个新的节点。
+
+然后就是节点的分配：如果data小于根节点的data，就插入到左子树，反之则插入到右子树。这里使用了递归。
+
+既然创建了树，我们来实现遍历：
+
+```C
+// 中序遍历
+void inorderTraversal(TreeNode* root) {
+    if (root != NULL) {
+        inorderTraversal(root->left);
+        printf("%d ", root->data);  
+        inorderTraversal(root->right);
+    }
+}
+```
+这个函数使用中序遍历来访问树中的节点，同样使用了递归.
+
+接下来是删除，这一步比较复杂：
+
+- 删除的节点是叶子节点（没有子节点）则不需要考虑连接问题，因为它没有子节点。只需要简单地将父节点指向这个叶子节点的指针设置为null就可以了。
+
+- 删除的节点有一个子节点的话就需要将父节点指向该节点的子节点来绕过当前节点。
+
+- 删除的节点有两个子节点的话会稍微复杂一些，我们需要找到这个节点的后继节点（即右子树中的最小节点）或者前驱节点（即左子树中的最大节点），然后用这个后继节点或前驱节点的值来替代被删除节点的值。接着，我们删除该后继节点或前驱节点。
+
+```C
+TreeNode* deleteNode(TreeNode* root, int data) {
+    if (root == NULL) {
+        return NULL;
+    }
+
+    if (data < root->data) {
+        root->left = deleteNode(root->left, data);
+    }
+    else if (data > root->data) {
+        root->right = deleteNode(root->right, data);
+    }
+    else {
+        if (root->left == NULL) {
+            TreeNode* temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL) {
+            TreeNode* temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        TreeNode* temp = root->right;
+        while (temp && temp->left != NULL) {
+            temp = temp->left;
+        }
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data); 
+    }
+    return root;
+}
+```
+
+最后是释放内存，使用后序递归：
+
+```C
+void freeTree(TreeNode* root) {
+    if (root != NULL) {
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
+```
+
+二叉树本身是数据结构的内容，实现起来比较困难，所以这里更多是总结对于指针的用法，从下一章开始，我们将讨论C++的指针用法和实现。
+
+## 新的开始：C++
