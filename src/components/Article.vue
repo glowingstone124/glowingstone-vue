@@ -2,6 +2,10 @@
 	<div class="body">
 		<div class="pre">
 			<h1 class="articleTitle">{{ articleTitle }}</h1>
+			<div class="notice">
+				<p>感谢您阅读此文章！本人水平有限，写作时难免出现错误和纰漏。如果您在阅读过程中有任何想法或建议，欢迎前往Github提交issue。</p>
+				<a class="hyper-link" href="https://github.com/glowingstone124/glowingstone-vue/issues/new">Github</a>
+			</div>
 			<span class="ai-generated" v-if="ai_gen">此篇文章已被标注使用AI生成。</span>
 		</div>
 		<div class="md" v-html="output"></div>
@@ -133,10 +137,13 @@ export default {
 	text-decoration: none;
 	font-weight: normal;
 	transition: all 0.2s;
+	border-bottom: 1px solid #323234;
+	color: #bee5b4;
 }
 
 .md:deep(a:hover) {
-	text-decoration: underline;
+	transition: all 0.2s;
+	border-bottom: 1px solid #d6d6e8;
 }
 
 .md:deep(h1) {
@@ -188,6 +195,21 @@ export default {
 	color: #ffffff;
 	padding: 20px;
 	font-size: 1rem;
+}
+
+.notice{
+	margin: 2rem;
+	background: #6d8175;
+	padding: 1rem;
+	border-radius: 30px;
+	.hyper-link{
+		border-radius: 30px;
+		border: none;
+		margin:0.4rem;
+		text-decoration: none;
+		background: #b8c7b8;
+		padding: 0.5rem;
+	}
 }
 
 .pre{
