@@ -4,50 +4,50 @@ import VisitCounter from "@/components/VisitCounter.vue";
 const showWarn = ref(true)
 const galleryItems = ref([
 	{
-		imageUrl: 'https://storage.glowingstone.cn/download/instant_blue.jpg',
-		thumbnailUrl: 'https://storage.glowingstone.cn/download/instant_blue_thumb.jpg',
+		imageUrl: 'https://bucket.glowingstone.cn/instant_blue.jpg',
+		thumbnailUrl: 'https://bucket.glowingstone.cn/instant_blue_thumb.jpg',
 		description: 'Instant Blue背景图，因为这首歌喜欢上了秘封',
 		date: '第138季 日与秋与木之年'
 	},
 	{
-		imageUrl: 'https://storage.glowingstone.cn/download/synchro0.jpg',
-		thumbnailUrl: 'https://storage.glowingstone.cn/download/synchro0.jpg',
+		imageUrl: 'https://bucket.glowingstone.cn/synchro0.jpg',
+		thumbnailUrl: 'https://bucket.glowingstone.cn/synchro0.jpg',
 		description: '圆梦Synchro0，感谢朋友投喂',
 		date: '第140季 星与春与土之年 & 2025/1/11'
 	},
 	{
-		imageUrl: 'https://storage.glowingstone.cn/download/koishi_with_xnu.jpeg',
-		thumbnailUrl: 'https://storage.glowingstone.cn/download/instant_blue_thumb.jpg',
+		imageUrl: 'https://bucket.glowingstone.cn/koishi_with_xnu.jpeg',
+		thumbnailUrl: 'https://bucket.glowingstone.cn/instant_blue_thumb.jpg',
 		description: '恋恋和XNU，摄于SUES长宁校区',
 		date: '第139季 月与冬与金之年 & 2024/10/29'
 	},
 	{
-		imageUrl: 'https://storage.glowingstone.cn/download/hifuu_city2.jpg',
-		thumbnailUrl: 'https://storage.glowingstone.cn/download/hifuu_city2_thumb.jpg',
+		imageUrl: 'https://bucket.glowingstone.cn/hifuu_city2.jpg',
+		thumbnailUrl: 'https://bucket.glowingstone.cn/hifuu_city2_thumb.jpg',
 		description: '秘封...',
 		date: '2024/10'
 	},
 	{
-		imageUrl: 'https://storage.glowingstone.cn/download/kotlin_shanghai_0703.jpg',
-		thumbnailUrl: 'https://storage.glowingstone.cn/download/kotlin_shanghai_0703_thumb.jpg',
+		imageUrl: 'https://bucket.glowingstone.cn/kotlin_shanghai_0703.jpg',
+		thumbnailUrl: 'https://bucket.glowingstone.cn/kotlin_shanghai_0703_thumb.jpg',
 		description: 'Kotlin上海用户组在24年7月的聚会，我与上海KUG的朋友们',
 		date: '2024/07'
 	},
 	{
-		imageUrl: 'https://storage.glowingstone.cn/download/shanghai_srbs1.jpg',
-		thumbnailUrl: 'https://storage.glowingstone.cn/download/shanghai_srbs1_thumb.jpg',
+		imageUrl: 'https://bucket.glowingstone.cn/shanghai_srbs1.jpg',
+		thumbnailUrl: 'https://bucket.glowingstone.cn/shanghai_srbs1_thumb.jpg',
 		description: '森罗万象10/5上海 one man live，有幸到场',
 		date: '2024/10'
 	},
 	{
-		imageUrl: 'https://storage.glowingstone.cn/download/shanghai_srbs2.png',
-		thumbnailUrl: 'https://storage.glowingstone.cn/download/shanghai_srbs2_thumb.png',
+		imageUrl: 'https://bucket.glowingstone.cn/shanghai_srbs2.png',
+		thumbnailUrl: 'https://bucket.glowingstone.cn/shanghai_srbs2_thumb.png',
 		description: '森罗万象10/5上海 one man live，合照',
 		date: '2024/10'
 	},
 	{
-		imageUrl: 'https://storage.glowingstone.cn/download/kotlin_shanghai_0301.jpg',
-		thumbnailUrl: 'https://storage.glowingstone.cn/download/kotlin_shanghai_0301_thumb.jpg',
+		imageUrl: 'https://bucket.glowingstone.cn/kotlin_shanghai_0301.jpg',
+		thumbnailUrl: 'https://bucket.glowingstone.cn/kotlin_shanghai_0301_thumb.jpg',
 		description: 'KUG Shanghai X Jetbrains，3/1线下活动的合影',
 		date: '2024/03'
 	},
