@@ -3,7 +3,7 @@ title: 仙霞游记
 
 abstract: 随手写下，愿之后重逢。
 
-picture: https://storage.glowingstone.cn/download/xianxia.png
+picture: https://bucket.glowingstone.cn/xianxia.png
 
 category: 3
 
