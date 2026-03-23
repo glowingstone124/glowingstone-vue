@@ -4,38 +4,35 @@
 		<div class="friends">
 			<div class="info-box">
 				<h1>我是谁？</h1>
-				<p>我是glowingstone124，现居上海，是一名普通的高一学生生。平时会玩玩apex，bf,cs等fps游戏，偶尔追追新番老番。</p>
-				<p>技术上嘛...毫无建树，只是稍微会一些Java和Web而已，但是在努力学习。</p>
-				<p>Miku厨，半个车车壬，群友们一致认为的抽象大手子</p>
-				<p>(头像都是恋)</p><a href="https://www.pixiv.net/artworks/112973410">头像pixiv id</a>
-				<a href="https://afdian.com/a/glowingstone124">前往我的爱发电</a>
+				<p>我是glowingstone，现居上海。我主要专注于JVM和Linux/POSIX兼容系统的程序设计和架构，也正在学习吉他。</p>
 			</div>
 
 			<div class="info-box">
 				<h1>关于这个网站</h1>
 				<a href="https://www.pixiv.net/artworks/92320484">背景来自Pixiv</a>
-				<p>这个网站是完全自建的（你没听错，没有使用任何ui库和模板，纯vue手敲）</p>
+				<p>这个网站是完全自建的，使用了Vue3。</p>
 				<p>前端：Vue3</p>
 				<img @click="redirectToGithub" src="https://socialify.git.ci/glowingstone124/glowingstone-vue/image?description=1&descriptionEditable=%E5%9C%A8github%E4%B8%8A%E6%89%BE%E5%88%B0%E6%88%91&font=Inter&language=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Dark" alt="">
-				<p>没有后端，基于vercel部署啦</p>
+				<p>后端目前采用Cloudflare Pages。</p>
 			</div>
 
 			<div class="info-box">
-				<h1>爱好</h1>
-				<p>游戏、编程、动漫、自媒体、顺便还会偶尔写小说</p>
+				<h1>社媒账号</h1>
+				<p>这里有我的一些公开社媒账号，欢迎添加好友友好互动！</p>
 				<a href="https://steamcommunity.com/profiles/76561199236874427/">Steam</a>
-				<a href="https://space.bilibili.com/687290823">哗哩哗哩</a>
-				<a href="https://music.163.com/#/user/home?id=5164416595">网易云</a>
+				<a href="https://x.com/QuantumOriginal">X</a>
 			</div>
 
 			<div class="info-box">
-				<h1>音乐偏好</h1>
-				<p>流行音乐以欧美，日本居多，狠狠听东方。 <br> 摇滚爱好者！最爱的是万青和Neckdeep，少女乐队番好文明！</p>
+				<h1>听歌</h1>
+				<p>前卫摇滚，老摇滚，最爱70年代80年代的欧美乐队，最喜欢PinkFloyd和Led Zeppelin。<br>
+					中国摇滚也听一些，喜欢Blues味重的乐队比如万青。<br>
+					自己也入坑了吉他，买了把Fender练点Vintage玩玩而已
+				</p>
 			</div>
 
 			<div class="info-box">
 				<h1>联系我</h1>
-				<a href="https://qm.qq.com/q/H7Gin9dAuC"><img src="mail.svg" alt="">QQ</a>
 				<a href="mailto:hanseroffcial@outlook.com"><img src="chat.svg" alt="">Mail</a>
 			</div>
 		</div>
