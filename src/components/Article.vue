@@ -200,7 +200,7 @@ export default {
 .notice{
 	margin: 2rem;
 	background: #6d8175;
-	padding: 1rem;
+	padding: 1rem 2rem 2rem 2rem;
 	border-radius: 30px;
 	.hyper-link{
 		border-radius: 30px;
