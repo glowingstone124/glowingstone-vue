@@ -1,71 +1,66 @@
 <template>
-	<div class="container">
-		<Title :msg="msg"/>
-		<h1 class="introduction">小记</h1>
-		<Journals />
-		<Pinned/>
-		<Footer/>
+	<div class="home-page-container">
+		<DitherBackground />
+		<div class="home-content-layer">
+			<Title :msg="msg"/>
+			<AsciiMarquee />
+			<Journals />
+			<Pinned />
+			<VisitCounter />
+		</div>
 	</div>
-	<VisitCounter/>
 </template>
 
 <script>
 import VisitCounter from "@/components/VisitCounter.vue";
-import Title from './Title.vue'
-import ArticleList from './ArticleList.vue'
-import NavBtn from './NavBtn.vue';
-import Footer from './Footer.vue';
+import Title from './Title.vue';
+import Journals from './Journals.vue';
 import Pinned from './Pinned.vue';
-import Journals from './Journals.vue'
+import AsciiMarquee from './AsciiMarquee.vue';
+import DitherBackground from './DitherBackground.vue';
+
 export default {
-	name: 'App',
+	name: 'HomePage',
 	components: {
+		DitherBackground,
 		VisitCounter,
 		Title,
+		AsciiMarquee,
 		Journals,
 		Pinned,
-		Footer
 	},
 	data() {
 		return {
-			articleList: [],
-			visitCount: 114514,
-			msg: "I got electric light," +
-				"And I got second sight.\n" +
+			msg: "I got electric light, and I got second sight.\n" +
 				"Got amazing powers of observation.\n" +
 				"And that is how I know,\n" +
-				"When I try to get through," +
-				"On the telephone to you,\n" +
-				"There'll be nobody home.\n" + "- Pink Floyd 《The Wall》"
+				"When I try to get through on the telephone to you,\n" +
+				"There'll be nobody home.\n" +
+				"— Pink Floyd 《The Wall》",
+		};
+	},
+	mounted() {
+		const now = new Date();
+		// Birthday check (April 28)
+		if (now.getMonth() === 3 && now.getDate() === 28) {
+			this.msg = "生日快乐，Never Grow Old.\n祝我生日快乐。";
+			document.title = "Glowstone 萤石 | 祝我生日快乐";
 		}
 	},
-	async mounted() {
-		if (window.innerWidth < 800 || /mobile/i.test(navigator.userAgent)) {
-			this.$router.push('/mobile');
-		}
-		const currentDate = new Date();
-		const Birthday = new Date("2026-04-28");
-		if (currentDate === Birthday) {
-			this.msg = "生日快乐,Never Grow Old.";
-			document.title = "Glowstone 萤石 | 祝我生日快乐"
-		}
-	},
-	methods: {}
-
-}
+};
 </script>
 
-<style>
-@import "@/css/main.css";
-
-p {
-	padding: 10px;
-	color: white;
-	margin: auto;
+<style scoped>
+.home-page-container {
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	box-sizing: border-box;
 }
 
-.counter {
-	text-align: center;
+.home-content-layer {
+	position: relative;
+	z-index: 2;
+	width: 100%;
 }
-
 </style>

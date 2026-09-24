@@ -1,12 +1,15 @@
 <template>
-	<div class="article" :class="{ ai: article.ai_generated }" @click="redirectToArticle">
+	<div class="article" @click="redirectToArticle">
 		<div class="image-container">
 			<img :src="article.imagePath" alt="文章图片" class="article-image"/>
 		</div>
 		<div class="article-info">
+			<div class="meta-row font-mono">
+				<span class="cat">[{{ article.category }}]</span>
+				<span v-if="article.ai_generated" class="ai">[AI]</span>
+			</div>
 			<h2 class="artc">{{ article.title }}</h2>
-			<h2 class="abstract">{{ article.abstract }}</h2>
-			<p class="category"><img src="@/assets/category.svg">{{ article.category }}</p>
+			<p class="abstract">{{ article.abstract }}</p>
 		</div>
 	</div>
 </template>
@@ -17,73 +20,73 @@ export default {
 	props: {
 		article: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 	methods: {
 		redirectToArticle() {
-			window.location.href = `/article/${this.article.id}`;
-		}
-	}
+			this.$router.push(`/article/${this.article.id}`);
+		},
+	},
 };
 </script>
 
 <style scoped>
 .article {
-	background-color: #435060;
-	border-radius: 10px !important;
-	margin: 1vh auto auto;
-	transition: background-color 0.3s, scale 0.3s;
+	background-color: #121212;
+	border: 1px solid #262626;
+	margin: 16px 0;
 	text-align: left;
-	position: relative;
-	padding-bottom: 15px;
+	cursor: pointer;
+	transition: border-color 0.15s ease;
 }
-.article .ai {
-	background-color: #507e58;
+
+.article:hover {
+	border-color: #ffffff;
 }
-.article .ai:hover {
-	background-color: #459454;
-}
+
 .image-container {
-	transition: transform 0.3s;
+	width: 100%;
+	height: 180px;
+	overflow: hidden;
+	background: #000000;
+	border-bottom: 1px solid #262626;
 }
 
 .article-image {
 	object-fit: cover;
 	width: 100%;
-	height: auto;
-	max-height: 400px;
-	border-radius: 10px;
-	margin-bottom: 0px;
+	height: 100%;
+	display: block;
 }
 
-.article:hover .image-container {
-	transform: translateY(-4px);
+.article-info {
+	padding: 16px;
 }
 
-.article:hover {
-	background-color: #5a6c80;
+.meta-row {
+	display: flex;
+	gap: 8px;
+	font-size: 0.75rem;
+	color: #a3a3a3;
+	margin-bottom: 8px;
+}
+
+.cat {
+	color: #ffffff;
 }
 
 .artc {
-	margin: 0px;
-	font-weight: 400;
+	margin: 0 0 8px;
+	font-size: 1.15rem;
+	color: #ffffff;
+	font-weight: 500;
 }
 
-
-.article-info {
-	border-radius: 10px !important;
-	margin: 2px 15px;
-}
 .abstract {
-
-}
-
-.category {
-	align-items: center;
-	color: #fffdfd;
-	font-weight: 100;
-	display: flex;
-	padding: 0;
+	margin: 0;
+	font-size: 0.85rem;
+	color: #a3a3a3;
+	line-height: 1.6;
 }
 </style>

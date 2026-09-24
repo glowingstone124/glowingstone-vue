@@ -1,0 +1,211 @@
+/* Minimalist Black & White Monochromatic ASCII & Metro UI System
+   - Strict Black & White / Grayscale Palette
+   - Strict Zero Border Radius (0px)
+   - Zero Glow Effects
+   - Significantly Enlarged Negative Space (Whitespace) & Wide Layout
+*/
+
+:root {
+  /* Pure Monochromatic Palette */
+  --bg-base: #0a0a0a;
+  --bg-surface: #121212;
+  --bg-surface-hover: #1a1a1a;
+  --bg-contrast: #ffffff;
+  --bg-subtle: #171717;
+
+  /* Monochromatic Borders */
+  --border-light: #404040;
+  --border-subtle: #262626;
+  --border-strong: #ffffff;
+
+  /* Typography */
+  --text-main: #ffffff;
+  --text-muted: #a3a3a3;
+  --text-dim: #737373;
+  --text-inverse: #0a0a0a;
+
+  /* Expanded Layout Constants */
+  --max-content-width: 1480px;
+  --section-spacing: 120px;
+
+  /* Monospace & Sans */
+  --font-mono: 'Jetbrains', 'Fira Code', 'SF Mono', Consolas, Menlo, monospace;
+  --font-sans: 'Inter', 'NotoSans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Global Zero-Radius & Zero-Glow Enforcement */
+*, *::before, *::after {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--bg-base);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar Minimalist */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Metro Grid System (Expanded Width & Generous Whitespace)
+   ========================================================================== */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 28px;
+  width: 100%;
+}
+
+.metro-tile {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 40px 44px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  position: relative;
+}
+
+/* Technical Corner Crosshair Registration Mark */
+.metro-tile::after {
+  content: "+";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #444444;
+  transition: color 0.2s ease, transform 0.25s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.metro-tile:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-light);
+  transform: translateY(-3px);
+}
+
+.metro-tile:hover::after {
+  color: #ffffff;
+  transform: rotate(45deg);
+}
+
+/* Spans */
+.col-span-12 { grid-column: span 12; }
+.col-span-8  { grid-column: span 8; }
+.col-span-7  { grid-column: span 7; }
+.col-span-6  { grid-column: span 6; }
+.col-span-5  { grid-column: span 5; }
+.col-span-4  { grid-column: span 4; }
+.col-span-3  { grid-column: span 3; }
+
+/* Clean Minimalist Typography */
+.font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+/* Section Header (Clean Minimalist, No Eyebrows, Generous Whitespace) */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 20px;
+  margin-bottom: 44px;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--text-main);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.section-title .sub {
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  margin-left: 14px;
+}
+
+.section-meta {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+/* Minimalist B&W Buttons */
+.metro-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.metro-btn:hover {
+  background: var(--text-main);
+  color: var(--text-inverse);
+  border-color: var(--text-main);
+}
+
+.metro-btn.primary {
+  background: var(--text-main);
+  color: var(--text-inverse);
+  border-color: var(--text-main);
+}
+
+.metro-btn.primary:hover {
+  background: #e5e5e5;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .col-span-8, .col-span-7, .col-span-6, .col-span-5, .col-span-4, .col-span-3 {
+    grid-column: span 6;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .col-span-12, .col-span-8, .col-span-7, .col-span-6, .col-span-5, .col-span-4, .col-span-3 {
+    grid-column: span 1;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+  .metro-tile {
+    padding: 28px 24px;
+  }
+}
