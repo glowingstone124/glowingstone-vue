@@ -8,7 +8,7 @@
 				</transition>
 			</router-view>
 		</main>
-		<Footer Footermsg="Apple Newsroom Style · Glowingstone Blog"/>
+		<Footer Footermsg="Glowingstone Blog"/>
 	</div>
 </template>
 

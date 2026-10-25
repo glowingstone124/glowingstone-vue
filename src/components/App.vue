@@ -69,7 +69,7 @@
 			<!-- 3. "More from Apple Newsroom" 2-COLUMN LIST (Image 3) -->
 			<section v-if="moreArticles.length > 0" class="newsroom-section more-news-section">
 				<div class="section-title-row">
-					<h2 class="newsroom-section-heading">More from Apple Newsroom</h2>
+					<h2 class="newsroom-section-heading">More from Newsroom</h2>
 				</div>
 
 				<div class="more-news-grid">
