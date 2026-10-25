@@ -34,20 +34,35 @@ onMounted(() => {
 </script>
 
 <template>
-	<div class="counter-wrap font-mono">
-		<span class="counter-text">[ 访问人次 / VISITS: {{ visitCount }} ]</span>
+	<div class="counter-wrap">
+		<span class="counter-pill">
+			<span class="live-dot"></span>
+			累计浏览人次: {{ visitCount || '...' }}
+		</span>
 	</div>
 </template>
 
 <style scoped>
 .counter-wrap {
 	text-align: center;
-	padding: 24px 0 10px;
+	padding: 32px 0 16px;
 }
 
-.counter-text {
-	font-size: 0.8rem;
-	color: #737373;
-	letter-spacing: 0.5px;
+.counter-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 12px;
+	color: #86868b;
+	background: #f5f5f7;
+	padding: 4px 14px;
+	border-radius: 980px;
+}
+
+.live-dot {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #34c759;
 }
 </style>

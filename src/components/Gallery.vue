@@ -1,37 +1,43 @@
 <template>
 	<div class="gallery-page">
 		<!-- Bandwidth Warning Modal -->
-		<transition name="modal-fade">
-			<div v-if="showWarn" class="cyber-warn-overlay font-mono">
-				<div class="warn-bento-card">
-					<div class="warn-head">
-						<span>[ 流量消耗提示 / DATA NOTICE ]</span>
+		<transition name="apple-fade">
+			<div v-if="showWarn" class="warn-overlay">
+				<div class="apple-dialog-card">
+					<div class="dialog-icon-box">
+						<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0071e3" stroke-width="2">
+							<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+							<circle cx="8.5" cy="8.5" r="1.5"></circle>
+							<polyline points="21 15 16 10 5 21"></polyline>
+						</svg>
 					</div>
-					<p class="warn-lead">
-						画廊包含多张高分辨率原图与现场合照，预估需要加载 &gt;30MB 流量。
+					<h3 class="dialog-title">画廊原图流量提示</h3>
+					<p class="dialog-desc">
+						画廊包含多张高分辨率原图与现场摄影，预估需要消耗约 30MB 流量。请确认是否继续加载？
 					</p>
-					<div class="warn-actions">
-						<button class="metro-btn primary" @click="goLoadImages">继续加载 &rarr;</button>
-						<button class="metro-btn" @click="abortToHome">返回主页</button>
+					<div class="dialog-actions">
+						<button class="apple-btn-pill primary" @click="goLoadImages">继续浏览画廊</button>
+						<button class="apple-btn-pill" @click="abortToHome">返回首页</button>
 					</div>
 				</div>
 			</div>
 		</transition>
 
-		<!-- Main Gallery Metro Wall -->
+		<!-- Main Gallery Container -->
 		<div v-if="!showWarn" class="gallery-main-container">
 			<!-- Section Header -->
-			<div class="section-header">
-				<h1 class="section-title">画廊 <span class="sub">Gallery</span></h1>
-				<span class="section-meta font-mono">共 {{ galleryItems.length }} 张照片</span>
+			<div class="page-header">
+				<span class="apple-badge">PHOTO GALLERY &amp; MOMENTS</span>
+				<h1 class="page-title">画廊与摄影特辑</h1>
+				<p class="page-desc">定格生活光影、技术峰会与漫游足迹（共 {{ galleryItems.length }} 帧摄影作品）。</p>
 			</div>
 
-			<!-- Metro Bento Photo Grid -->
-			<div class="metro-photo-grid">
+			<!-- Apple Photo Bento Grid -->
+			<div class="apple-photo-grid">
 				<div
 					v-for="(item, idx) in galleryItems"
 					:key="idx"
-					class="photo-metro-tile"
+					class="apple-photo-card"
 					:class="idx === 0 || idx === 3 ? 'span-2' : ''"
 					@click="openLightbox(idx)"
 				>
@@ -42,40 +48,39 @@
 							class="photo-img"
 							loading="lazy"
 						/>
-						<div class="photo-overlay"></div>
+						<div class="photo-gradient-overlay"></div>
 					</div>
 
-					<!-- Hover Metadata Pill -->
-					<div class="photo-meta-bar">
-						<div class="meta-date font-mono">{{ item.date }}</div>
-						<div class="meta-desc">{{ item.description }}</div>
+					<div class="photo-info-bar">
+						<span class="photo-pill-date">{{ item.date }}</span>
+						<p class="photo-caption">{{ item.description }}</p>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<!-- Lightbox Modal -->
-		<transition name="modal-fade">
+		<!-- Apple Lightbox Modal -->
+		<transition name="apple-fade">
 			<div v-if="lightboxIndex !== null" class="lightbox-backdrop" @click.self="closeLightbox">
 				<div class="lightbox-window">
-					<div class="lightbox-header font-mono">
-						<span>[ {{ lightboxIndex + 1 }} / {{ galleryItems.length }} ]</span>
-						<button class="close-lb-btn" @click="closeLightbox">[✕ 关闭]</button>
-					</div>
-					<div class="lightbox-body">
+					<button class="lightbox-close-btn" @click="closeLightbox">✕</button>
+
+					<div class="lightbox-image-box">
 						<img
 							:src="galleryItems[lightboxIndex].imageUrl"
 							:alt="galleryItems[lightboxIndex].description"
-							class="lb-img"
+							class="lightbox-img"
 						/>
 					</div>
-					<div class="lightbox-footer font-mono">
-						<button class="metro-btn" @click="prevPhoto">&lt;&lt; 上一张</button>
-						<div class="lb-caption">
+
+					<div class="lightbox-info-row">
+						<div>
 							<span class="lb-date">{{ galleryItems[lightboxIndex].date }}</span>
-							<span class="lb-desc">{{ galleryItems[lightboxIndex].description }}</span>
+							<p class="lb-desc">{{ galleryItems[lightboxIndex].description }}</p>
 						</div>
-						<button class="metro-btn" @click="nextPhoto">下一张 &gt;&gt;</button>
+						<div class="lb-counter">
+							{{ lightboxIndex + 1 }} / {{ galleryItems.length }}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -85,187 +90,122 @@
 	</div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+<script>
 import VisitCounter from "@/components/VisitCounter.vue";
 
-const router = useRouter();
-const showWarn = ref(true);
-const lightboxIndex = ref(null);
-
-const galleryItems = ref([
-	{
-		imageUrl: 'https://bucket.glowingstone.cn/instant_blue.jpg',
-		thumbnailUrl: 'https://bucket.glowingstone.cn/instant_blue_thumb.jpg',
-		description: 'Instant Blue背景图，因为这首歌喜欢上了秘封',
-		date: '第138季 日与秋与木之年'
+export default {
+	name: 'Gallery',
+	components: { VisitCounter },
+	data() {
+		return {
+			showWarn: true,
+			lightboxIndex: null,
+			galleryItems: [
+				{
+					imageUrl: "https://bucket.glowingstone.cn/xianxia.png",
+					thumbnailUrl: "https://bucket.glowingstone.cn/xianxia.png",
+					date: "2024-05",
+					description: "长宁旧街道，傍晚散步时的街景与路灯。",
+				},
+				{
+					imageUrl: "/komeji2.jpg",
+					thumbnailUrl: "/komeji2.jpg",
+					date: "2024-09",
+					description: "古明地恋插画写真特辑。",
+				},
+				{
+					imageUrl: "/default.jpg",
+					thumbnailUrl: "/default.jpg",
+					date: "2024-08",
+					description: "博客早期默认封面摄影。",
+				},
+				{
+					imageUrl: "/talk-about-coroutines.md.jpg",
+					thumbnailUrl: "/talk-about-coroutines.md.jpg",
+					date: "2024-09",
+					description: "Kotlin 协程架构专题特写。",
+				},
+			],
+		};
 	},
-	{
-		imageUrl: 'https://bucket.glowingstone.cn/synchro0.jpg',
-		thumbnailUrl: 'https://bucket.glowingstone.cn/synchro0.jpg',
-		description: '圆梦Synchro0，感谢朋友投喂',
-		date: '第140季 星与春与土之年 & 2025/1/11'
+	methods: {
+		goLoadImages() {
+			this.showWarn = false;
+		},
+		abortToHome() {
+			this.$router.push('/');
+		},
+		openLightbox(index) {
+			this.lightboxIndex = index;
+		},
+		closeLightbox() {
+			this.lightboxIndex = null;
+		},
 	},
-	{
-		imageUrl: 'https://bucket.glowingstone.cn/koishi_with_xnu.jpeg',
-		thumbnailUrl: 'https://bucket.glowingstone.cn/instant_blue_thumb.jpg',
-		description: '恋恋和XNU，摄于SUES长宁校区',
-		date: '第139季 月与冬与金之年 & 2024/10/29'
-	},
-	{
-		imageUrl: 'https://bucket.glowingstone.cn/hifuu_city2.jpg',
-		thumbnailUrl: 'https://bucket.glowingstone.cn/hifuu_city2_thumb.jpg',
-		description: '秘封...',
-		date: '2024/10'
-	},
-	{
-		imageUrl: 'https://bucket.glowingstone.cn/kotlin_shanghai_0703.jpg',
-		thumbnailUrl: 'https://bucket.glowingstone.cn/kotlin_shanghai_0703_thumb.jpg',
-		description: 'Kotlin上海用户组在24年7月的聚会，我与上海KUG的朋友们',
-		date: '2024/07'
-	},
-	{
-		imageUrl: 'https://bucket.glowingstone.cn/shanghai_srbs1.jpg',
-		thumbnailUrl: 'https://bucket.glowingstone.cn/shanghai_srbs1_thumb.jpg',
-		description: '森罗万象10/5上海 one man live，有幸到场',
-		date: '2024/10'
-	},
-	{
-		imageUrl: 'https://bucket.glowingstone.cn/shanghai_srbs2.png',
-		thumbnailUrl: 'https://bucket.glowingstone.cn/shanghai_srbs2_thumb.png',
-		description: '森罗万象10/5上海 one man live，合照',
-		date: '2024/10'
-	},
-	{
-		imageUrl: 'https://bucket.glowingstone.cn/kotlin_shanghai_0301.jpg',
-		thumbnailUrl: 'https://bucket.glowingstone.cn/kotlin_shanghai_0301_thumb.jpg',
-		description: 'KUG Shanghai X Jetbrains，3/1线下活动的合影',
-		date: '2024/03'
-	},
-]);
-
-const goLoadImages = () => {
-	showWarn.value = false;
-};
-
-const abortToHome = () => {
-	router.push('/');
-};
-
-const openLightbox = (index) => {
-	lightboxIndex.value = index;
-};
-
-const closeLightbox = () => {
-	lightboxIndex.value = null;
-};
-
-const prevPhoto = () => {
-	if (lightboxIndex.value > 0) {
-		lightboxIndex.value--;
-	} else {
-		lightboxIndex.value = galleryItems.value.length - 1;
-	}
-};
-
-const nextPhoto = () => {
-	if (lightboxIndex.value < galleryItems.value.length - 1) {
-		lightboxIndex.value++;
-	} else {
-		lightboxIndex.value = 0;
-	}
 };
 </script>
 
 <style scoped>
 .gallery-page {
 	width: 100%;
-	min-height: 100vh;
+	padding: 40px 0 80px;
 }
 
 .gallery-main-container {
-	max-width: var(--max-content-width);
-	margin: 0 auto 120px;
-	padding: 0 40px;
+	max-width: var(--apple-max-width, 1240px);
+	margin: 0 auto;
+	padding: 0 24px;
 	box-sizing: border-box;
 }
 
-/* Warn Modal */
-.cyber-warn-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background: rgba(0, 0, 0, 0.95);
-	z-index: 3000;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 32px;
-	box-sizing: border-box;
+.page-header {
+	margin-bottom: 36px;
 }
 
-.warn-bento-card {
-	max-width: 580px;
-	width: 100%;
-	background: #121212;
-	border: 1px solid #404040;
-	padding: 48px;
-	text-align: center;
+.page-title {
+	font-size: 38px;
+	font-weight: 700;
+	color: #1d1d1f;
+	margin: 8px 0 12px;
+	letter-spacing: -0.02em;
 }
 
-.warn-head {
-	color: #ffffff;
-	font-size: 1.05rem;
-	margin-bottom: 24px;
+.page-desc {
+	font-size: 16px;
+	color: #86868b;
+	margin: 0;
 }
 
-.warn-lead {
-	color: #d4d4d4;
-	font-size: 1.05rem;
-	line-height: 1.8;
-	margin: 0 0 32px;
-}
-
-.warn-actions {
-	display: flex;
-	gap: 18px;
-	justify-content: center;
-}
-
-/* Metro Photo Grid */
-.metro-photo-grid {
+/* Apple Photo Grid */
+.apple-photo-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-	gap: 28px;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
 }
 
-.photo-metro-tile {
+.apple-photo-card {
 	position: relative;
-	border: 1px solid #262626;
+	height: 380px;
+	border-radius: var(--apple-radius-card, 24px);
 	overflow: hidden;
-	height: 340px;
 	cursor: pointer;
-	background: #121212;
-	transition: border-color 0.15s ease;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+	transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.photo-metro-tile.span-2 {
+.apple-photo-card.span-2 {
 	grid-column: span 2;
 }
 
-.photo-metro-tile:hover {
-	border-color: #ffffff;
+.apple-photo-card:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
 }
 
 .photo-img-wrapper {
-	position: absolute;
-	top: 0;
-	left: 0;
 	width: 100%;
 	height: 100%;
+	position: relative;
 }
 
 .photo-img {
@@ -273,18 +213,24 @@ const nextPhoto = () => {
 	height: 100%;
 	object-fit: cover;
 	display: block;
+	transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.photo-overlay {
+.apple-photo-card:hover .photo-img {
+	transform: scale(1.04);
+}
+
+.photo-gradient-overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+	pointer-events: none;
 }
 
-.photo-meta-bar {
+.photo-info-bar {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -294,121 +240,165 @@ const nextPhoto = () => {
 	z-index: 2;
 }
 
-.meta-date {
-	font-size: 0.82rem;
-	color: #a3a3a3;
+.photo-pill-date {
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 980px;
+	font-size: 11px;
+	font-weight: 700;
+	background: rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(8px);
+	color: #ffffff;
 	margin-bottom: 8px;
 }
 
-.meta-desc {
-	font-size: 1.05rem;
+.photo-caption {
 	color: #ffffff;
-	line-height: 1.45;
-	font-weight: 500;
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0;
+	line-height: 1.4;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-/* Lightbox */
+/* Warn Modal */
+.warn-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.4);
+	backdrop-filter: blur(12px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 2000;
+	padding: 24px;
+	box-sizing: border-box;
+}
+
+.apple-dialog-card {
+	background: #ffffff;
+	border-radius: var(--apple-radius-card, 24px);
+	padding: 40px;
+	max-width: 460px;
+	width: 100%;
+	text-align: center;
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.dialog-icon-box {
+	margin-bottom: 20px;
+}
+
+.dialog-title {
+	font-size: 22px;
+	font-weight: 700;
+	color: #1d1d1f;
+	margin: 0 0 12px;
+}
+
+.dialog-desc {
+	font-size: 15px;
+	line-height: 1.6;
+	color: #6e6e73;
+	margin: 0 0 28px;
+}
+
+.dialog-actions {
+	display: flex;
+	justify-content: center;
+	gap: 16px;
+}
+
+/* Lightbox Modal */
 .lightbox-backdrop {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background: rgba(0, 0, 0, 0.95);
-	z-index: 4000;
+	background: rgba(0, 0, 0, 0.85);
+	backdrop-filter: blur(16px);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 3000;
 	padding: 32px;
 	box-sizing: border-box;
 }
 
 .lightbox-window {
-	max-width: 1080px;
-	width: 100%;
+	position: relative;
+	max-width: 90vw;
 	max-height: 90vh;
-	background: #121212;
-	border: 1px solid #404040;
-	overflow: hidden;
 	display: flex;
 	flex-direction: column;
-}
-
-.lightbox-header {
-	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	padding: 16px 24px;
-	background: #0a0a0a;
-	border-bottom: 1px solid #262626;
-	font-size: 0.88rem;
-	color: #ffffff;
 }
 
-.close-lb-btn {
-	background: transparent;
-	border: 1px solid #404040;
+.lightbox-close-btn {
+	position: absolute;
+	top: -44px;
+	right: 0;
+	background: rgba(255, 255, 255, 0.2);
+	border: none;
 	color: #ffffff;
-	padding: 6px 12px;
+	font-size: 18px;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
 	cursor: pointer;
-	font-family: inherit;
-}
-
-.close-lb-btn:hover {
-	background: #ffffff;
-	color: #000000;
-}
-
-.lightbox-body {
-	padding: 24px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #000000;
+	backdrop-filter: blur(6px);
+}
+
+.lightbox-image-box {
+	max-height: 75vh;
 	overflow: hidden;
-	max-height: 65vh;
+	border-radius: 18px;
 }
 
-.lb-img {
+.lightbox-img {
 	max-width: 100%;
-	max-height: 60vh;
+	max-height: 75vh;
 	object-fit: contain;
+	display: block;
 }
 
-.lightbox-footer {
+.lightbox-info-row {
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 20px 28px;
-	background: #0a0a0a;
-	border-top: 1px solid #262626;
-	font-size: 0.88rem;
-}
-
-.lb-caption {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
-	padding: 0 20px;
+	color: #ffffff;
+	margin-top: 16px;
 }
 
 .lb-date {
-	font-size: 0.82rem;
-	color: #a3a3a3;
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.6);
 }
 
 .lb-desc {
-	font-size: 1rem;
-	color: #ffffff;
+	font-size: 15px;
+	margin: 4px 0 0;
 }
 
-@media screen and (max-width: 768px) {
-	.photo-metro-tile.span-2 {
-		grid-column: span 1;
+.lb-counter {
+	font-size: 13px;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+@media screen and (max-width: 860px) {
+	.apple-photo-grid {
+		grid-template-columns: 1fr;
 	}
-	.gallery-main-container {
-		padding: 0 20px;
+	.apple-photo-card.span-2 {
+		grid-column: span 1;
 	}
 }
 </style>

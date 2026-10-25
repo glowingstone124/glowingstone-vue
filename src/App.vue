@@ -1,13 +1,15 @@
 <template>
-	<Nav/>
-	<main class="main-frame">
-		<router-view v-slot="{ Component }">
-			<transition name="metro-fade" mode="out-in">
-				<component :is="Component" />
-			</transition>
-		</router-view>
-	</main>
-	<Footer Footermsg="design & code by glowingstone124 // METRO_ASCII_B&W"/>
+	<div class="apple-newsroom-app">
+		<Nav/>
+		<main class="main-frame">
+			<router-view v-slot="{ Component }">
+				<transition name="apple-fade" mode="out-in">
+					<component :is="Component" />
+				</transition>
+			</router-view>
+		</main>
+		<Footer Footermsg="Apple Newsroom Style · Glowingstone Blog"/>
+	</div>
 </template>
 
 <script>
@@ -25,25 +27,37 @@ export default {
 
 <style>
 @import "@/css/main.css";
-@import "@/css/metro-ascii.css";
+@import "@/css/apple-newsroom.css";
+
+.apple-newsroom-app {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--apple-bg);
+}
 
 .main-frame {
 	position: relative;
-	min-height: calc(100vh - 140px);
-	padding-top: 130px;
-	padding-bottom: 140px;
+	flex: 1;
 	width: 100%;
+	padding-top: 108px; /* space for global nav (52px) + newsroom subnav (56px) */
+	padding-bottom: 96px;
 	box-sizing: border-box;
 }
 
-/* Page Transition Animations */
-.metro-fade-enter-active,
-.metro-fade-leave-active {
-	transition: opacity 0.18s ease;
+/* Apple Smooth Page Transition Animations */
+.apple-fade-enter-active,
+.apple-fade-leave-active {
+	transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
-.metro-fade-enter-from,
-.metro-fade-leave-to {
+.apple-fade-enter-from {
 	opacity: 0;
+	transform: translateY(6px);
+}
+
+.apple-fade-leave-to {
+	opacity: 0;
+	transform: translateY(-6px);
 }
 </style>

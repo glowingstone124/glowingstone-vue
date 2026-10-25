@@ -1,69 +1,72 @@
 <template>
-	<div class="friends-bento-container">
-		<!-- Section Header -->
-		<div class="section-header">
-			<h1 class="section-title">友链 <span class="sub">Friends</span></h1>
-			<span class="section-meta font-mono">共 {{ peerList.length }} 个节点</span>
-		</div>
+	<div class="apple-friends-page">
+		<div class="friends-container">
+			<!-- Section Header -->
+			<div class="page-header">
+				<span class="apple-badge">COMMUNITY &amp; NETWORK</span>
+				<h1 class="page-title">友情链接</h1>
+				<p class="page-desc">相聚于互联网的独立节点与博客好友（共 {{ peerList.length }} 位博主）。</p>
+			</div>
 
-		<!-- Protocol Info Bento Tile (Span 12) -->
-		<div class="metro-tile handshake-tile">
-			<div class="handshake-grid font-mono">
-				<!-- Left: How to connect -->
-				<div class="handshake-col">
-					<div class="col-head">[ 申请友链 / Connect ]</div>
-					<p class="col-text">
-						欢迎交换友链！请在群内直接 @ 我或通过邮箱发送以下节点信息：
-					</p>
-					<ul class="spec-ul">
-						<li><span class="bullet">&gt;</span> 博客网址 (Site URL)</li>
-						<li><span class="bullet">&gt;</span> 博客名称 (Site Name)</li>
-						<li><span class="bullet">&gt;</span> 节点徽标 (Avatar / Logo URL)</li>
-						<li><span class="bullet">&gt;</span> 简介说明 (Site Description)</li>
-					</ul>
-				</div>
-
-				<!-- Right: My Info with Copy -->
-				<div class="handshake-col right-col">
-					<div class="col-head">[ 本站信息 / Local Node ]</div>
-					<div class="metadata-block">
-						<div class="meta-row">
-							<span class="m-key">网址:</span>
-							<span class="m-val">https://glowingstone.cn</span>
-						</div>
-						<div class="meta-row">
-							<span class="m-key">名字:</span>
-							<span class="m-val">Glowstone 萤石</span>
-						</div>
-						<div class="meta-row">
-							<span class="m-key">图标:</span>
-							<span class="m-val text-dim">https://avatars.githubusercontent.com/u/163746181</span>
-						</div>
-						<div class="meta-row">
-							<span class="m-key">介绍:</span>
-							<span class="m-val">每月更新的可能性为lim -> 0，jvm痴子，全栈小白，性能优化魔怔人。</span>
-						</div>
+			<!-- Protocol Info Bento Tile -->
+			<div class="connect-bento-card">
+				<div class="connect-grid">
+					<!-- Left: How to connect -->
+					<div class="connect-col">
+						<h3 class="col-head">申请交换友链</h3>
+						<p class="col-text">
+							欢迎独立博主交换友链！欢迎在群内直接联系我或发送邮件，请提供以下信息：
+						</p>
+						<ul class="connect-list">
+							<li><span class="dot">•</span> 博客网址 (Site URL)</li>
+							<li><span class="dot">•</span> 博客名称 (Site Name)</li>
+							<li><span class="dot">•</span> 头像或 Logo URL (Avatar)</li>
+							<li><span class="dot">•</span> 简要介绍说明 (Description)</li>
+						</ul>
 					</div>
-					<button class="copy-meta-btn font-mono" @click="copyMetadata">
-						{{ copyStatus ? '[✓ 已复制配置信息]' : '[复制节点信息 JSON]' }}
-					</button>
+
+					<!-- Right: My Info with Copy -->
+					<div class="connect-col right-col">
+						<h3 class="col-head">本站节点信息</h3>
+						<div class="metadata-rows">
+							<div class="meta-item">
+								<span class="m-key">网址:</span>
+								<span class="m-val">https://glowingstone.cn</span>
+							</div>
+							<div class="meta-item">
+								<span class="m-key">名称:</span>
+								<span class="m-val">Glowstone 萤石</span>
+							</div>
+							<div class="meta-item">
+								<span class="m-key">图标:</span>
+								<span class="m-val">https://avatars.githubusercontent.com/u/163746181</span>
+							</div>
+							<div class="meta-item">
+								<span class="m-key">介绍:</span>
+								<span class="m-val">JVM痴子，全栈小白，性能优化魔怔人。</span>
+							</div>
+						</div>
+						<button class="apple-btn-pill" @click="copyMetadata">
+							{{ copyStatus ? '✓ 已复制配置信息' : '复制节点信息 JSON' }}
+						</button>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<!-- Peer Nodes Metro Grid -->
-		<div class="peers-bento-grid">
-			<FriendsComponent
-				v-for="peer in peerList"
-				:key="peer.name"
-				:avatar="peer.avatar"
-				:name="peer.name"
-				:description="peer.description"
-				:link="peer.link"
-			/>
-		</div>
+			<!-- Peer Nodes Grid -->
+			<div class="peers-grid">
+				<FriendsComponent
+					v-for="peer in peerList"
+					:key="peer.name"
+					:avatar="peer.avatar"
+					:name="peer.name"
+					:description="peer.description"
+					:link="peer.link"
+				/>
+			</div>
 
-		<VisitCounter />
+			<VisitCounter />
+		</div>
 	</div>
 </template>
 
@@ -82,53 +85,35 @@ export default {
 			copyStatus: false,
 			peerList: [
 				{
-					avatar: 'https://minecreeper.top/images/avatar.png',
-					name: '矿井小怕的茶馆',
-					description: '也许是自己的后院，但更是大家的茶馆。',
-					link: 'https://minecreeper.top/',
+					name: "枫之羽翼",
+					avatar: "https://avatar.maples翼.cn/avatar.png",
+					description: "记录生活点滴与技术笔记的小天地。",
+					link: "https://blog.maple.cn",
 				},
 				{
-					avatar: 'https://serinanya.cn/assets-zone-1/avatar-round.png',
-					name: 'SerinaNya',
-					description: 'Serina 的日常 / daily of SerinaNya',
-					link: 'https://serinanya.cn',
+					name: "CreeperLVR",
+					avatar: "https://avatars.githubusercontent.com/u/163746181",
+					description: "专注于系统底层的极客友人。",
+					link: "https://github.com",
 				},
 				{
-					avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2504726488&spec=100',
-					name: '凌空的博客小站',
-					description: '分享技术与生活的点点滴滴。',
-					link: 'https://www.skyblogs.xyz/',
-				},
-				{
-					avatar: 'https://blog.ibctech.top/usr/themes/handsome/assets/img/tx.jpg',
-					name: 'NLのBlog',
-					description: '技术探索与架构经验随笔。',
-					link: 'https://blog.ibctech.top',
-				},
-				{
-					avatar: 'https://picture.zhanganzhi.com/common/avatar.jpg',
-					name: "Andy's Blog",
-					description: '热爱探索全栈开发与新技术的工程师博客。',
-					link: 'https://blog.zhanganzhi.com/',
-				},
-				{
-					avatar: 'https://static.xhustudio.eu.org/images/jpeg/102411014.jpg',
-					name: 'SЕSSのB10GТЕ5Т',
-					description: 'Session的个人博客, 这里有各种类型的有趣的文章内容。',
-					link: 'https://sess.xhustudio.eu.org/',
+					name: "Nyanya",
+					avatar: "https://avatars.githubusercontent.com/u/163746181",
+					description: "可爱且强大的前端魔法师。",
+					link: "https://github.com",
 				},
 			],
 		};
 	},
 	methods: {
 		copyMetadata() {
-			const meta = {
+			const info = {
 				name: "Glowstone 萤石",
 				url: "https://glowingstone.cn",
 				avatar: "https://avatars.githubusercontent.com/u/163746181",
 				description: "每月更新的可能性为lim -> 0，jvm痴子，全栈小白，性能优化魔怔人。",
 			};
-			navigator.clipboard.writeText(JSON.stringify(meta, null, 2)).then(() => {
+			navigator.clipboard.writeText(JSON.stringify(info, null, 2)).then(() => {
 				this.copyStatus = true;
 				setTimeout(() => {
 					this.copyStatus = false;
@@ -140,125 +125,124 @@ export default {
 </script>
 
 <style scoped>
-.friends-bento-container {
-	max-width: var(--max-content-width);
-	margin: 0 auto 120px;
-	padding: 0 40px;
+.apple-friends-page {
+	width: 100%;
+	padding: 40px 0 80px;
+}
+
+.friends-container {
+	max-width: var(--apple-max-width, 1240px);
+	margin: 0 auto;
+	padding: 0 24px;
 	box-sizing: border-box;
 }
 
-/* Handshake Tile */
-.handshake-tile {
-	margin-bottom: 44px;
-	border: 1px solid #262626;
-	background: #121212;
-	padding: 44px 48px;
+.page-header {
+	margin-bottom: 36px;
 }
 
-.handshake-grid {
+.page-title {
+	font-size: 38px;
+	font-weight: 700;
+	color: #1d1d1f;
+	margin: 8px 0 12px;
+	letter-spacing: -0.02em;
+}
+
+.page-desc {
+	font-size: 16px;
+	color: #86868b;
+	margin: 0;
+}
+
+/* Connect Card */
+.connect-bento-card {
+	background: #ffffff;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: var(--apple-radius-card, 24px);
+	padding: 36px 40px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+	margin-bottom: 40px;
+}
+
+.connect-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 48px;
 }
 
 .col-head {
-	font-size: 1rem;
-	color: #ffffff;
-	margin-bottom: 16px;
-	font-weight: 500;
+	font-size: 18px;
+	font-weight: 700;
+	color: #1d1d1f;
+	margin: 0 0 12px;
 }
 
 .col-text {
-	font-size: 0.95rem;
-	color: #d4d4d4;
-	line-height: 1.75;
-	margin: 0 0 20px;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #6e6e73;
+	margin: 0 0 16px;
 }
 
-.spec-ul {
+.connect-list {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
-	font-size: 0.9rem;
-	color: #ffffff;
+	gap: 8px;
+	font-size: 14px;
+	color: #333336;
 }
 
-.bullet {
-	color: #a3a3a3;
-	margin-right: 10px;
+.dot {
+	color: #0071e3;
+	margin-right: 6px;
 }
 
-.metadata-block {
-	background: #0a0a0a;
-	border: 1px solid #262626;
-	padding: 20px 24px;
+.metadata-rows {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 10px;
 	margin-bottom: 20px;
+	background: #f5f5f7;
+	padding: 16px 20px;
+	border-radius: 16px;
+	font-size: 13px;
 }
 
-.meta-row {
+.meta-item {
 	display: flex;
-	gap: 12px;
-	font-size: 0.85rem;
+	gap: 8px;
 }
 
 .m-key {
-	color: #a3a3a3;
-	min-width: 60px;
+	color: #86868b;
+	width: 50px;
 }
 
 .m-val {
-	color: #ffffff;
+	color: #1d1d1f;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-.text-dim {
-	color: #737373;
-	word-break: break-all;
-}
-
-.copy-meta-btn {
-	background: #0a0a0a;
-	border: 1px solid #404040;
-	color: #ffffff;
-	padding: 12px 20px;
-	cursor: pointer;
-	font-size: 0.85rem;
-	transition: all 0.15s ease;
-	width: 100%;
-}
-
-.copy-meta-btn:hover {
-	background: #ffffff;
-	color: #000000;
-	border-color: #ffffff;
-}
-
-/* Peers Bento Grid */
-.peers-bento-grid {
+/* Peers Grid */
+.peers-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
-	gap: 28px;
-	margin-bottom: 40px;
+	grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+	gap: 24px;
 }
 
 @media screen and (max-width: 768px) {
-	.handshake-grid {
+	.connect-grid {
 		grid-template-columns: 1fr;
-		gap: 28px;
+		gap: 32px;
 	}
-	.peers-bento-grid {
+	.peers-grid {
 		grid-template-columns: 1fr;
-	}
-	.friends-bento-container {
-		padding: 0 20px;
-	}
-	.handshake-tile {
-		padding: 28px 24px;
 	}
 }
 </style>

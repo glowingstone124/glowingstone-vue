@@ -1,63 +1,103 @@
 <template>
-	<header class="metro-navbar" :class="{ 'scrolled': isScrolled }">
-		<div class="nav-container">
-			<!-- Brand -->
-			<router-link to="/" class="nav-brand">
-				<img src="https://avatars.githubusercontent.com/u/163746181" alt="Logo" class="nav-logo" />
-				<span class="brand-title">Glowstone <span class="brand-sub">萤石</span></span>
-			</router-link>
-
-			<!-- Desktop Metro Navigation Links -->
-			<nav class="desktop-nav font-mono">
-				<router-link
-					v-for="item in navItems"
-					:key="item.path"
-					:to="item.path"
-					class="metro-nav-item"
-					:class="{ active: isRouteActive(item.path) }"
-					@mouseenter="triggerScramble($event, item.name)"
-				>
-					<span class="bracket">[</span>
-					<span class="nav-text">{{ item.name }}</span>
-					<span class="bracket">]</span>
+	<header class="apple-header-wrapper" :class="{ 'scrolled': isScrolled }">
+		<!-- 1. Apple Global Navigation Bar -->
+		<div class="apple-global-nav">
+			<div class="global-nav-container">
+				<!-- Apple-style Logo -->
+				<router-link to="/" class="global-logo" title="Glowstone Newsroom">
+					<span class="logo-text">Glowstone</span>
 				</router-link>
-			</nav>
 
-			<!-- Terminal HUD Clock & Status -->
-			<div class="nav-hud font-mono">
-				<span class="hud-status-badge">
-					<span class="hud-dot"></span>SYS:ONLINE
-				</span>
-				<span class="hud-sep">//</span>
-				<span class="hud-clock">{{ currentTime }}</span>
+				<!-- Global Menu Items -->
+				<nav class="global-menu">
+					<router-link
+						v-for="item in navItems"
+						:key="item.path"
+						:to="item.path"
+						class="global-nav-link"
+						:class="{ active: isRouteActive(item.path) }"
+					>
+						{{ item.name }}
+					</router-link>
+				</nav>
+
+				<!-- Mobile Menu Toggle Button -->
+				<button class="mobile-menu-btn" @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Toggle navigation">
+					<svg v-if="!mobileMenuOpen" width="18" height="18" viewBox="0 0 18 18" fill="none">
+						<path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+					</svg>
+					<svg v-else width="18" height="18" viewBox="0 0 18 18" fill="none">
+						<path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+					</svg>
+				</button>
 			</div>
-
-			<!-- Mobile Toggle -->
-			<button class="mobile-toggle-btn font-mono" @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Menu">
-				{{ mobileMenuOpen ? '[✕ 关]' : '[☰ 单]' }}
-			</button>
 		</div>
 
-		<!-- Mobile Navigation Drawer -->
-		<transition name="drawer-fade">
-			<div v-if="mobileMenuOpen" class="mobile-drawer" @click.self="mobileMenuOpen = false">
-				<div class="drawer-panel font-mono">
-					<div class="drawer-header">
-						<span>// 导航目录</span>
-						<button class="drawer-close" @click="mobileMenuOpen = false">[✕]</button>
+		<!-- 2. Apple Newsroom Sub-Header (Subnav) -->
+		<div class="apple-newsroom-subnav">
+			<div class="subnav-container">
+				<!-- Left: Newsroom Brand -->
+				<div class="subnav-brand">
+					<router-link to="/" class="newsroom-title">
+						Newsroom
+					</router-link>
+				</div>
+
+				<!-- Right: Quick Filters & Search Pill -->
+				<div class="subnav-actions">
+					<div class="subnav-categories">
+						<router-link to="/archive" class="subnav-cat-link">全部文章</router-link>
+						<router-link to="/archive?category=技术" class="subnav-cat-link">技术</router-link>
+						<router-link to="/archive?category=闲聊" class="subnav-cat-link">随笔</router-link>
+						<router-link to="/about" class="subnav-cat-link">关于萤石</router-link>
 					</div>
-					<div class="drawer-nav-list">
+
+					<!-- Search Capsule Input -->
+					<div class="search-capsule" @click="focusSearch">
+						<svg class="search-icon" width="14" height="14" viewBox="0 0 16 16" fill="none">
+							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" fill="currentColor"/>
+						</svg>
+						<input
+							ref="searchInput"
+							v-model="searchQuery"
+							type="text"
+							placeholder="Search Newsroom"
+							class="search-input"
+							@keydown.enter="handleSearch"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Mobile Navigation Overlay Drawer -->
+		<transition name="apple-drawer">
+			<div v-if="mobileMenuOpen" class="mobile-drawer-overlay" @click.self="mobileMenuOpen = false">
+				<div class="mobile-drawer-content">
+					<div class="drawer-header">
+						<span class="drawer-title">Newsroom Menu</span>
+						<button class="drawer-close-btn" @click="mobileMenuOpen = false">✕</button>
+					</div>
+					<nav class="mobile-nav-list">
 						<router-link
 							v-for="item in navItems"
 							:key="'m-' + item.path"
 							:to="item.path"
-							class="drawer-nav-item"
+							class="mobile-nav-item"
 							:class="{ active: isRouteActive(item.path) }"
 							@click="mobileMenuOpen = false"
 						>
-							<span class="item-name">{{ item.name }}</span>
-							<span class="item-path">{{ item.path }}</span>
+							{{ item.name }}
 						</router-link>
+					</nav>
+					<div class="drawer-search">
+						<input
+							v-model="searchQuery"
+							type="text"
+							placeholder="Search Newsroom..."
+							class="mobile-search-input"
+							@keydown.enter="handleSearch"
+						/>
 					</div>
 				</div>
 			</div>
@@ -72,315 +112,344 @@ export default {
 		return {
 			isScrolled: false,
 			mobileMenuOpen: false,
-			currentTime: '',
-			clockTimer: null,
+			searchQuery: '',
 			navItems: [
-				{ path: '/', name: '主页' },
+				{ path: '/', name: '首页' },
 				{ path: '/archive', name: '文章' },
-				{ path: '/friends', name: '友链' },
 				{ path: '/gallery', name: '画廊' },
+				{ path: '/friends', name: '友链' },
 				{ path: '/about', name: '关于' },
-				{ path: '/announcement', name: '特别声明' },
+				{ path: '/announcement', name: '声明' },
 			],
 		};
 	},
 	mounted() {
 		window.addEventListener('scroll', this.handleScroll, { passive: true });
-		this.updateClock();
-		this.clockTimer = setInterval(this.updateClock, 1000);
 	},
 	beforeUnmount() {
 		window.removeEventListener('scroll', this.handleScroll);
-		if (this.clockTimer) clearInterval(this.clockTimer);
 	},
 	methods: {
-		updateClock() {
-			const now = new Date();
-			const h = String(now.getHours()).padStart(2, '0');
-			const m = String(now.getMinutes()).padStart(2, '0');
-			const s = String(now.getSeconds()).padStart(2, '0');
-			this.currentTime = `${h}:${m}:${s}`;
-		},
 		handleScroll() {
-			this.isScrolled = window.scrollY > 15;
+			this.isScrolled = window.scrollY > 20;
 		},
 		isRouteActive(path) {
-			if (path === '/') return this.$route.path === '/';
+			if (path === '/') {
+				return this.$route.path === '/';
+			}
 			return this.$route.path.startsWith(path);
 		},
-		triggerScramble(event, originalText) {
-			const el = event.currentTarget.querySelector('.nav-text');
-			if (!el || el._scrambling) return;
-			el._scrambling = true;
-			const chars = '01#%&*?!/[]_—+<>';
-			let frame = 0;
-			const totalFrames = 8;
-			const interval = setInterval(() => {
-				frame++;
-				if (frame >= totalFrames) {
-					clearInterval(interval);
-					el.innerText = originalText;
-					el._scrambling = false;
-				} else {
-					el.innerText = originalText
-						.split('')
-						.map((c, i) => (frame > i * 2 ? c : chars[Math.floor(Math.random() * chars.length)]))
-						.join('');
-				}
-			}, 24);
+		focusSearch() {
+			if (this.$refs.searchInput) {
+				this.$refs.searchInput.focus();
+			}
 		},
+		handleSearch() {
+			if (this.searchQuery.trim()) {
+				this.$router.push({
+					path: '/archive',
+					query: { q: this.searchQuery.trim() }
+				});
+				this.mobileMenuOpen = false;
+			}
+		}
 	},
 };
 </script>
 
 <style scoped>
-.metro-navbar {
+.apple-header-wrapper {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 64px;
 	z-index: 1000;
-	background: #0a0a0a;
-	border-bottom: 1px solid #262626;
-	transition: border-color 0.15s ease;
+	transition: all 0.25s ease;
 }
 
-.metro-navbar.scrolled {
-	background: #000000;
-	border-bottom-color: #404040;
+/* 1. Global Nav (Apple Dark Nav Bar) */
+.apple-global-nav {
+	width: 100%;
+	height: var(--apple-nav-height, 52px);
+	background: rgba(22, 22, 23, 0.92);
+	backdrop-filter: saturate(180%) blur(20px);
+	-webkit-backdrop-filter: saturate(180%) blur(20px);
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.nav-container {
-	max-width: var(--max-content-width);
+.global-nav-container {
+	max-width: var(--apple-max-width, 1240px);
+	width: 100%;
 	margin: 0 auto;
-	height: 100%;
+	padding: 0 24px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 32px;
-	box-sizing: border-box;
 }
 
-/* Brand */
-.nav-brand {
+.global-logo {
 	display: flex;
 	align-items: center;
-	gap: 12px;
-	text-decoration: none;
-	color: #ffffff;
-}
-
-.nav-logo {
-	width: 32px;
-	height: 32px;
-	border: 1px solid #404040;
-	object-fit: cover;
-	display: block;
-}
-
-.brand-title {
-	font-size: 1.15rem;
+	gap: 8px;
+	color: #f5f5f7;
+	opacity: 0.9;
+	transition: opacity 0.15s ease;
 	font-weight: 500;
-	letter-spacing: -0.3px;
+	font-size: 14px;
 }
 
-.brand-sub {
-	color: #a3a3a3;
-	font-weight: 300;
-	margin-left: 4px;
+.global-logo:hover {
+	opacity: 1;
+	color: #ffffff;
 }
 
-/* Desktop Navigation */
-.desktop-nav {
+.apple-icon {
+	fill: currentColor;
+}
+
+.logo-text {
+	letter-spacing: -0.01em;
+}
+
+.global-menu {
 	display: flex;
 	align-items: center;
-	gap: 4px;
+	gap: 28px;
 }
 
-.metro-nav-item {
-	display: inline-flex;
-	align-items: center;
-	gap: 4px;
-	padding: 8px 16px;
-	text-decoration: none;
-	color: #a3a3a3;
-	font-size: 0.88rem;
-	border: 1px solid transparent;
-	background: transparent;
-	transition: all 0.15s ease;
+.global-nav-link {
+	color: #d2d2d7;
+	font-size: 13px;
+	font-weight: 400;
+	letter-spacing: -0.01em;
+	transition: color 0.15s ease;
 }
 
-.metro-nav-item .bracket {
-	color: #525252;
-}
-
-.metro-nav-item:hover {
+.global-nav-link:hover,
+.global-nav-link.active {
 	color: #ffffff;
-	background: #171717;
-	border-color: #404040;
 }
 
-.metro-nav-item.active {
-	color: #000000;
-	background: #ffffff;
-	border-color: #ffffff;
-	font-weight: 500;
-}
-
-/* Terminal HUD Clock & Status */
-.nav-hud {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	font-size: 0.8rem;
-	color: #737373;
-	border-left: 1px solid #262626;
-	padding-left: 16px;
-	margin-left: 8px;
-	user-select: none;
-}
-
-.hud-status-badge {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	color: #a3a3a3;
-	letter-spacing: 0.5px;
-}
-
-.hud-dot {
-	width: 5px;
-	height: 5px;
-	background: #ffffff;
-	display: inline-block;
-	animation: hud-blink 1.8s infinite ease-in-out;
-}
-
-.hud-sep {
-	color: #404040;
-}
-
-.hud-clock {
-	color: #ffffff;
-	letter-spacing: 1px;
-}
-
-@keyframes hud-blink {
-	0%, 100% { opacity: 1; }
-	50% { opacity: 0.25; }
-}
-
-.metro-nav-item.active .bracket {
-	color: #000000;
-}
-
-/* Mobile Toggle */
-.mobile-toggle-btn {
+.mobile-menu-btn {
 	display: none;
-	background: #121212;
-	border: 1px solid #404040;
-	color: #ffffff;
-	padding: 6px 12px;
+	background: none;
+	border: none;
+	color: #d2d2d7;
 	cursor: pointer;
-	font-size: 0.85rem;
+	padding: 6px;
 }
 
-.mobile-toggle-btn:hover {
-	background: #262626;
-}
-
-/* Mobile Drawer */
-.mobile-drawer {
-	position: fixed;
-	top: 64px;
-	left: 0;
+/* 2. Apple Newsroom Sub-Header */
+.apple-newsroom-subnav {
 	width: 100%;
-	height: calc(100vh - 64px);
-	background: rgba(0, 0, 0, 0.95);
-	z-index: 999;
-	padding: 24px;
-	box-sizing: border-box;
+	height: var(--apple-subnav-height, 56px);
+	background: rgba(255, 255, 255, 0.88);
+	backdrop-filter: saturate(180%) blur(20px);
+	-webkit-backdrop-filter: saturate(180%) blur(20px);
+	border-bottom: 1px solid var(--apple-border, #e5e5ea);
+	display: flex;
+	align-items: center;
+	transition: box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
-.drawer-panel {
-	max-width: 500px;
+.apple-header-wrapper.scrolled .apple-newsroom-subnav {
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+	background: rgba(255, 255, 255, 0.94);
+}
+
+.subnav-container {
+	max-width: var(--apple-max-width, 1240px);
+	width: 100%;
 	margin: 0 auto;
-	background: #121212;
-	border: 1px solid #404040;
-	padding: 20px;
+	padding: 0 24px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.newsroom-title {
+	font-size: 24px;
+	font-weight: 700;
+	color: var(--apple-text-primary, #1d1d1f);
+	letter-spacing: -0.02em;
+	transition: opacity 0.15s ease;
+}
+
+.newsroom-title:hover {
+	opacity: 0.8;
+}
+
+.subnav-actions {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+}
+
+.subnav-categories {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+}
+
+.subnav-cat-link {
+	font-size: 13px;
+	color: var(--apple-text-secondary, #86868b);
+	font-weight: 400;
+	transition: color 0.15s ease;
+}
+
+.subnav-cat-link:hover {
+	color: var(--apple-text-primary, #1d1d1f);
+}
+
+/* Search Capsule */
+.search-capsule {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: #f5f5f7;
+	border-radius: var(--apple-radius-pill, 980px);
+	padding: 6px 14px;
+	transition: background-color 0.2s ease, width 0.2s ease, box-shadow 0.2s ease;
+	border: 1px solid transparent;
+}
+
+.search-capsule:focus-within {
+	background: #ffffff;
+	border-color: #d2d2d7;
+	box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+.search-icon {
+	color: #86868b;
+	flex-shrink: 0;
+}
+
+.search-input {
+	border: none;
+	background: transparent;
+	font-size: 13px;
+	color: var(--apple-text-primary, #1d1d1f);
+	outline: none;
+	width: 120px;
+	transition: width 0.2s ease;
+}
+
+.search-capsule:focus-within .search-input {
+	width: 160px;
+}
+
+.search-input::placeholder {
+	color: #86868b;
+}
+
+/* Mobile Drawer Overlay */
+.mobile-drawer-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.4);
+	backdrop-filter: blur(8px);
+	z-index: 2000;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.mobile-drawer-content {
+	width: 80%;
+	max-width: 320px;
+	height: 100%;
+	background: #ffffff;
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
 }
 
 .drawer-header {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	color: #a3a3a3;
-	font-size: 0.85rem;
-	padding-bottom: 14px;
-	border-bottom: 1px solid #262626;
-	margin-bottom: 14px;
+	justify-content: space-between;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #e5e5ea;
 }
 
-.drawer-close {
-	background: transparent;
+.drawer-title {
+	font-size: 18px;
+	font-weight: 700;
+	color: #1d1d1f;
+}
+
+.drawer-close-btn {
+	background: none;
 	border: none;
-	color: #ffffff;
+	font-size: 18px;
+	color: #86868b;
 	cursor: pointer;
-	font-family: inherit;
-	font-size: 0.9rem;
 }
 
-.drawer-nav-list {
+.mobile-nav-list {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 16px;
 }
 
-.drawer-nav-item {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 14px 16px;
-	background: #0a0a0a;
-	border: 1px solid #262626;
-	text-decoration: none;
-	color: #ffffff;
-	font-size: 0.95rem;
+.mobile-nav-item {
+	font-size: 16px;
+	font-weight: 500;
+	color: #1d1d1f;
+	padding: 8px 0;
 }
 
-.drawer-nav-item.active {
-	background: #ffffff;
-	color: #000000;
-	border-color: #ffffff;
+.mobile-nav-item.active {
+	color: var(--apple-accent, #0071e3);
 }
 
-.drawer-nav-item .item-path {
-	color: #737373;
-	font-size: 0.78rem;
+.mobile-search-input {
+	width: 100%;
+	padding: 10px 14px;
+	border-radius: 980px;
+	border: 1px solid #e5e5ea;
+	background: #f5f5f7;
+	font-size: 14px;
+	outline: none;
 }
 
-.drawer-nav-item.active .item-path {
-	color: #525252;
+.apple-drawer-enter-active,
+.apple-drawer-leave-active {
+	transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.drawer-fade-enter-active,
-.drawer-fade-leave-active {
-	transition: opacity 0.15s ease;
-}
-
-.drawer-fade-enter-from,
-.drawer-fade-leave-to {
+.apple-drawer-enter-from,
+.apple-drawer-leave-to {
 	opacity: 0;
+	transform: translateX(100%);
 }
 
-@media screen and (max-width: 820px) {
-	.desktop-nav,
-	.nav-hud {
+@media screen and (max-width: 860px) {
+	.global-menu {
 		display: none;
 	}
-	.mobile-toggle-btn {
+	.mobile-menu-btn {
 		display: block;
+	}
+	.subnav-categories {
+		display: none;
+	}
+	.search-capsule {
+		padding: 5px 10px;
+	}
+	.search-input {
+		width: 100px;
+	}
+	.search-capsule:focus-within .search-input {
+		width: 120px;
 	}
 }
 </style>

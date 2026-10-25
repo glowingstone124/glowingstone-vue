@@ -1,0 +1,169 @@
+/* Apple Newsroom Design System
+   Matches Apple Newsroom (https://www.apple.com/newsroom/)
+   - Clean, luminous white / light gray backgrounds
+   - San Francisco Pro typography with elegant letter spacing & line heights
+   - Large rounded cards (24px - 28px)
+   - Pill badges and buttons (980px radius)
+   - Frosted glass translucent header (backdrop-filter: blur(20px))
+   - Subtle diffuse shadows and hairline borders
+*/
+
+:root {
+  --apple-bg: #ffffff;
+  --apple-bg-subtle: #f5f5f7;
+  --apple-bg-card: #ffffff;
+  --apple-surface: #f5f5f7;
+  --apple-surface-hover: #e8e8ed;
+
+  /* Typography */
+  --apple-text-primary: #1d1d1f;
+  --apple-text-secondary: #86868b;
+  --apple-text-tertiary: #a1a1a6;
+  --apple-link: #0071e3;
+  --apple-link-hover: #0077ed;
+
+  /* Accent & Category Badge Colors */
+  --apple-accent: #0071e3;
+  --apple-accent-light: #e8f2fd;
+  --apple-tag-dark: #1d1d1f;
+  --apple-tag-purple: #7a3ee8;
+  --apple-tag-orange: #f56300;
+  --apple-tag-green: #30b0c7;
+
+  /* Borders & Dividers */
+  --apple-border: #e5e5ea;
+  --apple-border-subtle: rgba(0, 0, 0, 0.06);
+  --apple-border-card: rgba(0, 0, 0, 0.08);
+
+  /* Shadows */
+  --apple-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --apple-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --apple-shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.09);
+
+  /* Border Radii */
+  --apple-radius-hero: 28px;
+  --apple-radius-card: 24px;
+  --apple-radius-thumb: 18px;
+  --apple-radius-sm: 12px;
+  --apple-radius-pill: 980px;
+
+  /* Layout */
+  --apple-max-width: 1240px;
+  --apple-nav-height: 52px;
+  --apple-subnav-height: 56px;
+
+  /* Fonts */
+  --apple-font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --apple-font-mono: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Global Reset for Apple Newsroom */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--apple-bg);
+  color: var(--apple-text-primary);
+  font-family: var(--apple-font-sans);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--apple-text-primary);
+  text-decoration: none;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+/* Apple Buttons */
+.apple-btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 22px;
+  background-color: var(--apple-bg-subtle);
+  color: var(--apple-text-primary);
+  border-radius: var(--apple-radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.18s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.apple-btn-pill:hover {
+  background-color: var(--apple-surface-hover);
+  color: var(--apple-text-primary);
+}
+
+.apple-btn-pill.primary {
+  background-color: var(--apple-accent);
+  color: #ffffff;
+}
+
+.apple-btn-pill.primary:hover {
+  background-color: var(--apple-link-hover);
+}
+
+/* Apple Category Badge / Pill */
+.apple-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--apple-text-secondary);
+}
+
+.apple-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--apple-radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: var(--apple-tag-dark);
+}
+
+.apple-badge-pill.creatives {
+  background: var(--apple-tag-purple);
+}
+
+.apple-badge-pill.environment {
+  background: var(--apple-tag-orange);
+}
+
+.apple-badge-pill.developers {
+  background: var(--apple-accent);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.18);
+  border-radius: 980px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+}

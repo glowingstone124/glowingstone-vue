@@ -1,168 +1,145 @@
 <template>
-	<div class="about-page-wrapper">
-		<!-- Fixed Artwork Backdrop (Pink Floyd x Koishi) -->
-		<div class="about-backdrop" aria-hidden="true">
-			<div class="backdrop-img"></div>
-			<div class="backdrop-overlay"></div>
-		</div>
-
-		<div class="about-bento-container">
-			<!-- Signature Header -->
-			<div class="signature-section">
-				<img src="@/assets/me.svg" class="title-signature" alt="glowingstone signature" />
-			</div>
-
+	<div class="apple-about-page">
+		<div class="about-container">
 			<!-- Section Header -->
-			<div class="section-header">
-				<h1 class="section-title">关于 <span class="sub">About</span></h1>
-				<span class="section-meta font-mono">档案 // DOSSIER</span>
+			<div class="page-header">
+				<span class="apple-badge">BIOGRAPHY &amp; PROFILE</span>
+				<h1 class="page-title">关于萤石</h1>
+				<p class="page-desc">JVM 虚拟机狂热者、后端与系统级程序设计、独立开发与音乐爱好。</p>
 			</div>
 
-		<!-- Bento Grid -->
-		<div class="bento-grid about-grid">
-			<!-- Operator Bio Tile (Span 7) -->
-			<div class="metro-tile col-span-7">
-				<h3 class="tile-title font-mono">[ 我是谁？ / Who am I ]</h3>
-				<div class="bio-body">
-					<div class="bio-id-row">
-						<img src="https://avatars.githubusercontent.com/u/163746181" alt="Avatar" class="bio-avatar" />
-						<div>
-							<h2 class="bio-name">glowingstone <span class="name-sub">萤石</span></h2>
-							<p class="bio-location font-mono">现居上海 // JVM &amp; 系统级架构设计</p>
+			<!-- Bento Grid -->
+			<div class="about-bento-grid">
+				<!-- 1. Operator Bio Tile (Span 7) -->
+				<div class="bento-tile col-span-7 bio-tile">
+					<div class="tile-header">
+						<span class="tile-tag">WHO AM I</span>
+					</div>
+					<div class="bio-main">
+						<div class="bio-avatar-row">
+							<img src="https://avatars.githubusercontent.com/u/163746181" alt="Avatar" class="bio-avatar" />
+							<div>
+								<h2 class="bio-title">glowingstone <span class="sub-name">萤石</span></h2>
+								<p class="bio-subtitle">现居上海 · JVM &amp; 系统级架构设计</p>
+							</div>
+						</div>
+						<p class="bio-paragraph">
+							主要专注于研究 JVM 虚拟机内部机制、Linux/POSIX 规范环境下的高并发网络服务与底层程序架构。业余时间在持续弹奏与研习吉他音乐。
+						</p>
+						<div class="bio-badges">
+							<span class="apple-badge-pill">性能调优</span>
+							<span class="apple-badge-pill creatives">JVM 痴子</span>
+							<span class="apple-badge-pill developers">开源探索</span>
 						</div>
 					</div>
-					<p class="bio-desc">
-						主要专注于研究 JVM 虚拟机运行原理、Linux/POSIX 兼容系统环境下的网络服务与系统级别程序架构，业余时间也在学习吉他。
-					</p>
-					<div class="bio-traits font-mono">
-						<span class="trait-tag">性能优化</span>
-						<span class="trait-tag">JVM 痴子</span>
-						<span class="trait-tag">开源探索</span>
-					</div>
 				</div>
-			</div>
 
-			<!-- Infrastructure & Site Architecture Tile (Span 5) -->
-			<div class="metro-tile col-span-5">
-				<h3 class="tile-title font-mono">[ 关于本站 / About Site ]</h3>
-				<div class="infra-body font-mono">
-					<div class="infra-row">
-						<span class="infra-label">前端技术:</span>
-						<span class="infra-val">Vue 3.5 (Composition API)</span>
+				<!-- 2. Infrastructure & Site Architecture Tile (Span 5) -->
+				<div class="bento-tile col-span-5 infra-tile">
+					<div class="tile-header">
+						<span class="tile-tag">ABOUT THIS SITE</span>
 					</div>
-					<div class="infra-row">
-						<span class="infra-label">界面风格:</span>
-						<span class="infra-val">黑白极简 Metro ASCII</span>
-					</div>
-					<div class="infra-row">
-						<span class="infra-label">网络基础设施:</span>
-						<span class="infra-val">Cloudflare Pages &amp; Workers</span>
-					</div>
-					<div class="infra-row">
-						<span class="infra-label">排版引擎:</span>
-						<span class="infra-val">KaTeX + Marked</span>
-					</div>
-					<div class="infra-row">
-						<span class="infra-label">背景插画:</span>
-						<span class="infra-val">
-							<a href="https://bucket.glowingstone.cn/artworks/pf_koishi_2.png" target="_blank" rel="noopener" class="flat-link">
-								Pink Floyd × Koishi &rarr;
-							</a>
-						</span>
+					<div class="infra-list">
+						<div class="infra-item">
+							<span class="i-key">前端框架</span>
+							<span class="i-val">Vue 3.5 (Composition API)</span>
+						</div>
+						<div class="infra-item">
+							<span class="i-key">视觉风格</span>
+							<span class="i-val">Apple Newsroom 极简美学</span>
+						</div>
+						<div class="infra-item">
+							<span class="i-key">网络架构</span>
+							<span class="i-val">Cloudflare Pages &amp; Workers</span>
+						</div>
+						<div class="infra-item">
+							<span class="i-key">数学排版</span>
+							<span class="i-val">KaTeX + Marked Engine</span>
+						</div>
 					</div>
 
-					<div class="socialify-wrap" @click="redirectToGithub">
+					<div class="github-repo-card" @click="redirectToGithub">
 						<img
-							src="https://socialify.git.ci/glowingstone124/glowingstone-vue/image?description=1&descriptionEditable=%E5%9C%A8github%E4%B8%8A%E6%89%BE%E5%88%B0%E6%88%91&font=Inter&language=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Dark"
+							src="https://socialify.git.ci/glowingstone124/glowingstone-vue/image?description=1&descriptionEditable=%E5%9C%A8github%E4%B8%8A%E6%89%BE%E5%88%B0%E6%88%91&font=Inter&language=1&name=1&owner=1&pattern=Plus&stargazers=1&theme=Light"
 							alt="GitHub Banner"
-							class="socialify-img"
+							class="github-banner-img"
 						/>
-						<span class="img-hint">[点击访问 GitHub 仓库 &rarr;]</span>
 					</div>
 				</div>
-			</div>
 
-			<!-- Music & Guitar Interests Tile (Span 7) -->
-			<div class="metro-tile col-span-7">
-				<h3 class="tile-title font-mono">[ 音乐偏好 / Music ]</h3>
-				<div class="music-body">
+				<!-- 3. Music & Guitar Interests Tile (Span 7) -->
+				<div class="bento-tile col-span-7 music-tile">
+					<div class="tile-header">
+						<span class="tile-tag">MUSIC &amp; GUITAR</span>
+					</div>
 					<p class="music-intro">
-						前卫摇滚，老摇滚，最爱 70 年代至 80 年代的欧美经典乐队，最喜欢 Pink Floyd 和 Led Zeppelin。
-						国内摇滚偏好 Blues 味较重的乐队，例如万能青年旅店。自己也入坑了吉他，购置了一把 Fender Vintage 练习。
+						前卫摇滚与布鲁斯忠实拥趸，热爱 70 至 80 年代经典欧美摇滚乐，最崇尚 Pink Floyd 与 Led Zeppelin。国内摇滚偏好万能青年旅店等厚重叙事乐队。日常使用 Fender Stratocaster Vintage 练习。
 					</p>
+					<div class="music-cards-grid">
+						<div class="music-mini-card">
+							<span class="m-title">Pink Floyd</span>
+							<span class="m-sub">《The Wall》, 《Animals》</span>
+						</div>
+						<div class="music-mini-card">
+							<span class="m-title">Led Zeppelin</span>
+							<span class="m-sub">Hard Rock &amp; Blues</span>
+						</div>
+						<div class="music-mini-card">
+							<span class="m-title">万能青年旅店</span>
+							<span class="m-sub">《冀西南林路行》</span>
+						</div>
+						<div class="music-mini-card">
+							<span class="m-title">Fender Stratocaster</span>
+							<span class="m-sub">Vintage Reissue</span>
+						</div>
+					</div>
+				</div>
 
-					<div class="bands-grid font-mono">
-						<div class="band-card">
-							<span class="band-name">Pink Floyd</span>
-							<span class="band-desc">《The Wall》, 《Animals》</span>
-						</div>
-						<div class="band-card">
-							<span class="band-name">Led Zeppelin</span>
-							<span class="band-desc">Hard Rock &amp; Blues</span>
-						</div>
-						<div class="band-card">
-							<span class="band-name">万能青年旅店</span>
-							<span class="band-desc">《冀西南林路行》</span>
-						</div>
-						<div class="band-card">
-							<span class="band-name">Fender Stratocaster</span>
-							<span class="band-desc">Vintage Reissue</span>
-						</div>
+				<!-- 4. Social Uplink & Contact Tile (Span 5) -->
+				<div class="bento-tile col-span-5 comms-tile">
+					<div class="tile-header">
+						<span class="tile-tag">GET IN TOUCH</span>
+					</div>
+					<p class="comms-intro">欢迎就系统技术、开源或音乐进行交流：</p>
+					<div class="contact-links-list">
+						<a href="https://github.com/glowingstone124" target="_blank" rel="noopener" class="contact-row-btn">
+							<div class="btn-left">
+								<span class="btn-brand">GitHub</span>
+								<span class="btn-handle">@glowingstone124</span>
+							</div>
+							<span class="btn-arrow">&rarr;</span>
+						</a>
+
+						<a href="https://steamcommunity.com/profiles/76561199236874427/" target="_blank" rel="noopener" class="contact-row-btn">
+							<div class="btn-left">
+								<span class="btn-brand">Steam</span>
+								<span class="btn-handle">个人资料库</span>
+							</div>
+							<span class="btn-arrow">&rarr;</span>
+						</a>
+
+						<a href="https://x.com/QuantumOriginal" target="_blank" rel="noopener" class="contact-row-btn">
+							<div class="btn-left">
+								<span class="btn-brand">X / Twitter</span>
+								<span class="btn-handle">@QuantumOriginal</span>
+							</div>
+							<span class="btn-arrow">&rarr;</span>
+						</a>
+
+						<a href="mailto:hanseroffcial@outlook.com" class="contact-row-btn">
+							<div class="btn-left">
+								<span class="btn-brand">Email</span>
+								<span class="btn-handle">hanseroffcial@outlook.com</span>
+							</div>
+							<span class="btn-arrow">&rarr;</span>
+						</a>
 					</div>
 				</div>
 			</div>
 
-			<!-- Social Uplink & Contact Tile (Span 5) -->
-			<div class="metro-tile col-span-5">
-				<h3 class="tile-title font-mono">[ 社交与联络 / Comms ]</h3>
-				<div class="comms-body">
-					<p class="comms-lead">公开社媒账号，欢迎友好互动：</p>
-					<div class="comms-links font-mono">
-						<a
-							href="https://github.com/glowingstone124"
-							target="_blank"
-							rel="noopener"
-							class="comm-btn"
-						>
-							<span class="btn-label">[GITHUB]</span>
-							<span class="btn-target">@glowingstone124 &rarr;</span>
-						</a>
-
-						<a
-							href="https://steamcommunity.com/profiles/76561199236874427/"
-							target="_blank"
-							rel="noopener"
-							class="comm-btn"
-						>
-							<span class="btn-label">[STEAM]</span>
-							<span class="btn-target">Steam 个人主页 &rarr;</span>
-						</a>
-
-						<a
-							href="https://x.com/QuantumOriginal"
-							target="_blank"
-							rel="noopener"
-							class="comm-btn"
-						>
-							<span class="btn-label">[X / TWITTER]</span>
-							<span class="btn-target">@QuantumOriginal &rarr;</span>
-						</a>
-
-						<a
-							href="mailto:hanseroffcial@outlook.com"
-							class="comm-btn"
-						>
-							<span class="btn-label">[EMAIL]</span>
-							<span class="btn-target">hanseroffcial@outlook.com ✉</span>
-						</a>
-					</div>
-				</div>
-			</div>
+			<VisitCounter />
 		</div>
-
-		<VisitCounter />
 	</div>
-</div>
 </template>
 
 <script>
@@ -180,286 +157,255 @@ export default {
 </script>
 
 <style scoped>
-/* Page Wrapper */
-.about-page-wrapper {
-	position: relative;
+.apple-about-page {
 	width: 100%;
-	min-height: 100vh;
+	padding: 40px 0 80px;
 }
 
-/* Fixed Artwork Backdrop */
-.about-backdrop {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	z-index: 0;
-	pointer-events: none;
-	overflow: hidden;
-}
-
-.backdrop-img {
-	width: 100%;
-	height: 100%;
-	background-image: url("https://bucket.glowingstone.cn/artworks/pf_koishi_2.png");
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	opacity: 0.38;
-	filter: contrast(1.05) brightness(0.9);
-}
-
-.backdrop-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: radial-gradient(circle at 50% 30%, rgba(10, 10, 10, 0.45) 0%, rgba(10, 10, 10, 0.88) 75%, #0a0a0a 100%);
-}
-
-.about-bento-container {
-	position: relative;
-	z-index: 1;
-	max-width: var(--max-content-width);
-	margin: 0 auto 120px;
-	padding: 0 40px;
+.about-container {
+	max-width: var(--apple-max-width, 1240px);
+	margin: 0 auto;
+	padding: 0 24px;
 	box-sizing: border-box;
 }
 
-/* Frosted Tiles over Backdrop */
-.metro-tile {
-	background: rgba(18, 18, 18, 0.88);
-	backdrop-filter: blur(14px);
-	-webkit-backdrop-filter: blur(14px);
-	border: 1px solid #333333;
+.page-header {
+	margin-bottom: 36px;
 }
 
-.metro-tile:hover {
-	background: rgba(26, 26, 26, 0.94);
-	border-color: #ffffff;
+.page-title {
+	font-size: 38px;
+	font-weight: 700;
+	color: #1d1d1f;
+	margin: 8px 0 12px;
+	letter-spacing: -0.02em;
 }
 
-/* Handwritten Signature Section */
-.signature-section {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 85px 0 105px;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-	margin-bottom: 60px;
-}
-
-.title-signature {
-	max-width: 720px;
-	width: 100%;
-	height: auto;
-	display: block;
-}
-
-/* Tile Titles */
-.tile-title {
-	margin: 0 0 24px;
-	font-size: 1.05rem;
-	color: #ffffff;
-	font-weight: 500;
-}
-
-/* Bio Tile */
-.bio-id-row {
-	display: flex;
-	align-items: center;
-	gap: 24px;
-	margin-bottom: 24px;
-}
-
-.bio-avatar {
-	width: 72px;
-	height: 72px;
-	border: 1px solid #404040;
-	object-fit: cover;
-}
-
-.bio-name {
-	font-size: 1.8rem;
-	margin: 0 0 6px;
-	color: #ffffff;
-}
-
-.name-sub {
-	color: #a3a3a3;
-	font-weight: 300;
-}
-
-.bio-location {
-	font-size: 0.88rem;
-	color: #a3a3a3;
+.page-desc {
+	font-size: 16px;
+	color: #86868b;
 	margin: 0;
 }
 
-.bio-desc {
-	font-size: 1.05rem;
-	line-height: 1.85;
-	color: #d4d4d4;
-	margin-bottom: 28px;
+/* Bento Grid */
+.about-bento-grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: 24px;
 }
 
-.bio-traits {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 12px;
-}
+.col-span-7 { grid-column: span 7; }
+.col-span-5 { grid-column: span 5; }
 
-.trait-tag {
-	font-size: 0.85rem;
-	background: #0a0a0a;
-	border: 1px solid #333333;
-	color: #d4d4d4;
-	padding: 6px 14px;
-}
-
-/* Infrastructure */
-.infra-body {
+.bento-tile {
+	background: #ffffff;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: var(--apple-radius-card, 24px);
+	padding: 32px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	justify-content: space-between;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.infra-row {
+.bento-tile:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+}
+
+.tile-header {
+	margin-bottom: 20px;
+}
+
+.tile-tag {
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	color: #86868b;
+	text-transform: uppercase;
+}
+
+/* Bio */
+.bio-avatar-row {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	margin-bottom: 18px;
+}
+
+.bio-avatar {
+	width: 68px;
+	height: 68px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid #e5e5ea;
+}
+
+.bio-title {
+	font-size: 22px;
+	font-weight: 700;
+	color: #1d1d1f;
+	margin: 0;
+}
+
+.sub-name {
+	font-size: 16px;
+	color: #86868b;
+	font-weight: 400;
+}
+
+.bio-subtitle {
+	font-size: 13px;
+	color: #86868b;
+	margin: 4px 0 0;
+}
+
+.bio-paragraph {
+	font-size: 15px;
+	line-height: 1.7;
+	color: #515154;
+	margin: 0 0 20px;
+}
+
+.bio-badges {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+/* Infra */
+.infra-list {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-bottom: 20px;
+}
+
+.infra-item {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
-	font-size: 0.88rem;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #262626;
+	padding-bottom: 8px;
+	border-bottom: 1px solid #f0f0f2;
+	font-size: 13px;
 }
 
-.infra-label {
-	color: #a3a3a3;
+.i-key {
+	color: #86868b;
 }
 
-.infra-val {
-	color: #ffffff;
+.i-val {
+	color: #1d1d1f;
+	font-weight: 500;
 }
 
-.socialify-wrap {
-	margin-top: 16px;
+.github-repo-card {
+	border-radius: 16px;
+	overflow: hidden;
 	cursor: pointer;
-	border: 1px solid #333333;
-	transition: border-color 0.15s ease;
+	border: 1px solid #e5e5ea;
+	transition: transform 0.2s ease;
 }
 
-.socialify-wrap:hover {
-	border-color: #ffffff;
+.github-repo-card:hover {
+	transform: scale(1.02);
 }
 
-.socialify-img {
+.github-banner-img {
 	width: 100%;
 	display: block;
-}
-
-.img-hint {
-	display: block;
-	text-align: center;
-	padding: 10px;
-	background: #0a0a0a;
-	font-size: 0.82rem;
-	color: #a3a3a3;
-	border-top: 1px solid #262626;
 }
 
 /* Music */
 .music-intro {
-	font-size: 1.05rem;
-	color: #d4d4d4;
-	line-height: 1.85;
-	margin: 0 0 28px;
-}
-
-.bands-grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 16px;
-}
-
-.band-card {
-	background: #0a0a0a;
-	border: 1px solid #262626;
-	padding: 18px 20px;
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
-}
-
-.band-name {
-	font-size: 1rem;
-	color: #ffffff;
-	font-weight: 500;
-}
-
-.band-desc {
-	font-size: 0.82rem;
-	color: #a3a3a3;
-}
-
-/* Comms */
-.comms-lead {
-	font-size: 1rem;
-	color: #d4d4d4;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #515154;
 	margin: 0 0 20px;
 }
 
-.comms-links {
-	display: flex;
-	flex-direction: column;
+.music-cards-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	gap: 12px;
 }
 
-.comm-btn {
+.music-mini-card {
+	background: #f5f5f7;
+	padding: 14px 18px;
+	border-radius: 16px;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.m-title {
+	font-size: 14px;
+	font-weight: 700;
+	color: #1d1d1f;
+}
+
+.m-sub {
+	font-size: 12px;
+	color: #86868b;
+}
+
+/* Comms */
+.comms-intro {
+	font-size: 14px;
+	color: #6e6e73;
+	margin: 0 0 16px;
+}
+
+.contact-links-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.contact-row-btn {
+	display: flex;
 	align-items: center;
-	padding: 14px 20px;
-	background: #0a0a0a;
-	border: 1px solid #262626;
-	text-decoration: none;
-	color: #ffffff;
-	font-size: 0.9rem;
-	transition: all 0.15s ease;
+	justify-content: space-between;
+	padding: 12px 18px;
+	background: #f5f5f7;
+	border-radius: 16px;
+	transition: background-color 0.18s ease, transform 0.15s ease;
 }
 
-.comm-btn:hover {
-	background: #ffffff;
-	color: #000000;
-	border-color: #ffffff;
+.contact-row-btn:hover {
+	background: #e8e8ed;
+	transform: translateX(4px);
 }
 
-.comm-btn:hover .btn-label,
-.comm-btn:hover .btn-target {
-	color: #000000;
+.btn-left {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
 }
 
-.btn-label {
-	color: #a3a3a3;
+.btn-brand {
+	font-size: 13px;
+	font-weight: 600;
+	color: #1d1d1f;
 }
 
-.btn-target {
-	color: #ffffff;
+.btn-handle {
+	font-size: 12px;
+	color: #86868b;
 }
 
-@media screen and (max-width: 768px) {
-	.signature-section {
-		padding: 48px 0 54px;
+.btn-arrow {
+	color: #0071e3;
+	font-size: 16px;
+}
+
+@media screen and (max-width: 860px) {
+	.col-span-7, .col-span-5 {
+		grid-column: span 12;
 	}
-	.title-signature {
-		max-width: 92%;
-	}
-	.bands-grid {
+	.music-cards-grid {
 		grid-template-columns: 1fr;
-	}
-	.about-bento-container {
-		padding: 0 20px;
 	}
 }
 </style>

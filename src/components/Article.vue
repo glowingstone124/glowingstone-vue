@@ -1,54 +1,74 @@
 <template>
-	<div class="reader-page">
+	<div class="newsroom-article-page">
 		<!-- Top Reading Progress Indicator -->
 		<div class="reading-progress-track">
 			<div class="reading-progress-bar" :style="{ width: scrollProgress + '%' }"></div>
 		</div>
 
-		<div class="reader-container">
-			<!-- Terminal Header & Breadcrumbs -->
-			<div class="terminal-nav-header font-mono">
-				<router-link to="/archive" class="back-link">
-					&larr; [返回文章列表]
+		<div class="article-reader-container">
+			<!-- Top Breadcrumb Navigation -->
+			<div class="article-top-nav">
+				<router-link to="/archive" class="apple-back-pill">
+					<svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+						<path d="M10 12.5L5.5 8 10 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+					全部文章
 				</router-link>
-				<span class="file-path-tag">
-					/articles/{{ articleId }}
-				</span>
+				<span class="article-id-pill">{{ articleId }}</span>
 			</div>
 
-			<!-- Article Hero Box -->
-			<header class="article-hero-box">
-				<div class="hero-top-meta font-mono" v-if="ai_gen">
-					<span class="ai-banner font-mono">
-						[AI 生成: 该文章包含AI辅助生成内容]
-					</span>
+			<!-- Article Header -->
+			<header class="article-header">
+				<div class="header-meta-row">
+					<span class="category-badge">{{ articleCategory }}</span>
+					<span class="meta-dot">·</span>
+					<span class="article-date">{{ articleDate }}</span>
+					<span v-if="ai_gen" class="ai-badge">AI 辅助内容</span>
 				</div>
 
-				<h1 class="article-title">{{ articleTitle }}</h1>
+				<h1 class="article-main-title">{{ articleTitle }}</h1>
 
-				<div class="hero-footer-meta font-mono">
-					<span class="word-metric">{{ wordCount }} 字</span>
-					<span class="reading-time">预计阅读: ~{{ Math.max(1, Math.ceil(wordCount / 400)) }} 分钟</span>
+				<div class="article-stats-bar">
+					<div class="stats-left">
+						<span class="author-label">作者: <strong>Glowingstone</strong></span>
+						<span class="meta-dot">·</span>
+						<span class="word-metric">{{ wordCount }} 字</span>
+						<span class="meta-dot">·</span>
+						<span class="reading-time">约 {{ Math.max(1, Math.ceil(wordCount / 400)) }} 分钟阅读</span>
+					</div>
+
 					<a
-						class="github-issue-pill"
+						class="github-feedback-link"
 						href="https://github.com/glowingstone124/glowingstone-vue/issues/new"
 						target="_blank"
 						rel="noopener"
 					>
-						[在 GitHub 提交反馈 &rarr;]
+						<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+							<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+						</svg>
+						在 GitHub 提交讨论
 					</a>
+				</div>
+
+				<!-- Cover Image Banner -->
+				<div v-if="coverImage && coverImage !== 'none'" class="article-cover-banner">
+					<img :src="coverImage" :alt="articleTitle" class="cover-banner-img" />
 				</div>
 			</header>
 
 			<!-- Markdown Content Body -->
-			<main class="markdown-surface">
-				<div class="md-content" v-html="output"></div>
+			<main class="article-content-body">
+				<div class="apple-markdown" v-html="output"></div>
 			</main>
 
-			<!-- Post Footer Navigation -->
-			<footer class="reader-footer font-mono">
-				<router-link to="/archive" class="metro-btn">&larr; 返回文章列表</router-link>
-				<button class="metro-btn" @click="scrollToTop">回到顶部 &uarr;</button>
+			<!-- Reader Footer Navigation -->
+			<footer class="article-reader-footer">
+				<router-link to="/archive" class="apple-btn-pill">
+					&larr; 返回所有文章
+				</router-link>
+				<button class="apple-btn-pill primary" @click="scrollToTop">
+					回到顶部 &uarr;
+				</button>
 			</footer>
 		</div>
 
@@ -62,7 +82,7 @@ import { useRoute } from 'vue-router';
 import { marked } from 'marked';
 import hljs from 'highlight.js';
 import matter from 'gray-matter';
-import 'highlight.js/styles/monokai-sublime.css';
+import 'highlight.js/styles/github.css';
 import 'katex/dist/katex.min.css';
 import katex from 'katex';
 import VisitCounter from "@/components/VisitCounter.vue";
@@ -76,6 +96,9 @@ export default {
 		const output = ref('');
 		const ai_gen = ref(false);
 		const articleTitle = ref('');
+		const articleCategory = ref('UPDATE');
+		const articleDate = ref('October 2026');
+		const coverImage = ref(null);
 		const wordCount = ref(0);
 		const scrollProgress = ref(0);
 
@@ -90,6 +113,148 @@ export default {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		};
 
+		const setupMarkdownRenderer = () => {
+			const renderer = new marked.Renderer();
+
+			// Apple-style macOS Code Block with Traffic Light Dots
+			renderer.code = function({ text, lang }) {
+				const validLang = hljs.getLanguage(lang) ? lang : 'plaintext';
+				const highlighted = hljs.highlight(text, { language: validLang }).value;
+				return `
+					<div class="macos-code-window">
+						<div class="macos-window-header">
+							<div class="window-controls">
+								<span class="control-dot close"></span>
+								<span class="control-dot minimize"></span>
+								<span class="control-dot zoom"></span>
+							</div>
+							<span class="window-lang-tag">${validLang}</span>
+						</div>
+						<pre class="hljs"><code class="language-${validLang}">${highlighted}</code></pre>
+					</div>
+				`;
+			};
+
+			renderer.image = function({ href, title, text }) {
+				return `<div class="apple-image-wrapper"><img src="${href}" alt="${text || ''}" title="${title || ''}" class="apple-post-img" /><span class="img-caption">${text || ''}</span></div>`;
+			};
+
+			marked.setOptions({
+				renderer: renderer,
+				gfm: true,
+				breaks: true,
+			});
+		};
+
+		const renderMathFormulas = () => {
+			nextTick(() => {
+				const container = document.querySelector('.apple-markdown');
+				if (!container) return;
+
+				const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+				const nodes = [];
+				let currentNode;
+				while ((currentNode = walker.nextNode())) {
+					nodes.push(currentNode);
+				}
+
+				for (const node of nodes) {
+					if (node.parentElement && (node.parentElement.tagName === 'CODE' || node.parentElement.tagName === 'PRE')) {
+						continue;
+					}
+					const text = node.nodeValue;
+					if (!text) continue;
+
+					// Display math $$...$$
+					if (text.includes('$$')) {
+						const parts = text.split('$$');
+						if (parts.length >= 3) {
+							const span = document.createElement('span');
+							for (let i = 0; i < parts.length; i++) {
+								if (i % 2 === 1) {
+									try {
+										const mathSpan = document.createElement('span');
+										katex.render(parts[i], mathSpan, { displayMode: true, throwOnError: false });
+										span.appendChild(mathSpan);
+									} catch (e) {
+										span.appendChild(document.createTextNode('$$' + parts[i] + '$$'));
+									}
+								} else if (parts[i]) {
+									span.appendChild(document.createTextNode(parts[i]));
+								}
+							}
+							if (node.parentNode) {
+								node.parentNode.replaceChild(span, node);
+							}
+							continue;
+						}
+					}
+
+					// Inline math $...$
+					if (text.includes('$')) {
+						const regex = /\$([^$\n]+)\$/g;
+						if (regex.test(text)) {
+							const span = document.createElement('span');
+							let lastIdx = 0;
+							regex.lastIndex = 0;
+							let match;
+							while ((match = regex.exec(text)) !== null) {
+								if (match.index > lastIdx) {
+									span.appendChild(document.createTextNode(text.substring(lastIdx, match.index)));
+								}
+								try {
+									const mathSpan = document.createElement('span');
+									katex.render(match[1], mathSpan, { displayMode: false, throwOnError: false });
+									span.appendChild(mathSpan);
+								} catch (e) {
+									span.appendChild(document.createTextNode(match[0]));
+								}
+								lastIdx = regex.lastIndex;
+							}
+							if (lastIdx < text.length) {
+								span.appendChild(document.createTextNode(text.substring(lastIdx)));
+							}
+							if (node.parentNode) {
+								node.parentNode.replaceChild(span, node);
+							}
+						}
+					}
+				}
+			});
+		};
+
+		const loadMarkdownContent = async () => {
+			if (!articleId.value) return;
+			try {
+				const file = await import(`@root/public/articles/${articleId.value}`);
+				const parsed = matter(file.default);
+
+				articleTitle.value = parsed.data.title || articleId.value;
+				ai_gen.value = parsed.data.ai_generated || false;
+				coverImage.value = (parsed.data.picture && parsed.data.picture !== 'none') ? parsed.data.picture : null;
+				articleDate.value = parsed.data.date || 'October 2026';
+
+				switch (parsed.data.category) {
+					case 0: articleCategory.value = 'TECH'; break;
+					case 1: articleCategory.value = 'STORIES'; break;
+					case 2: articleCategory.value = 'PRESS RELEASE'; break;
+					case 3: articleCategory.value = 'CREATIVE'; break;
+					default: articleCategory.value = 'UPDATE';
+				}
+
+				const rawContent = parsed.content;
+				wordCount.value = rawContent.replace(/[\s\p{P}]/gu, '').length;
+
+				output.value = marked(rawContent);
+				document.title = `${articleTitle.value} · Glowstone Newsroom`;
+
+				renderMathFormulas();
+			} catch (err) {
+				console.error("Failed to load article:", err);
+				output.value = `<div class="error-msg">未能成功加载文章内容: ${err.message}</div>`;
+			}
+		};
+
 		watch(
 			() => route.params.articleId,
 			(newId) => {
@@ -100,73 +265,25 @@ export default {
 			}
 		);
 
-		onMounted(async () => {
+		onMounted(() => {
+			setupMarkdownRenderer();
 			articleId.value = route.params.articleId;
+			loadMarkdownContent();
 			window.addEventListener('scroll', handleScroll, { passive: true });
-			await loadMarkdownContent();
 		});
 
 		onBeforeUnmount(() => {
 			window.removeEventListener('scroll', handleScroll);
 		});
 
-		async function loadMarkdownContent() {
-			try {
-				const file = await import(`@root/public/articles/${articleId.value}`);
-				const parsed = matter(file.default);
-				const rawMarkdown = parsed.content;
-
-				articleTitle.value = parsed.data.title || articleId.value;
-				ai_gen.value = parsed.data.ai_generated || false;
-				wordCount.value = rawMarkdown.length;
-
-				// Parse markdown
-				let html = marked.parse(rawMarkdown);
-
-				// Replace KaTeX math block expressions $$...$$ and inline $...$
-				html = html.replace(/\$\$([\s\S]+?)\$\$/g, (_, tex) => {
-					try {
-						return `<div class="katex-display-box">${katex.renderToString(tex, { displayMode: true, throwOnError: false })}</div>`;
-					} catch (e) {
-						return `$$${tex}$$`;
-					}
-				});
-
-				html = html.replace(/\$([^\$\n]+?)\$/g, (_, tex) => {
-					try {
-						return katex.renderToString(tex, { displayMode: false, throwOnError: false });
-					} catch (e) {
-						return `$${tex}$`;
-					}
-				});
-
-				output.value = html;
-
-				nextTick(() => {
-					highlightCodeBlocks();
-				});
-			} catch (error) {
-				console.error('Error loading Markdown content:', error);
-				output.value = `
-					<div class="load-error font-mono">
-						<h3>[FILE_NOT_FOUND]</h3>
-						<p>无法定位或加载目标文章资源: ${articleId.value}</p>
-					</div>
-				`;
-			}
-		}
-
-		function highlightCodeBlocks() {
-			document.querySelectorAll('.md-content pre code').forEach((block) => {
-				hljs.highlightElement(block);
-			});
-		}
-
 		return {
 			articleId,
-			output,
 			articleTitle,
+			articleCategory,
+			articleDate,
+			coverImage,
 			ai_gen,
+			output,
 			wordCount,
 			scrollProgress,
 			scrollToTop,
@@ -176,276 +293,350 @@ export default {
 </script>
 
 <style scoped>
-.reader-page {
+.newsroom-article-page {
 	width: 100%;
-	min-height: 100vh;
-	padding-bottom: 120px;
+	padding: 24px 0 80px;
 }
 
-/* Scroll Progress Bar */
+/* Reading Progress Bar */
 .reading-progress-track {
 	position: fixed;
-	top: 64px;
+	top: 108px;
 	left: 0;
 	width: 100%;
-	height: 2px;
-	background: #262626;
-	z-index: 1001;
+	height: 3px;
+	background: transparent;
+	z-index: 999;
 }
 
 .reading-progress-bar {
 	height: 100%;
-	background: #ffffff;
-	transition: width 0.08s ease-out;
+	background: #0071e3;
+	transition: width 0.1s ease-out;
 }
 
-.reader-container {
-	max-width: 1140px;
-	margin: 20px auto 80px;
-	padding: 0 40px;
+.article-reader-container {
+	max-width: 860px;
+	margin: 0 auto;
+	padding: 0 24px;
 	box-sizing: border-box;
 }
 
-/* Terminal Nav Header */
-.terminal-nav-header {
+/* Top Nav */
+.article-top-nav {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
+	margin-bottom: 32px;
+}
+
+.apple-back-pill {
+	display: inline-flex;
 	align-items: center;
-	padding: 16px 28px;
-	background: #121212;
-	border: 1px solid #262626;
-	font-size: 0.85rem;
-}
-
-.back-link {
-	color: #ffffff;
-	text-decoration: none;
-}
-
-.back-link:hover {
-	text-decoration: underline;
-}
-
-.file-path-tag {
-	color: #737373;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	max-width: 50%;
-}
-
-/* Article Hero Box */
-.article-hero-box {
-	background: #121212;
-	border: 1px solid #262626;
-	border-top: none;
-	padding: 56px 64px 44px;
-	margin-bottom: 44px;
-}
-
-.hero-top-meta {
-	margin-bottom: 20px;
-}
-
-.ai-banner {
-	color: #a3a3a3;
-	border: 1px solid #404040;
+	gap: 6px;
+	font-size: 14px;
+	color: #0071e3;
+	font-weight: 500;
 	padding: 6px 14px;
-	font-size: 0.82rem;
+	border-radius: 980px;
+	background: #f5f5f7;
+	transition: background-color 0.18s ease;
 }
 
-.article-title {
-	font-size: 2.6rem;
-	font-weight: 600;
-	color: #ffffff;
-	line-height: 1.35;
-	margin: 0 0 28px;
-	letter-spacing: -0.5px;
+.apple-back-pill:hover {
+	background: #e8e8ed;
 }
 
-.hero-footer-meta {
+.article-id-pill {
+	font-size: 12px;
+	color: #86868b;
+	padding: 4px 12px;
+	background: #f5f5f7;
+	border-radius: 980px;
+}
+
+/* Header */
+.article-header {
+	margin-bottom: 48px;
+}
+
+.header-meta-row {
 	display: flex;
 	align-items: center;
-	gap: 24px;
-	font-size: 0.85rem;
-	color: #a3a3a3;
-	padding-top: 22px;
-	border-top: 1px solid #262626;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+
+.category-badge {
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	color: #86868b;
+	text-transform: uppercase;
+}
+
+.article-date {
+	font-size: 13px;
+	color: #86868b;
+}
+
+.meta-dot {
+	color: #d2d2d7;
+}
+
+.ai-badge {
+	font-size: 11px;
+	font-weight: 600;
+	color: #0071e3;
+	background: #e8f2fd;
+	padding: 2px 8px;
+	border-radius: 980px;
+}
+
+.article-main-title {
+	font-size: 42px;
+	font-weight: 700;
+	line-height: 1.15;
+	color: #1d1d1f;
+	margin: 0 0 24px;
+	letter-spacing: -0.025em;
+}
+
+.article-stats-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 24px;
+	border-bottom: 1px solid var(--apple-border, #e5e5ea);
+	font-size: 13px;
+	color: #86868b;
 	flex-wrap: wrap;
+	gap: 12px;
 }
 
-.github-issue-pill {
-	color: #ffffff;
-	text-decoration: none;
-	margin-left: auto;
+.stats-left {
+	display: flex;
+	align-items: center;
+	gap: 8px;
 }
 
-.github-issue-pill:hover {
-	text-decoration: underline;
+.author-label strong {
+	color: #1d1d1f;
 }
 
-/* Markdown Surface */
-.markdown-surface {
-	background: #121212;
-	border: 1px solid #262626;
-	padding: 72px 80px;
+.github-feedback-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: #86868b;
+	font-size: 13px;
+	transition: color 0.15s ease;
 }
 
-.md-content {
-	color: #d4d4d4;
-	font-size: 1.12rem;
-	line-height: 2.0;
+.github-feedback-link:hover {
+	color: #0071e3;
 }
 
-/* Markdown Inner Styling */
-.md-content:deep(h1) {
-	font-size: 2.1rem;
-	color: #ffffff;
-	border-bottom: 1px solid #262626;
-	padding-bottom: 14px;
-	margin: 56px 0 24px;
-	font-weight: 500;
+/* Cover Banner */
+.article-cover-banner {
+	margin-top: 32px;
+	border-radius: var(--apple-radius-card, 24px);
+	overflow: hidden;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
-.md-content:deep(h2) {
-	font-size: 1.65rem;
-	color: #ffffff;
-	margin: 44px 0 20px;
-	font-weight: 500;
-}
-
-.md-content:deep(h3) {
-	font-size: 1.35rem;
-	color: #e5e5e5;
-	margin: 36px 0 16px;
-	font-weight: 500;
-}
-
-.md-content:deep(p) {
-	margin-bottom: 28px;
-	color: #d4d4d4;
-	padding: 0;
-}
-
-.md-content:deep(a) {
-	color: #ffffff;
-	text-decoration: underline;
-	transition: all 0.15s ease;
-}
-
-.md-content:deep(img) {
-	max-width: 100%;
-	height: auto;
-	border: 1px solid #333333;
-	margin: 32px auto;
+.cover-banner-img {
+	width: 100%;
+	max-height: 500px;
+	object-fit: cover;
 	display: block;
 }
 
-.md-content:deep(blockquote) {
-	margin: 32px 0;
-	padding: 20px 28px;
-	background: #171717;
-	border-left: 4px solid #ffffff;
-	color: #e5e5e5;
+/* Content Body */
+.article-content-body {
+	margin-bottom: 64px;
 }
 
-.md-content:deep(blockquote p) {
+/* Apple Typography for Markdown */
+:deep(.apple-markdown) {
+	font-size: 17px;
+	line-height: 1.8;
+	color: #1d1d1f;
+}
+
+:deep(.apple-markdown p) {
+	margin: 0 0 24px;
+	color: #333336;
+}
+
+:deep(.apple-markdown h2) {
+	font-size: 28px;
+	font-weight: 700;
+	color: #1d1d1f;
+	margin: 48px 0 20px;
+	letter-spacing: -0.015em;
+}
+
+:deep(.apple-markdown h3) {
+	font-size: 22px;
+	font-weight: 600;
+	color: #1d1d1f;
+	margin: 36px 0 16px;
+}
+
+:deep(.apple-markdown blockquote) {
+	margin: 28px 0;
+	padding: 18px 24px;
+	background: #f5f5f7;
+	border-left: 4px solid #0071e3;
+	border-radius: 0 16px 16px 0;
+	color: #515154;
+	font-style: normal;
+}
+
+:deep(.apple-markdown blockquote p) {
 	margin: 0;
-	color: #a3a3a3;
 }
 
-.md-content:deep(pre) {
-	background: #000000;
-	border: 1px solid #333333;
-	padding: 24px 28px;
-	overflow-x: auto;
-	margin: 32px 0;
+:deep(.apple-markdown ul),
+:deep(.apple-markdown ol) {
+	margin: 0 0 24px;
+	padding-left: 28px;
 }
 
-.md-content:deep(code) {
-	font-family: var(--font-mono);
-	font-size: 0.9em;
+:deep(.apple-markdown li) {
+	margin-bottom: 8px;
+	color: #333336;
 }
 
-.md-content:deep(:not(pre) > code) {
-	background: #1a1a1a;
-	color: #ffffff;
-	border: 1px solid #333333;
-	padding: 2px 8px;
-}
-
-.md-content:deep(ul),
-.md-content:deep(ol) {
-	padding-left: 32px;
-	margin-bottom: 28px;
-}
-
-.md-content:deep(li) {
-	margin-bottom: 12px;
-	color: #d4d4d4;
-}
-
-.md-content:deep(table) {
+:deep(.apple-markdown table) {
 	width: 100%;
 	border-collapse: collapse;
-	margin: 36px 0;
-	background: #0a0a0a;
-	border: 1px solid #262626;
+	margin: 32px 0;
+	border-radius: 12px;
+	overflow: hidden;
+	border: 1px solid #e5e5ea;
 }
 
-.md-content:deep(th) {
-	background: #171717;
-	color: #ffffff;
-	font-weight: 500;
-	padding: 14px 18px;
-	border-bottom: 1px solid #333333;
+:deep(.apple-markdown th),
+:deep(.apple-markdown td) {
+	padding: 12px 18px;
 	text-align: left;
+	border-bottom: 1px solid #e5e5ea;
+	font-size: 15px;
 }
 
-.md-content:deep(td) {
-	padding: 14px 18px;
-	border-bottom: 1px solid #262626;
+:deep(.apple-markdown th) {
+	background: #f5f5f7;
+	font-weight: 600;
+	color: #1d1d1f;
+}
+
+:deep(.apple-markdown tr:last-child td) {
+	border-bottom: none;
+}
+
+/* macOS Terminal Window Code Blocks */
+:deep(.macos-code-window) {
+	margin: 32px 0;
+	background: #1e1e1e;
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+:deep(.macos-window-header) {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 16px;
+	background: #2d2d2d;
+	border-bottom: 1px solid #3d3d3d;
+}
+
+:deep(.window-controls) {
+	display: flex;
+	gap: 7px;
+}
+
+:deep(.control-dot) {
+	width: 11px;
+	height: 11px;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+:deep(.control-dot.close) { background: #ff5f56; }
+:deep(.control-dot.minimize) { background: #ffbd2e; }
+:deep(.control-dot.zoom) { background: #27c93f; }
+
+:deep(.window-lang-tag) {
+	font-size: 11px;
+	color: #999999;
+	text-transform: uppercase;
+	font-family: var(--apple-font-mono, monospace);
+}
+
+:deep(.macos-code-window pre) {
+	margin: 0;
+	padding: 18px 20px;
+	overflow-x: auto;
+	background: #1e1e1e !important;
+}
+
+:deep(.macos-code-window code) {
+	font-family: var(--apple-font-mono, monospace);
+	font-size: 14px;
+	line-height: 1.6;
 	color: #d4d4d4;
 }
 
-.md-content:deep(hr) {
-	border: none;
-	height: 1px;
-	background: #262626;
-	margin: 48px 0;
+/* Inline Code */
+:deep(.apple-markdown :not(pre) > code) {
+	padding: 3px 6px;
+	background: #f5f5f7;
+	border: 1px solid #e5e5ea;
+	border-radius: 6px;
+	font-family: var(--apple-font-mono, monospace);
+	font-size: 14px;
+	color: #eb5757;
 }
 
-/* KaTeX Formula Box */
-:deep(.katex-display-box) {
-	padding: 24px 28px;
+/* Images in Markdown */
+:deep(.apple-image-wrapper) {
 	margin: 32px 0;
-	background: #0a0a0a;
-	border: 1px solid #262626;
-	overflow-x: auto;
+	text-align: center;
 }
 
-/* Reader Footer */
-.reader-footer {
+:deep(.apple-post-img) {
+	max-width: 100%;
+	border-radius: 16px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+	display: inline-block;
+}
+
+:deep(.img-caption) {
+	display: block;
+	margin-top: 10px;
+	font-size: 13px;
+	color: #86868b;
+}
+
+/* Footer Navigation */
+.article-reader-footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 32px 0;
-	margin-top: 40px;
-	border-top: 1px solid #262626;
+	padding-top: 32px;
+	border-top: 1px solid var(--apple-border, #e5e5ea);
 }
 
 @media screen and (max-width: 768px) {
-	.markdown-surface {
-		padding: 36px 24px;
+	.article-main-title {
+		font-size: 30px;
 	}
-	.article-hero-box {
-		padding: 32px 24px;
-	}
-	.article-title {
-		font-size: 2rem;
-	}
-	.reader-container {
-		padding: 0 20px;
+	:deep(.apple-markdown) {
+		font-size: 16px;
 	}
 }
 </style>
